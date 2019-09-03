@@ -1,0 +1,15 @@
+input {
+    width: 400px;
+    height: 100px;
+    font-size: 50px;
+}
+
+.converter-container {
+    left: 40%;
+    position: absolute;
+    top: 40%;
+}
+
+.source-input {
+    margin-bottom: 20px
+}
