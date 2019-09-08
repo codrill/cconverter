@@ -1,9 +1,7 @@
-import * as React from "react";
 import {Input, Select} from "antd";
 import 'antd/dist/antd.css';
 import './Dashboard.css'
-import {useState} from "react";
-import ReactDOM from "react-dom";
+import React, {useState} from "react";
 
 const { Option } = Select;
 
@@ -49,4 +47,3 @@ export function Dashboard() {
       </div>
     )
 }
-ReactDOM.render('converter-container', document.getElementById('root'));
