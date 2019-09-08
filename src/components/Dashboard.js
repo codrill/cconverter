@@ -2,7 +2,6 @@ import * as React from "react";
 import {Input} from "antd";
 import './Dashboard.css'
 
-
 export class Dashboard extends React.Component {
 
   render() {
