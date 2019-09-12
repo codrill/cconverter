@@ -6,10 +6,6 @@ import {getCurrencyValues} from "../services/CurrencyService";
 
 const {Option} = Select;
 
-function onChange(value) {
-  console.log(`selected ${value}`);
-}
-
 export const Dashboard = () => {
 
   const [rates, setRates] = useState([]);
@@ -22,9 +18,16 @@ export const Dashboard = () => {
     getCurrencyValues().then(array => {
       setRates(array[0].rates);
       setCurrentDate(array[0].effectiveDate);
-      console.log(array[0])
     })
-  }, []);
+  }, [setRates]);
+
+  useEffect(() => {
+    setRates(rates.filter(rate => rate.code !== fromCurrency));
+  }, [fromCurrency]);
+
+  useEffect(() => {
+    setRates(rates.filter(rate => rate.code !== toCurrency));
+  },  [toCurrency]);
 
   return (
     <div className="converter-container">
@@ -35,7 +38,7 @@ export const Dashboard = () => {
           style={{width: 200}}
           placeholder="Select currency"
           optionFilterProp="children"
-          onChange={onChange}
+          onChange={setFromCurrency}
           filterOption={(input, option) =>
             option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
           }
@@ -43,7 +46,7 @@ export const Dashboard = () => {
           {renderOptionsInSelector(rates)}
         </Select>
 
-        <div className="source-input">
+        <div className="source-input">c
           <Input/>
         </div>
 
@@ -56,7 +59,7 @@ export const Dashboard = () => {
           style={{width: 200}}
           placeholder="Select currency"
           optionFilterProp="children"
-          onChange={onChange}
+          onChange={setToCurrency}
           filterOption={(input, option) =>
             option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
           }
