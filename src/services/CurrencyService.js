@@ -1,6 +1,6 @@
 import {urlApi} from "../constants/CurrencyApiConstants";
 
-export function getCurrencyValues() {
+export const getCurrencyValues = () => {
   return fetch(urlApi)
     .then(result => result.json())
-}
+};
