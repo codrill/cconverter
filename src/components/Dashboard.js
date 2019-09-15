@@ -8,81 +8,100 @@ const {Option} = Select;
 
 export const Dashboard = () => {
 
-  const [rates, setRates] = useState([]);
+  const [apiRates, setApiRates] = useState([]);
+  const [functionRates, setFunctionRates] = useState([]);
   const [fromCurrency, setFromCurrency] = useState('');
   const [toCurrency, setToCurrency] = useState('');
   const [userValue, setUserValue] = useState(0);
+  const [converterValue, setConvertedValue] = useState(0);
   const [date, setCurrentDate] = useState('');
 
-  useEffect(() => {
-    getCurrencyValues().then(array => {
-      setRates(array[0].rates);
-      setCurrentDate(array[0].effectiveDate);
+    useEffect(() => {
+      getCurrencyValues().then(array => {
+        setApiRates(array[0].rates);
+        setFunctionRates(array[0].rates);
+        setCurrentDate(array[0].effectiveDate);
+      })
+    }, []);
+
+    useEffect(() => {
+      setFunctionRates(functionRates.filter(rate => rate.code !== fromCurrency));
+
+    }, [fromCurrency]);
+
+    useEffect(() => {
+      setFunctionRates(functionRates.filter(rate => rate.code !== toCurrency));
+
+    }, [toCurrency]);
+
+
+    useEffect(() => {
+      const firstValue = apiRates.find(rate => rate.code === fromCurrency);
+      const secondValue = apiRates.find(rate => rate.code === toCurrency);
+
+      if (firstValue && secondValue) {
+        const result = firstValue.bid / secondValue.bid;
+
+        setConvertedValue((userValue * result).toFixed(2).toString());
+      }});
+
+    return (
+      <div className="converter-container">
+        <div className="selector-wrapper">
+
+          <Select
+            showSearch
+            style={{width: 200}}
+            placeholder="Select currency"
+            optionFilterProp="children"
+            onChange={setFromCurrency}
+            filterOption={(input, option) =>
+              option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
+            }
+          >
+            {renderOptionsInSelector(functionRates)}
+          </Select>
+
+          <div className="source-input">
+            <Input
+              value={userValue}
+              onChange={(e) => setUserValue(e.target.value)}/>
+          </div>
+
+          <div className="destination-input">
+            <Input
+              value={converterValue}/>
+          </div>
+
+          <Select
+            showSearch
+            style={{width: 200}}
+            placeholder="Select currency"
+            optionFilterProp="children"
+            onChange={setToCurrency}
+            filterOption={(input, option) =>
+              option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
+            }
+          >
+            {renderOptionsInSelector(functionRates)}
+          </Select>
+        </div>
+
+        <div className="effectiveDate">
+          {displayDateInformation(date)}
+        </div>
+      </div>
+    )
+  };
+
+  const renderOptionsInSelector = (rates) => {
+    return rates.map(rate => {
+      return <Option value={rate.code} key={rate.code}>{rate.currency}</Option>
     })
-  }, [setRates]);
+  };
 
-  useEffect(() => {
-    setRates(rates.filter(rate => rate.code !== fromCurrency));
-  }, [fromCurrency]);
-
-  useEffect(() => {
-    setRates(rates.filter(rate => rate.code !== toCurrency));
-  },  [toCurrency]);
-
-  return (
-    <div className="converter-container">
-      <div className="selector-wrapper">
-
-        <Select
-          showSearch
-          style={{width: 200}}
-          placeholder="Select currency"
-          optionFilterProp="children"
-          onChange={setFromCurrency}
-          filterOption={(input, option) =>
-            option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
-          }
-        >
-          {renderOptionsInSelector(rates)}
-        </Select>
-
-        <div className="source-input">c
-          <Input/>
-        </div>
-
-        <div className="destination-input">
-          <Input/>
-        </div>
-
-        <Select
-          showSearch
-          style={{width: 200}}
-          placeholder="Select currency"
-          optionFilterProp="children"
-          onChange={setToCurrency}
-          filterOption={(input, option) =>
-            option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
-          }
-        >
-          {renderOptionsInSelector(rates)}
-        </Select>
-      </div>
-
-      <div className="effectiveDate">
-        {displayDateInformation(date)}
-      </div>
-    </div>
-  )
-};
-
-const renderOptionsInSelector = (rates) => {
-  return rates.map(rate => {
-    return <Option value={rate.code} key={rate.code}>{rate.currency}</Option>
-  })
-};
-
-const displayDateInformation = (date) => {
-  return (
-    <h4>{date}</h4>
-  )
-};
+  const displayDateInformation = (date) => {
+    return (
+      <h4>{date}</h4>
+    )
+  };
