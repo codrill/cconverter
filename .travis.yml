@@ -10,8 +10,7 @@ branches:
     - develop
 
 script:
-  - npm run builds
-  - npm run deploy
+  - npm run build
 
 deploy:
   provider: pages
