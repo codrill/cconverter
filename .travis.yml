@@ -7,7 +7,7 @@ sudo: required
 
 branches:
   only:
-    - develop
+    - master
 
 script:
   - npm run build
@@ -19,4 +19,4 @@ deploy:
   local_dir: build
   target-branch: master
   on:
-    branch: develop
+    branch: master
