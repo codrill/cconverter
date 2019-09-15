@@ -31,7 +31,7 @@ export const Dashboard = () => {
         const result = firstValue.bid / secondValue.bid;
 
         setConvertedValue((userValue * result).toFixed(2).toString());
-      }});
+      }}, [apiRates, fromCurrency, toCurrency, userValue]);
 
     return (
       <div className="converter-container">
@@ -53,7 +53,7 @@ export const Dashboard = () => {
           <div className="source-input">
             <Input
               value={userValue}
-              onChange={(e) => setUserValue(e.target.value)}/>
+              onChange={(value) => setUserValue(value.target.value)}/>
           </div>
 
           <div className="destination-input">
