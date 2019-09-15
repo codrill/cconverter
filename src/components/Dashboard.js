@@ -53,7 +53,7 @@ export const Dashboard = () => {
           <div className="source-input">
             <Input
               value={userValue}
-              onChange={(e) => setUserValue(e.target.value)}/>
+              onChange={(value) => setUserValue(value.target.value)}/>
           </div>
 
           <div className="destination-input">
