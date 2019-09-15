@@ -9,7 +9,6 @@ const {Option} = Select;
 export const Dashboard = () => {
 
   const [apiRates, setApiRates] = useState([]);
-  const [functionRates, setFunctionRates] = useState([]);
   const [fromCurrency, setFromCurrency] = useState('');
   const [toCurrency, setToCurrency] = useState('');
   const [userValue, setUserValue] = useState(0);
@@ -19,20 +18,9 @@ export const Dashboard = () => {
     useEffect(() => {
       getCurrencyValues().then(array => {
         setApiRates(array[0].rates);
-        setFunctionRates(array[0].rates);
         setCurrentDate(array[0].effectiveDate);
       })
     }, []);
-
-    useEffect(() => {
-      setFunctionRates(functionRates.filter(rate => rate.code !== fromCurrency));
-
-    }, [fromCurrency]);
-
-    useEffect(() => {
-      setFunctionRates(functionRates.filter(rate => rate.code !== toCurrency));
-
-    }, [toCurrency]);
 
 
     useEffect(() => {
@@ -59,7 +47,7 @@ export const Dashboard = () => {
               option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
             }
           >
-            {renderOptionsInSelector(functionRates)}
+            {renderOptionsInSelector(apiRates)}
           </Select>
 
           <div className="source-input">
@@ -83,7 +71,7 @@ export const Dashboard = () => {
               option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
             }
           >
-            {renderOptionsInSelector(functionRates)}
+            {renderOptionsInSelector(apiRates)}
           </Select>
         </div>
 
