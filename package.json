@@ -2,6 +2,7 @@
   "name": "cconverter",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://mad-rat.github.io/cconverter",
   "dependencies": {
     "antd": "^3.23.1",
     "react": "^16.9.0",
