@@ -1,1 +1,1 @@
-export const urlApi = 'http://api.nbp.pl/api/exchangerates/tables/C';
+export const urlApi = 'https://api.nbp.pl/api/exchangerates/tables/C';
