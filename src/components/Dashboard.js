@@ -31,7 +31,7 @@ export const Dashboard = () => {
         const result = firstValue.bid / secondValue.bid;
 
         setConvertedValue((userValue * result).toFixed(2).toString());
-      }});
+      }}, [apiRates, fromCurrency, toCurrency, userValue]);
 
     return (
       <div className="converter-container">
