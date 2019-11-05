@@ -5,6 +5,7 @@ import React, {useEffect, useState} from "react";
 import {getCurrencyValues} from "../services/CurrencyService";
 
 const {Option} = Select;
+export const regex = new RegExp("^[0-9]*$")
 
 export const Dashboard = () => {
 
@@ -33,6 +34,11 @@ export const Dashboard = () => {
         setConvertedValue((userValue * result).toFixed(2).toString());
       }}, [apiRates, fromCurrency, toCurrency, userValue]);
 
+    const onChangeValue = (value) => {
+      if (regex.test(value.target.value))
+        setUserValue(value.target.value)
+    }
+
     return (
       <div className="converter-container">
         <div className="selector-wrapper">
@@ -53,7 +59,7 @@ export const Dashboard = () => {
           <div className="source-input">
             <Input
               value={userValue}
-              onChange={(value) => setUserValue(value.target.value)}/>
+              onChange={onChangeValue}/>
           </div>
 
           <div className="destination-input">
