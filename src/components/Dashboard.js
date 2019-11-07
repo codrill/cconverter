@@ -40,44 +40,44 @@ export const Dashboard = () => {
       setUserValue(value.target.value)
   }
 
-    const onCurrencySwap = () => {
-      const temporaryFromCurrencyKeeper = fromCurrency
-      setFromCurrency(toCurrency)
-      setToCurrency(temporaryFromCurrencyKeeper)
-    }
+  const onCurrencySwap = () => {
+    const temporaryFromCurrencyKeeper = fromCurrency
+    setFromCurrency(toCurrency)
+    setToCurrency(temporaryFromCurrencyKeeper)
+  }
 
   return (
     <div className="converter-container">
       <div className="selector-wrapper">
 
         <CurrencySelect
-            value={fromCurrency}
-            onChange={setFromCurrency}
-            currencyRates={apiRates}/>
+          value={fromCurrency}
+          onChange={setFromCurrency}
+          currencyRates={apiRates}/>
 
         <div className="source-input">
           <Input
-              value={userValue}
-              onChange={onChangeValue}/>
+            value={userValue}
+            onChange={onChangeValue}/>
         </div>
 
         <div className="replace-currency-button">
           <Button
-              type="primary"
-              icon="swap"
-              disabled={!fromCurrency || !toCurrency}
+            type="primary"
+            icon="swap"
+            disabled={!fromCurrency || !toCurrency}
             onClick={onCurrencySwap}/>
         </div>
 
         <div className="destination-input">
           <Input
-              value={converterValue}/>
+            value={converterValue}/>
         </div>
 
         <CurrencySelect
-            value={toCurrency}
-            onChange={setToCurrency}
-            currencyRates={apiRates}/>
+          value={toCurrency}
+          onChange={setToCurrency}
+          currencyRates={apiRates}/>
       </div>
 
       <div className="effectiveDate">
@@ -89,6 +89,6 @@ export const Dashboard = () => {
 
 const displayDateInformation = (date) => {
   return (
-      <h4>{date}</h4>
+    <h4>{date}</h4>
   )
 }
