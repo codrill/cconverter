@@ -1,10 +1,10 @@
-import {Button, Input, Select} from "antd"
+import {Button, Input} from "antd"
 import 'antd/dist/antd.css';
 import './Dashboard.scss'
 import React, {useEffect, useState} from "react";
 import {getCurrencyValues} from "../services/CurrencyService";
+import {CurrencySelect} from './CurrecySelectComponent/SelectComponent'
 
-const {Option} = Select;
 export const regex = new RegExp("^[0-9]*$")
 
 export const Dashboard = () => {
@@ -50,20 +50,10 @@ export const Dashboard = () => {
       <div className="converter-container">
         <div className="selector-wrapper">
 
-          <Select
-            showSearch
-            allowClear={true}
+          <CurrencySelect
             value={fromCurrency}
-            style={{width: 200}}
-            placeholder="Select currency"
-            optionFilterProp="children"
             onChange={setFromCurrency}
-            filterOption={(input, option) =>
-              option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
-            }
-          >
-            {renderOptionsInSelector(apiRates)}
-          </Select>
+            currencyRates={apiRates}/>
 
           <div className="source-input">
             <Input
@@ -83,20 +73,10 @@ export const Dashboard = () => {
               value={converterValue}/>
           </div>
 
-          <Select
-            showSearch
-            allowClear={true}
-            value={toCurrency}
-            style={{width: 200}}
-            placeholder="Select currency"
-            optionFilterProp="children"
-            onChange={setToCurrency}
-            filterOption={(input, option) =>
-              option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
-            }
-          >
-            {renderOptionsInSelector(apiRates)}
-          </Select>
+          <CurrencySelect
+              value={toCurrency}
+              onChange={setToCurrency}
+              currencyRates={apiRates}/>
         </div>
 
         <div className="effectiveDate">
@@ -104,12 +84,6 @@ export const Dashboard = () => {
         </div>
       </div>
     )
-  };
-
-  const renderOptionsInSelector = (rates) => {
-    return rates.map(rate => {
-      return <Option value={rate.code} key={rate.code}>{rate.currency}</Option>
-    })
   };
 
   const displayDateInformation = (date) => {
