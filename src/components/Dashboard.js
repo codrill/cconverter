@@ -41,7 +41,7 @@ export const Dashboard = () => {
 
     const onCurrencySwap = () => {
       if (!fromCurrency || !toCurrency) return
-      let temporaryFromCurrencyKeeper = fromCurrency
+      const temporaryFromCurrencyKeeper = fromCurrency
       setFromCurrency(toCurrency)
       setToCurrency(temporaryFromCurrencyKeeper)
     }
