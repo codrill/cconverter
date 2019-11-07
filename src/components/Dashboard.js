@@ -25,7 +25,6 @@ export const Dashboard = () => {
 
 
     useEffect(() => {
-      debugger
       const firstValue = apiRates.find(rate => rate.code === fromCurrency);
       const secondValue = apiRates.find(rate => rate.code === toCurrency);
 
@@ -40,18 +39,18 @@ export const Dashboard = () => {
         setUserValue(value.target.value)
     }
 
-    const onSwap = () => {
+    const onCurrencySwap = () => {
       if (!fromCurrency || !toCurrency) return
-      let temp = fromCurrency
+      let temporaryFromCurrencyKeeper = fromCurrency
       setFromCurrency(toCurrency)
-      setToCurrency(temp)
+      setToCurrency(temporaryFromCurrencyKeeper)
     }
 
     return (
       <div className="converter-container">
         <div className="selector-wrapper">
 
-          <Select id='elo'
+          <Select
             showSearch
             allowClear={true}
             value={fromCurrency}
@@ -76,7 +75,7 @@ export const Dashboard = () => {
             <Button
               type="primary"
               icon="swap"
-              onClick={onSwap}/>
+              onClick={onCurrencySwap}/>
           </div>
 
           <div className="destination-input">
