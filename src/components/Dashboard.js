@@ -41,54 +41,54 @@ export const Dashboard = () => {
   }
 
   const onCurrencySwap = () => {
-    if (!fromCurrency || !toCurrency) return
     const temporaryFromCurrencyKeeper = fromCurrency
     setFromCurrency(toCurrency)
     setToCurrency(temporaryFromCurrencyKeeper)
   }
 
   return (
-      <div className="converter-container">
-        <div className="selector-wrapper">
+    <div className="converter-container">
+      <div className="selector-wrapper">
 
-          <CurrencySelect
-              value={fromCurrency}
-              onChange={setFromCurrency}
-              currencyRates={apiRates}/>
+        <CurrencySelect
+          value={fromCurrency}
+          onChange={setFromCurrency}
+          currencyRates={apiRates}/>
 
-          <div className="source-input">
-            <Input
-                value={userValue}
-                onChange={onChangeValue}/>
-          </div>
-
-          <div className="replace-currency-button">
-            <Button
-                type="primary"
-                icon="swap"
-                onClick={onCurrencySwap}/>
-          </div>
-
-          <div className="destination-input">
-            <Input
-                value={converterValue}/>
-          </div>
-
-          <CurrencySelect
-              value={toCurrency}
-              onChange={setToCurrency}
-              currencyRates={apiRates}/>
+        <div className="source-input">
+          <Input
+            value={userValue}
+            onChange={onChangeValue}/>
         </div>
 
-        <div className="effectiveDate">
-          {displayDateInformation(date)}
+        <div className="replace-currency-button">
+          <Button
+            type="primary"
+            icon="swap"
+            disabled={!fromCurrency || !toCurrency}
+            onClick={onCurrencySwap}/>
         </div>
+
+        <div className="destination-input">
+          <Input
+            value={converterValue}/>
+        </div>
+
+        <CurrencySelect
+          value={toCurrency}
+          onChange={setToCurrency}
+          currencyRates={apiRates}/>
       </div>
+
+      <div className="effectiveDate">
+        {displayDateInformation(date)}
+      </div>
+    </div>
   )
 }
 
 const displayDateInformation = (date) => {
   return (
-      <h4>{date}</h4>
+    <h4>{date}</h4>
   )
 }
