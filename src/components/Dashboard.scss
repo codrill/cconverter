@@ -3,7 +3,11 @@
   top: 40%;
   left: 40%;
 
-  .source-input {
-    margin-bottom: 20px;
+  .replace-currency-button {
+    text-align: center;
+    margin: 10px 0;
+    Button {
+      transform: rotate(90deg);
+    }
   }
 }
