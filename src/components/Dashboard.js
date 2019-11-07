@@ -40,7 +40,6 @@ export const Dashboard = () => {
     }
 
     const onCurrencySwap = () => {
-      if (!fromCurrency || !toCurrency) return
       const temporaryFromCurrencyKeeper = fromCurrency
       setFromCurrency(toCurrency)
       setToCurrency(temporaryFromCurrencyKeeper)
@@ -75,6 +74,7 @@ export const Dashboard = () => {
             <Button
               type="primary"
               icon="swap"
+              disabled={!fromCurrency || !toCurrency}
               onClick={onCurrencySwap}/>
           </div>
 
