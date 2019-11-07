@@ -1,4 +1,4 @@
-import {Input, Select} from "antd";
+import {Button, Input, Select} from "antd"
 import 'antd/dist/antd.css';
 import './Dashboard.scss'
 import React, {useEffect, useState} from "react";
@@ -10,8 +10,8 @@ export const regex = new RegExp("^[0-9]*$")
 export const Dashboard = () => {
 
   const [apiRates, setApiRates] = useState([]);
-  const [fromCurrency, setFromCurrency] = useState('');
-  const [toCurrency, setToCurrency] = useState('');
+  const [fromCurrency, setFromCurrency] = useState(undefined);
+  const [toCurrency, setToCurrency] = useState(undefined);
   const [userValue, setUserValue] = useState(0);
   const [converterValue, setConvertedValue] = useState(0);
   const [date, setCurrentDate] = useState('');
@@ -39,12 +39,21 @@ export const Dashboard = () => {
         setUserValue(value.target.value)
     }
 
+    const onCurrencySwap = () => {
+      if (!fromCurrency || !toCurrency) return
+      const temporaryFromCurrencyKeeper = fromCurrency
+      setFromCurrency(toCurrency)
+      setToCurrency(temporaryFromCurrencyKeeper)
+    }
+
     return (
       <div className="converter-container">
         <div className="selector-wrapper">
 
           <Select
             showSearch
+            allowClear={true}
+            value={fromCurrency}
             style={{width: 200}}
             placeholder="Select currency"
             optionFilterProp="children"
@@ -62,6 +71,13 @@ export const Dashboard = () => {
               onChange={onChangeValue}/>
           </div>
 
+          <div className="replace-currency-button">
+            <Button
+              type="primary"
+              icon="swap"
+              onClick={onCurrencySwap}/>
+          </div>
+
           <div className="destination-input">
             <Input
               value={converterValue}/>
@@ -69,6 +85,8 @@ export const Dashboard = () => {
 
           <Select
             showSearch
+            allowClear={true}
+            value={toCurrency}
             style={{width: 200}}
             placeholder="Select currency"
             optionFilterProp="children"
