@@ -18,8 +18,8 @@ export const Dashboard = () => {
 
   useEffect(() => {
     getCurrencyValues().then(array => {
-      setApiRates(array[0].rates)
-      setCurrentDate(array[0].effectiveDate)
+      setApiRates(array.rates)
+      setCurrentDate(array.date)
     })
   }, [])
 
@@ -29,7 +29,7 @@ export const Dashboard = () => {
     const secondValue = apiRates.find(rate => rate.code === toCurrency)
 
     if (firstValue && secondValue) {
-      const result = firstValue.bid / secondValue.bid
+      const result = firstValue.mid / secondValue.mid
 
       setConvertedValue((userValue * result).toFixed(2).toString())
     }
