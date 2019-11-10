@@ -1,4 +1,6 @@
 import {urlApiNBPTableA, urlApiNBPTableB} from "../constants/CurrencyApiConstants";
+import {polishCurrency} from '../constants/polishCurrency'
+import {sort} from '../utils/array-utils'
 
 export const getCurrencyValues = () => {
 
@@ -8,7 +10,7 @@ export const getCurrencyValues = () => {
   ])
   .then(tables =>  {
     return {
-      rates: [...tables[0][0].rates, ...tables[1][0].rates],
+      rates: sort([...tables[0][0].rates, ...tables[1][0].rates, polishCurrency], 'currency'),
       date: tables[0][0].effectiveDate
     }
   })
