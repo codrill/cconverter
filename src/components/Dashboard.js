@@ -18,13 +18,13 @@ export const Dashboard = () => {
 
   useEffect(() => {
     getCurrencyValues().then(array => {
-      setApiRates(array.rates)
+      setApiRates(sort(array.rates))
       setCurrentDate(array.date)
     })
   }, [])
 
-
   useEffect(() => {
+    console.log(apiRates)
     const firstValue = apiRates.find(rate => rate.code === fromCurrency)
     const secondValue = apiRates.find(rate => rate.code === toCurrency)
 
@@ -91,4 +91,8 @@ const displayDateInformation = (date) => {
   return (
     <h4>{date}</h4>
   )
+}
+
+const sort = (values) => {
+  return values.sort(((a, b) => a.currency.toLowerCase() > b.currency.toLowerCase() ? 1 : -1 ))
 }

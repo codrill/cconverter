@@ -1,4 +1,5 @@
 import {urlApiNBPTableA, urlApiNBPTableB} from "../constants/CurrencyApiConstants";
+import {polishCurrency} from '../constants/polishCurrency'
 
 export const getCurrencyValues = () => {
 
@@ -8,7 +9,7 @@ export const getCurrencyValues = () => {
   ])
   .then(tables =>  {
     return {
-      rates: [...tables[0][0].rates, ...tables[1][0].rates],
+      rates: [...tables[0][0].rates, ...tables[1][0].rates, polishCurrency],
       date: tables[0][0].effectiveDate
     }
   })
