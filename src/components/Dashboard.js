@@ -24,7 +24,6 @@ export const Dashboard = () => {
   }, [])
 
   useEffect(() => {
-    console.log(apiRates)
     const firstValue = apiRates.find(rate => rate.code === fromCurrency)
     const secondValue = apiRates.find(rate => rate.code === toCurrency)
 
