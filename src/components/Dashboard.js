@@ -34,7 +34,7 @@ export const Dashboard = () => {
       setExchangeRate(firstValue.mid / secondValue.mid)
       setConvertedValue((userValue * exchangeRate).toFixed(2).toString())
     }
-  }, [apiRates, fromCurrency, toCurrency, userValue])
+  }, [apiRates, fromCurrency, toCurrency, userValue, exchangeRate])
 
   const onChangeValue = (value) => {
     if (!value.target.value) {
