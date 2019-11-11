@@ -4,6 +4,7 @@ import './Dashboard.scss'
 import React, {useEffect, useState} from "react"
 import {getCurrencyValues} from "../services/CurrencyService"
 import {CurrencySelect} from './CurrecySelectComponent/SelectComponent'
+import {DateAndRateDisplay} from './DateAndRateDisplayComponent/DateAndRateDisplayComponent'
 import {initialSelectToValue, initialSelectFromValue, inputPlaceholder} from '../constants/Variables'
 
 const regex = new RegExp("^[+-]?\\d+(\\.\\d{0,2})?$")
@@ -16,6 +17,7 @@ export const Dashboard = () => {
   const [userValue, setUserValue] = useState(null)
   const [converterValue, setConvertedValue] = useState(null)
   const [date, setCurrentDate] = useState('')
+  const [exchangeRate, setExchangeRate] = useState(0)
 
   useEffect(() => {
     getCurrencyValues().then(array => {
@@ -30,11 +32,10 @@ export const Dashboard = () => {
     const secondValue = apiRates.find(rate => rate.code === toCurrency)
 
     if (firstValue && secondValue) {
-      const result = firstValue.mid / secondValue.mid
-
-      setConvertedValue((userValue * result).toFixed(2).toString())
+      setExchangeRate(firstValue.mid / secondValue.mid)
+      setConvertedValue((userValue * exchangeRate).toFixed(2).toString())
     }
-  }, [apiRates, fromCurrency, toCurrency, userValue])
+  }, [apiRates, fromCurrency, toCurrency, userValue, exchangeRate])
 
   const onChangeValue = (value) => {
     if (!value.target.value) {
@@ -91,15 +92,9 @@ export const Dashboard = () => {
       </div>
 
       <div className="effectiveDate">
-        {displayDateInformation(date)}
+        <h4>{DateAndRateDisplay(exchangeRate, date)}</h4>
       </div>
     </div>
-  )
-}
-
-const displayDateInformation = (date) => {
-  return (
-    <h4>{date}</h4>
   )
 }
 
