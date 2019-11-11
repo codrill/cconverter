@@ -7,7 +7,6 @@ export function CurrencySelect(props) {
   return (
       <Select
           showSearch
-          allowClear={true}
           value={props.value}
           style={{width: 200}}
           placeholder="Select currency"

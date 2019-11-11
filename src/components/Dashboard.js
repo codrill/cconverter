@@ -3,22 +3,26 @@ import './Dashboard.scss'
 import React, {useEffect, useState} from "react"
 import {getCurrencyValues} from "../services/CurrencyService"
 import {CurrencySelect} from './CurrecySelectComponent/SelectComponent'
+import {DateAndRateDisplay} from './DateAndRateDisplayComponent/DateAndRateDisplayComponent'
+import {initialSelectToValue, initialSelectFromValue, inputPlaceholder} from '../constants/Variables'
 
-export const regex = new RegExp("^[0-9]*$")
+const regex = new RegExp("^[+-]?\\d+(\\.\\d{0,2})?$")
 
 export const Dashboard = () => {
 
   const [apiRates, setApiRates] = useState([])
   const [fromCurrency, setFromCurrency] = useState(undefined)
   const [toCurrency, setToCurrency] = useState(undefined)
-  const [userValue, setUserValue] = useState(0)
-  const [converterValue, setConvertedValue] = useState(0)
+  const [userValue, setUserValue] = useState(null)
+  const [converterValue, setConvertedValue] = useState(null)
   const [date, setCurrentDate] = useState('')
+  const [exchangeRate, setExchangeRate] = useState(0)
 
   useEffect(() => {
     getCurrencyValues().then(array => {
       setApiRates(array.rates)
       setCurrentDate(array.date)
+      setInitialCurrencies(array.rates)
     })
   }, [])
 
@@ -27,14 +31,15 @@ export const Dashboard = () => {
     const secondValue = apiRates.find(rate => rate.code === toCurrency)
 
     if (firstValue && secondValue) {
-      const result = firstValue.mid / secondValue.mid
-
-      setConvertedValue((userValue * result).toFixed(2).toString())
+      setExchangeRate(firstValue.mid / secondValue.mid)
+      setConvertedValue((userValue * exchangeRate).toFixed(2).toString())
     }
-  }, [apiRates, fromCurrency, toCurrency, userValue])
+  }, [apiRates, fromCurrency, toCurrency, userValue, exchangeRate])
 
   const onChangeValue = (value) => {
-    if (regex.test(value.target.value))
+    if (!value.target.value) {
+      setUserValue(null) }
+    else if (regex.test(value.target.value))
       setUserValue(value.target.value)
   }
 
@@ -42,6 +47,11 @@ export const Dashboard = () => {
     const temporaryFromCurrencyKeeper = fromCurrency
     setFromCurrency(toCurrency)
     setToCurrency(temporaryFromCurrencyKeeper)
+  }
+
+  const setInitialCurrencies = (apiRates) => {
+    setFromCurrency(findAndReturnCurrencyByCode(apiRates, initialSelectFromValue))
+    setToCurrency(findAndReturnCurrencyByCode(apiRates, initialSelectToValue))
   }
 
   return (
@@ -55,6 +65,7 @@ export const Dashboard = () => {
 
         <div className="source-input">
           <Input
+            placeholder={inputPlaceholder}
             value={userValue}
             onChange={onChangeValue}/>
         </div>
@@ -69,6 +80,7 @@ export const Dashboard = () => {
 
         <div className="destination-input">
           <Input
+            placeholder={inputPlaceholder}
             value={converterValue}/>
         </div>
 
@@ -79,14 +91,12 @@ export const Dashboard = () => {
       </div>
 
       <div className="effectiveDate">
-        {displayDateInformation(date)}
+        <h4>{DateAndRateDisplay(exchangeRate, date)}</h4>
       </div>
     </div>
   )
 }
 
-const displayDateInformation = (date) => {
-  return (
-    <h4>{date}</h4>
-  )
+const findAndReturnCurrencyByCode = (apiRates, currencyCode) => {
+  return apiRates.find(rate => rate.code === currencyCode).code
 }
