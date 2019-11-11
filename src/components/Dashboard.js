@@ -4,7 +4,7 @@ import './Dashboard.scss'
 import React, {useEffect, useState} from "react"
 import {getCurrencyValues} from "../services/CurrencyService"
 import {CurrencySelect} from './CurrecySelectComponent/SelectComponent'
-import {inputPlaceholder} from '../constants/Variables'
+import {initialSelectValueEURO, initialSelectValueUSD, inputPlaceholder} from '../constants/Variables'
 
 const regex = new RegExp("^[+-]?\\d+(\\.\\d{0,2})?$")
 
@@ -21,6 +21,7 @@ export const Dashboard = () => {
     getCurrencyValues().then(array => {
       setApiRates(array.rates)
       setCurrentDate(array.date)
+      setInitialCurrencies(array.rates)
     })
   }, [])
 
@@ -46,6 +47,11 @@ export const Dashboard = () => {
     const temporaryFromCurrencyKeeper = fromCurrency
     setFromCurrency(toCurrency)
     setToCurrency(temporaryFromCurrencyKeeper)
+  }
+
+  const setInitialCurrencies = (apiRates) => {
+    setFromCurrency(findAndReturnCurrencyByCode(apiRates, initialSelectValueUSD))
+    setToCurrency(findAndReturnCurrencyByCode(apiRates, initialSelectValueEURO))
   }
 
   return (
@@ -95,4 +101,8 @@ const displayDateInformation = (date) => {
   return (
     <h4>{date}</h4>
   )
+}
+
+const findAndReturnCurrencyByCode = (apiRates, currencyCode) => {
+  return apiRates.find(rate => rate.code === currencyCode).code
 }
