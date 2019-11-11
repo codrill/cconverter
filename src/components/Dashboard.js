@@ -6,7 +6,7 @@ import {getCurrencyValues} from "../services/CurrencyService"
 import {CurrencySelect} from './CurrecySelectComponent/SelectComponent'
 import {inputPlaceholder} from '../constants/Variables'
 
-export const regex = new RegExp("^[+-]?\\d+(\\.\\d{0,2})?$")
+const regex = new RegExp("^[+-]?\\d+(\\.\\d{0,2})?$")
 
 export const Dashboard = () => {
 
@@ -36,10 +36,10 @@ export const Dashboard = () => {
   }, [apiRates, fromCurrency, toCurrency, userValue])
 
   const onChangeValue = (value) => {
-    if (regex.test(value.target.value))
+    if (!value.target.value) {
+      setUserValue(null) }
+    else if (regex.test(value.target.value))
       setUserValue(value.target.value)
-    if (!value.target.value)
-      setUserValue(null)
   }
 
   const onCurrencySwap = () => {
