@@ -4,7 +4,7 @@ import './Dashboard.scss'
 import React, {useEffect, useState} from "react"
 import {getCurrencyValues} from "../services/CurrencyService"
 import {CurrencySelect} from './CurrecySelectComponent/SelectComponent'
-import {initialSelectValueEURO, initialSelectValueUSD, inputPlaceholder} from '../constants/Variables'
+import {initialSelectToValue, initialSelectFromValue, inputPlaceholder} from '../constants/Variables'
 
 const regex = new RegExp("^[+-]?\\d+(\\.\\d{0,2})?$")
 
@@ -50,8 +50,8 @@ export const Dashboard = () => {
   }
 
   const setInitialCurrencies = (apiRates) => {
-    setFromCurrency(findAndReturnCurrencyByCode(apiRates, initialSelectValueUSD))
-    setToCurrency(findAndReturnCurrencyByCode(apiRates, initialSelectValueEURO))
+    setFromCurrency(findAndReturnCurrencyByCode(apiRates, initialSelectFromValue))
+    setToCurrency(findAndReturnCurrencyByCode(apiRates, initialSelectToValue))
   }
 
   return (
