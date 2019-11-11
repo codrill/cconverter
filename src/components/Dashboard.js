@@ -4,7 +4,6 @@ import './Dashboard.scss'
 import React, {useEffect, useState} from "react"
 import {getCurrencyValues} from "../services/CurrencyService"
 import {CurrencySelect} from './CurrecySelectComponent/SelectComponent'
-import {inputPlaceholder} from '../constants/Variables'
 import {DateAndRateDisplay} from './DateAndRateDisplayComponent/DateAndRateDisplayComponent'
 import {initialSelectToValue, initialSelectFromValue, inputPlaceholder} from '../constants/Variables'
 
