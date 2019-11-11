@@ -6,6 +6,7 @@ import {getCurrencyValues} from "../services/CurrencyService"
 import {CurrencySelect} from './CurrecySelectComponent/SelectComponent'
 import {inputPlaceholder} from '../constants/Variables'
 import {DateAndRateDisplay} from './DateAndRateDisplayComponent/DateAndRateDisplayComponent'
+import {initialSelectToValue, initialSelectFromValue, inputPlaceholder} from '../constants/Variables'
 
 const regex = new RegExp("^[+-]?\\d+(\\.\\d{0,2})?$")
 
@@ -23,6 +24,7 @@ export const Dashboard = () => {
     getCurrencyValues().then(array => {
       setApiRates(array.rates)
       setCurrentDate(array.date)
+      setInitialCurrencies(array.rates)
     })
   }, [])
 
@@ -47,6 +49,11 @@ export const Dashboard = () => {
     const temporaryFromCurrencyKeeper = fromCurrency
     setFromCurrency(toCurrency)
     setToCurrency(temporaryFromCurrencyKeeper)
+  }
+
+  const setInitialCurrencies = (apiRates) => {
+    setFromCurrency(findAndReturnCurrencyByCode(apiRates, initialSelectFromValue))
+    setToCurrency(findAndReturnCurrencyByCode(apiRates, initialSelectToValue))
   }
 
   return (
@@ -90,4 +97,8 @@ export const Dashboard = () => {
       </div>
     </div>
   )
+}
+
+const findAndReturnCurrencyByCode = (apiRates, currencyCode) => {
+  return apiRates.find(rate => rate.code === currencyCode).code
 }
