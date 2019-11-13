@@ -1,5 +1,4 @@
 import {Button, Input} from "antd"
-import 'antd/dist/antd.css'
 import './Dashboard.scss'
 import React, {useEffect, useState} from "react"
 import {getCurrencyValues} from "../services/CurrencyService"

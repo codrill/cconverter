@@ -1,8 +1,9 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import * as serviceWorker from './serviceWorker';
-import {Dashboard} from "./components/Dashboard";
+import React from 'react'
+import ReactDOM from 'react-dom'
+import * as serviceWorker from './serviceWorker'
+import './styles/styles.scss'
+import App from './App'
 
-ReactDOM.render(<Dashboard />, document.getElementById('root'));
+ReactDOM.render(<App/>, document.getElementById('root'))
 
-serviceWorker.unregister();
+serviceWorker.unregister()
