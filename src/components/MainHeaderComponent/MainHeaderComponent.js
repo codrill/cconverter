@@ -14,7 +14,9 @@ const MainHeader = () => {
         theme={'cc-purple'}
         mode={'horizontal'}>
         <Menu.Item key="1">
-          <a href="https://github.com/mad-rat/cconverter" target="_blank" title="Github Repo"></a><Icon type="github"/> Github
+          <a href="https://github.com/mad-rat/cconverter" title="Github Repo"  target="_blank" rel="noopener noreferrer">
+            <Icon type="github"/> Github
+          </a>
         </Menu.Item>
         <Menu.Item key="2">
           <Icon type="build" theme="filled" /> O projekcie

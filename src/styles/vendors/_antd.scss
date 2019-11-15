@@ -6,10 +6,14 @@
 .ant-menu {
   &-cc-purple {
     background-color: $cc-purple;
-    color: $cc-white;
+    .ant-menu-item, .ant-menu-item > a {
+      color: $cc-white;
+      &:hover, &:active, &:focus {
+        color: $cc-white;
+      }
+    }
 
     .ant-menu-item {
-      color: $cc-white;
       font-weight: $font-semi-bold;
       border-bottom: 3px solid transparent;
       box-shadow: 0 0 0 transparent;
@@ -22,7 +26,6 @@
       &:hover, &:active, &:focus {
         border-bottom: 3px solid $cc-purple-dark;
         background-color: $cc-purple-dark;
-        color: $cc-white;
         box-shadow: 0 2px 5px $cc-purple-dark;
       }
     }
