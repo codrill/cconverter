@@ -1,0 +1,15 @@
+@import "../../styles/utils/variables";
+@import "../../styles/utils/fonts";
+
+.main-header {
+  display: flex;
+  justify-content: space-between;
+  &__logo {
+    color: $cc-white;
+    font-size: 2rem;
+    font-weight: $font-semi-bold;
+  }
+  &__menu {
+    line-height: 62px;
+  }
+}
