@@ -1,10 +1,10 @@
-import {Button, Input} from "antd"
+import {Button, Icon, Input} from "antd"
 import './Dashboard.scss'
 import React, {useEffect, useState} from "react"
 import {getCurrencyValues} from "../services/CurrencyService"
 import {CurrencySelect} from './CurrecySelectComponent/SelectComponent'
-import {DateAndRateDisplay} from './DateAndRateDisplayComponent/DateAndRateDisplayComponent'
-import {initialSelectToValue, initialSelectFromValue, inputPlaceholder} from '../constants/Variables'
+import {DateDisplay, RateDisplay} from './DateAndRateDisplayComponent/DateAndRateDisplayComponent'
+import {initialSelectFromValue, initialSelectToValue, inputPlaceholder} from '../constants/Variables'
 
 const regex = new RegExp("^[+-]?\\d+(\\.\\d{0,2})?$")
 
@@ -38,8 +38,8 @@ export const Dashboard = () => {
 
   const onChangeValue = (value) => {
     if (!value.target.value) {
-      setUserValue(null) }
-    else if (regex.test(value.target.value))
+      setUserValue(null)
+    } else if (regex.test(value.target.value))
       setUserValue(value.target.value)
   }
 
@@ -55,43 +55,61 @@ export const Dashboard = () => {
   }
 
   return (
-    <div className="converter-container">
-      <div className="selector-wrapper">
+    <div className="converter cc-container">
+      <div className="converter__info">
+        <div className="converter__info__content">
+          <p>
+            Wyliczenia wykonywane są na podstawie najnowszych danych, udostępnionych przez <strong>Narodowy Bank Polski</strong>.
+          </p>
+          <p>Wartości przedstawione w serwisie, stanowią medianę reprezentatywnych walut.</p>
 
-        <CurrencySelect
-          value={fromCurrency}
-          onChange={setFromCurrency}
-          currencyRates={apiRates}/>
+          <p>{DateDisplay(date)}</p>
+        </div>
+      </div>
 
-        <div className="source-input">
+      <div className="converter__calc__shadow">
+      </div>
+
+      <div className="converter__calc">
+        <h2 className="converter__calc__header">
+          Przelicz walutę
+        </h2>
+
+        <div className="converter__calc__group">
+          <CurrencySelect
+            value={fromCurrency}
+            onChange={setFromCurrency}
+            currencyRates={apiRates}/>
           <Input
             placeholder={inputPlaceholder}
             value={userValue}
             onChange={onChangeValue}/>
         </div>
 
-        <div className="replace-currency-button">
-          <Button
-            type="primary"
-            icon="swap"
-            disabled={!fromCurrency || !toCurrency}
-            onClick={onCurrencySwap}/>
+        <Button
+          type="primary"
+          className="btn-swap cc-btn--gradient"
+          disabled={!fromCurrency || !toCurrency}
+          onClick={onCurrencySwap}>
+          <Icon
+            type="swap"
+            rotate="90"
+            className="btn-swap-icon"/>
+        </Button>
+
+        <div className="converter__calc__group">
+          <CurrencySelect
+            value={toCurrency}
+            onChange={setToCurrency}
+            currencyRates={apiRates}/>
         </div>
+        <Input
+          placeholder={inputPlaceholder}
+          value={converterValue}/>
 
-        <div className="destination-input">
-          <Input
-            placeholder={inputPlaceholder}
-            value={converterValue}/>
-        </div>
-
-        <CurrencySelect
-          value={toCurrency}
-          onChange={setToCurrency}
-          currencyRates={apiRates}/>
-      </div>
-
-      <div className="effectiveDate">
-        <h4>{DateAndRateDisplay(exchangeRate, date)}</h4>
+          <div className="converter__calc__rate">
+            <p>{RateDisplay(exchangeRate)}</p>
+          </div>
       </div>
     </div>
   )

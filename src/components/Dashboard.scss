@@ -1,17 +1,95 @@
-.converter-container {
-  text-align: center;
-  padding: 50px;
-}
+@import "../styles/utils/variables";
+@import "../styles/utils/fonts";
+@import "../styles/utils/mixins";
 
-.selector-wrapper {
-  .replace-currency-button {
-    margin: 10px 0;
-    Button {
-      transform: rotate(90deg);
+.converter {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  grid-template-rows: 40px auto 40px;
+  margin-top: $gap-big;
+  margin-bottom: $gap-big;
+
+  .converter__info {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+
+    grid-column: 1 / 7;
+    grid-row: 1 / 4;
+    padding: $gap-big 0;
+    background-color: $cc-purple;
+    background-image: linear-gradient(45deg, transparentize($cc-purple-dark, .07) 10%, transparentize($cc-purple, .07)),
+                      url("../assets/img/bg-calc-info.jpg");
+    background-position: center;
+    background-size: cover;
+    color: $cc-white;
+
+    &__content {
+      grid-column: 2 / 5;
+      display: flex;
+      flex-direction: column;
+      font-size: 1.2rem;
+
+      &::before {
+        content: "\f10d";
+        display: block;
+        margin-bottom: 20px;
+        font-family: 'Font Awesome 5 Free';
+        font-weight: $trf-fa-weight-bold;
+        font-size: 4rem;
+      }
+
+      strong {
+        font-style: italic;
+      }
+
+      p:last-of-type {
+        margin-bottom: 0;
+        margin-top: auto;
+      }
     }
   }
 
-  Input {
-    width: 200px
+  .converter__calc__shadow {
+    grid-column: 7 / 13;
+    grid-row: 2;
+    box-shadow: 0 0 10px $cc-gray-light;
+  }
+
+  .converter__calc {
+    position: relative;
+    z-index: 2;
+    grid-column: 6 / 13;
+    grid-row: 2;
+    padding: 40px;
+    background-color: $cc-white;
+    text-align: center;
+
+    &__header {
+      margin-bottom: 30px;
+    }
+
+    &__group {
+      margin: 10px 0;
+
+      .ant-select, .ant-input {
+        display: block;
+        margin-bottom: 10px;
+      }
+    }
+
+    .btn-swap {
+      height: 40px;
+      width: 70px;
+      margin: 10px 0;
+      &-icon {
+        font-size: 1.5rem;
+      }
+    }
+    &__rate p {
+      font-size: .9rem;
+      font-weight: $font-semi-bold;
+      font-style: italic;
+      margin-bottom: 0;
+    }
   }
 }
