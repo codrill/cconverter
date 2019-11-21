@@ -10,7 +10,7 @@ const MainHeader = () => {
       </div>
       <Menu
         className="main-header__menu"
-        theme={'cc-purple'}
+        theme={'cc-theme-purple'}
         mode={'horizontal'}>
         <Menu.Item key="1">
           <a href="https://github.com/mad-rat/cconverter" title="GitHub Repo"  target="_blank" rel="noopener noreferrer">

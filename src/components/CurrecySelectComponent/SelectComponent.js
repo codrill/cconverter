@@ -8,7 +8,6 @@ export function CurrencySelect(props) {
       <Select
           showSearch
           value={props.value}
-          style={{width: 200}}
           placeholder="Select currency"
           optionFilterProp="children"
           onChange={props.onChange}

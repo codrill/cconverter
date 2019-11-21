@@ -1,7 +1,6 @@
-import {EXCHANGE_RATE, FOR_DATE} from '../../constants/Translations/en'
+import {EXCHANGE_DATE, EXCHANGE_RATE} from '../../constants/Translations/pl'
 
-export const DateAndRateDisplay = (exchangeRate, date) => {
-  return (
-      `${EXCHANGE_RATE} ${exchangeRate.toFixed(5)} ${FOR_DATE} ${date}`
-  )
-}
+export const DateDisplay = (date) => `${EXCHANGE_DATE} ${date}`
+
+export const RateDisplay = (exchangeRate) => `${EXCHANGE_RATE} ${exchangeRate.toFixed(5)}`
+

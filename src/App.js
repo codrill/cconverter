@@ -8,15 +8,14 @@ const {Header, Content} = Layout
 
 const App = () => {
   return (
-    <div>
-      <Layout className="main-layout">
-        <Header className="header-purple">
+    <div className="cc-theme-purple">
+      <Layout className="main-layout ">
+        <Header className="main-layout__header">
           <MainHeader/>
         </Header>
-        <Content>
+        <Content className="main-layout__content">
           <Dashboard/>
         </Content>
-
       </Layout>
     </div>
   )

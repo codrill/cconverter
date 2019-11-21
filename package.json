@@ -4,6 +4,7 @@
   "private": true,
   "homepage": "https://mad-rat.github.io/cconverter",
   "dependencies": {
+    "@fortawesome/fontawesome-free": "^5.11.2",
     "antd": "^3.23.1",
     "react": "^16.9.0",
     "react-dom": "^16.9.0",

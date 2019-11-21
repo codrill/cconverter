@@ -2,8 +2,9 @@
 @import "../utils/variables";
 @import "../utils/fonts";
 
+// Menu
 .ant-menu {
-  &-cc-purple {
+  &-cc-theme-purple {
     background-color: $cc-purple;
     .ant-menu-item, .ant-menu-item > a {
       color: $cc-white;
@@ -31,6 +32,7 @@
   }
 }
 
+// Buttons
 .ant-btn-background-ghost {
   &.ant-btn-link {
     &:hover {
@@ -38,4 +40,27 @@
       transform: scale(1.5);
     }
   }
+}
+
+// Grid
+.ant-layout-content {
+  padding: 0 $gap-big;
+}
+
+// Forms
+.ant-select {
+  $input-height: 50px;
+  .ant-select-selection {
+    &--single {
+      height: $input-height;
+      font-size: 1.2rem;
+    }
+    &__rendered {
+      line-height: $input-height;
+    }
+  }
+}
+
+.ant-input {
+  height: 50px;
 }

@@ -1,5 +1,12 @@
 @import "styles/utils/variables";
 
-.header-purple {
-  background-color: $cc-purple;
+.cc-theme-purple {
+  .main-layout {
+    &__header {
+      background-color: $cc-purple;
+    }
+    &__content {
+      background-color: $cc-white;
+    }
+  }
 }
