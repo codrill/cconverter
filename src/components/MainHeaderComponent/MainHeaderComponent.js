@@ -5,9 +5,10 @@ import './MainHeaderComponent.scss'
 const MainHeader = () => {
   return (
     <div className="main-header cc-container">
-      <div className="main-header__logo">
+      <h1 className="main-header__logo">
         CConverter
-      </div>
+        <span>Konwerter Walut / FX Rate</span>
+      </h1>
       <Menu
         className="main-header__menu"
         theme={'cc-theme-purple'}

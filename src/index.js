@@ -1,9 +1,10 @@
 import React from 'react'
-import ReactDOM from 'react-dom'
+import { render, hydrate } from 'react-dom'
 import * as serviceWorker from './serviceWorker'
 import './styles/styles.scss'
 import App from './App'
 
-ReactDOM.render(<App/>, document.getElementById('root'))
+const rootElement = document.getElementById('root');
+rootElement.hasChildNodes() ? hydrate(<App />, rootElement) : render(<App />, rootElement)
 
 serviceWorker.unregister()
