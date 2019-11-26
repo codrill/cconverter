@@ -8,6 +8,14 @@
     color: $cc-white;
     font-size: 2rem;
     font-weight: $font-semi-bold;
+    line-height: 40px;
+    text-align: center;
+
+    span {
+      display: block;
+      font-size: 1rem;
+      line-height: .5;
+    }
   }
   &__menu {
     line-height: 62px;

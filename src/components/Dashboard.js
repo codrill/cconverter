@@ -11,8 +11,8 @@ const regex = new RegExp("^[+-]?\\d+(\\.\\d{0,2})?$")
 export const Dashboard = () => {
 
   const [apiRates, setApiRates] = useState([])
-  const [fromCurrency, setFromCurrency] = useState(undefined)
-  const [toCurrency, setToCurrency] = useState(undefined)
+  const [fromCurrency, setFromCurrency] = useState('')
+  const [toCurrency, setToCurrency] = useState('')
   const [userValue, setUserValue] = useState(null)
   const [converterValue, setConvertedValue] = useState(null)
   const [date, setCurrentDate] = useState('')
