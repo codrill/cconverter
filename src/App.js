@@ -6,6 +6,7 @@ import { Layout } from 'antd'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import About from './components/AboutComponent/AboutComponent'
 import Contact from './components/ContactComponent/ContactComponent'
+import UndefinedRoute from './components/UndefinedRouteComponent/UndefinedRouteComponent'
 
 const { Header, Content } = Layout
 
@@ -13,7 +14,7 @@ const App = () => {
   return (
     <div className="cc-theme-purple">
       <Router>
-        <Layout className="main-layout ">
+        <Layout className="main-layout">
           <Header className="main-layout__header">
             <MainHeader/>
           </Header>
@@ -32,8 +33,12 @@ const App = () => {
             <Route path="/contact">
               <Contact/>
             </Route>
+            
+            <Route path="*">
+              <UndefinedRoute/>
+            </Route>
           </Switch>
-          
+        
         </Layout>
       </Router>
     </div>

@@ -7,8 +7,10 @@ const MainHeader = () => {
   return (
     <div className="main-header cc-container">
       <h1 className="main-header__logo">
-        CConverter
-        <span>Konwerter Walut / FX Rate</span>
+        <Link to="/">
+          CConverter
+          <span>Konwerter Walut / FX Rate</span>
+        </Link>
       </h1>
       <Menu
         className="main-header__menu"
