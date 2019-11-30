@@ -5,11 +5,13 @@
   display: flex;
   justify-content: space-between;
   &__logo {
+    margin: 0;
     color: $cc-white;
     font-size: 2rem;
     font-weight: $font-semi-bold;
     line-height: 40px;
     text-align: center;
+    text-shadow: 1px 1px 1px $cc-purple-dark;
 
     span {
       display: block;
