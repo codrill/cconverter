@@ -13,7 +13,7 @@ const { Header, Content } = Layout
 const App = () => {
   return (
     <div className="cc-theme-purple">
-      <Router>
+      <Router basename={ process.env.PUBLIC_URL }>
         <Layout className="main-layout">
           <Header className="main-layout__header">
             <MainHeader/>
