@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.com/mad-rat/cconverter.svg?branch=develop)](https://travis-ci.com/mad-rat/cconverter)
+[![Build Status](https://travis-ci.com/codrill/cconverter.svg?branch=develop)](https://travis-ci.com/codrill/cconverter)
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
