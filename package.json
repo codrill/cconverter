@@ -2,7 +2,7 @@
   "name": "cconverter",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://codrill.github.io/cconverter",
+  "homepage": "https://cconverter.codrill.eu",
   "dependencies": {
     "@fortawesome/fontawesome-free": "^5.11.2",
     "antd": "^3.23.1",
