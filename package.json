@@ -35,6 +35,7 @@
   },
   "devDependencies": {
     "node-sass": "^4.13.0",
+    "react-helmet": "^5.2.1",
     "react-snap": "^1.23.0"
   }
 }
