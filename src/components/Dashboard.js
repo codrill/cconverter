@@ -59,18 +59,7 @@ export const Dashboard = () => {
     <div className="converter cc-container">
       
       <Helmet>
-        <meta charSet="utf-8"/>
         <title>CConverter - Kalkulator walut</title>
-        <link rel="canonical" href="https://cconverter.codrill.eu/"/>
-        
-        <meta property="og:title" content="CConverter - Kalkulator walut"/>
-        <meta property="og:url" content="https://cconverter.codrill.eu/"/>
-        <meta property="og:type" content="website"/>
-        <meta property="og:description" content="
-          Darmowy kalkulator walut online.
-          Sprawdź i porównaj aktualne kursy ponad 100 dostępnych walut, według oficjalnych danych NBP
-        "/>
-        <meta property="og:image" content="https://cconverter.codrill.eu/og-image.jpg"/>
       </Helmet>
       
       <div className="converter__info">
