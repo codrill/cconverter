@@ -18,15 +18,32 @@
       border-bottom: 3px solid transparent;
       box-shadow: 0 0 0 transparent;
       transition: all .3s ease-in-out;
+      span {
+        position: relative;
+        display: inline-block;
+        color: rgba($cc-white, .5);
 
-      &.ant-menu-item-selected {
-        border-bottom: 3px solid $cc-purple-dark;
+        &::before {
+          content: attr(data-hover);
+          position: absolute;
+          color: $cc-white;
+          transition: opacity .3s ease-in-out, transform .3s ease-in-out;
+        }
       }
 
-      &:hover, &:active, &:focus {
-        border-bottom: 3px solid $cc-purple-dark;
+      &.ant-menu-item-selected {
         background-color: $cc-purple-dark;
         box-shadow: 0 2px 5px $cc-purple-dark;
+      }
+
+      &.ant-menu-item-active {
+        border-bottom: 3px solid transparent;
+      }
+      &:hover:not(.ant-menu-item-selected) {
+        span::before {
+          opacity: 0;
+          transform: scale(.9);
+        }
       }
     }
   }

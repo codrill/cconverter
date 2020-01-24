@@ -1,36 +1,52 @@
 import React from 'react'
 import { Icon, Menu } from 'antd'
 import './MainHeaderComponent.scss'
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
+import { menuRoutes } from '../../config/routes'
 
 const MainHeader = () => {
+  const { pathname } = useLocation()
+  
   return (
     <div className="main-header cc-container">
       <h1 className="main-header__logo">
-        <Link to="/">
-          CConverter
+        <Link to={ menuRoutes.home().path }>
+          { menuRoutes.home().label }
           <span>Konwerter Walut / FX Rate</span>
         </Link>
       </h1>
       <Menu
         className="main-header__menu"
         theme={ 'cc-theme-purple' }
-        mode={ 'horizontal' }>
-        <Menu.Item key="1">
-          <a href="https://github.com/codrill/cconverter" title="GitHub Repo" target="_blank"
-             rel="noopener noreferrer">
-            <Icon type="github"/> GitHub
+        mode={ 'horizontal' }
+        defaultSelectedKeys={ menuRoutes.home().path }
+        selectedKeys={ [pathname] }
+        focusable={ false }>
+        
+        <Menu.Item key={ menuRoutes.about().path }>
+          <Link to={ menuRoutes.about().path }>
+            <Icon type="build" theme="filled"/>
+            <span data-hover={ menuRoutes.about().label }>
+              { menuRoutes.about().label }
+            </span>
+          </Link>
+        </Menu.Item>
+        <Menu.Item key={ menuRoutes.contact().path }>
+          <Link to={ menuRoutes.contact().path }>
+            <Icon type="container" theme="filled"/>
+            <span data-hover={ menuRoutes.contact().label }>
+              { menuRoutes.contact().label }
+            </span>
+          </Link>
+        </Menu.Item>
+        <Menu.Item>
+          <a href={ menuRoutes.github().path }
+             title={ menuRoutes.github().label }
+             target="_blank"
+             rel="noopener noreferrer"
+          >
+            <Icon type="github"/>
           </a>
-        </Menu.Item>
-        <Menu.Item key="2">
-          <Link to="/about">
-            <Icon type="build" theme="filled"/> O projekcie
-          </Link>
-        </Menu.Item>
-        <Menu.Item key="3">
-          <Link to="/contact">
-            <Icon type="container" theme="filled"/> Kontakt
-          </Link>
         </Menu.Item>
       </Menu>
     </div>
