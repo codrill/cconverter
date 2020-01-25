@@ -16,7 +16,8 @@ deploy:
   provider: pages
   skip_cleanup: true
   github_token: $github_token
-  local_dir: build
-  target-branch: master
   on:
     branch: develop
+  target_branch: master
+  local_dir: build
+  fqdn: cconverter.codrill.eu
