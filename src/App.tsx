@@ -3,14 +3,15 @@ import './App.scss'
 import { Dashboard } from './components/Dashboard'
 import MainHeader from './components/MainHeaderComponent/MainHeaderComponent'
 import { Layout } from 'antd'
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
+
 import About from './components/AboutComponent/AboutComponent'
 import Contact from './components/ContactComponent/ContactComponent'
 import UndefinedRoute from './components/UndefinedRouteComponent/UndefinedRouteComponent'
+import {BrowserRouter as Router, Route, Switch} from 'react-router-dom'
 
-const { Header, Content } = Layout
+const { Header, Content } = Layout;
 
-const App = () => {
+const App: React.FC = () => {
   return (
     <div className="cc-theme-purple">
       <Router basename={ process.env.PUBLIC_URL }>
@@ -43,6 +44,6 @@ const App = () => {
       </Router>
     </div>
   )
-}
+};
 
 export default App
