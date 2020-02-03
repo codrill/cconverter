@@ -63,10 +63,6 @@ export const Dashboard: React.FC = () => {
     setToCurrency(findAndReturnCurrencyByCode(apiRates, initialSelectToValue))
   };
 
-  const inputChangeHandler = (value: string) => {
-    setFromCurrency(value);
-  };
-
   return (
     <div className="converter cc-container">
 
