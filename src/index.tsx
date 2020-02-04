@@ -5,6 +5,6 @@ import './styles/styles.scss'
 import App from './App'
 
 const rootElement = document.getElementById('root');
-rootElement.hasChildNodes() ? hydrate(<App />, rootElement) : render(<App />, rootElement)
+rootElement && rootElement.hasChildNodes() ? hydrate(<App />, rootElement) : render(<App />, rootElement);
 
-serviceWorker.unregister()
+serviceWorker.unregister();

@@ -4,7 +4,7 @@
 
 // Menu
 .ant-menu {
-  &-cc-theme-purple {
+  &.main-header__menu {
     background-color: $cc-purple;
     .ant-menu-item, .ant-menu-item > a {
       color: $cc-white;

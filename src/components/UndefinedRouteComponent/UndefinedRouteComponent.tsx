@@ -2,7 +2,7 @@ import React from 'react'
 import { useLocation } from 'react-router-dom'
 
 const UndefinedRoute = () => {
-  const activeLocation = useLocation()
+  const activeLocation = useLocation();
   
   return (
     <div>
