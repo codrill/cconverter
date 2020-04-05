@@ -1,6 +1,6 @@
 import {urlApiNBPTableA, urlApiNBPTableB} from "../constants/CurrencyApiConstants"
 import {polishCurrencyObject} from '../constants/PolishCurrencyObject'
-import {sort} from '../utils/array-utils'
+import {sort} from '../utils/array'
 
 export const getCurrencyValues = () => {
 
