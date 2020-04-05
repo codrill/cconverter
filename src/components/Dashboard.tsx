@@ -6,8 +6,9 @@ import {CurrencySelect} from './CurrecySelectComponent/SelectComponent'
 import {DateDisplay, RateDisplay} from './DateAndRateDisplayComponent/DateAndRateDisplayComponent'
 import {initialSelectFromValue, initialSelectToValue, inputPlaceholder} from '../constants/Variables'
 import {Helmet} from 'react-helmet'
+import {getParsedNumber} from "../utils/number";
 
-const regex = new RegExp('^[+-]?\\d+(\\.\\d{0,2})?$');
+const userInputRegex = new RegExp('^\\d+([,.]\\d{0,2})?$');
 
 export type ApiRate = {
   code: string
@@ -22,8 +23,8 @@ export const Dashboard: React.FC = () => {
   const [apiRates, setApiRates] = useState<ApiRate[]>([]);
   const [fromCurrency, setFromCurrency] = useState('');
   const [toCurrency, setToCurrency] = useState('');
-  const [userValue, setUserValue] = useState(0);
-  const [converterValue, setConvertedValue] = useState('');
+  const [userValue, setUserValue] = useState<string>('0');
+  const [converterValue, setConvertedValue] = useState<string>('');
   const [date, setCurrentDate] = useState('');
   const [exchangeRate, setExchangeRate] = useState(0);
 
@@ -41,15 +42,18 @@ export const Dashboard: React.FC = () => {
 
     if (firstValue && secondValue) {
       setExchangeRate(firstValue.mid / secondValue.mid);
-      setConvertedValue((userValue * exchangeRate).toFixed(2).toString())
+      setConvertedValue((getParsedNumber(userValue) * exchangeRate).toFixed(2).toString())
     }
   }, [apiRates, fromCurrency, toCurrency, userValue, exchangeRate]);
 
-  const onChangeValue = (value: React.ChangeEvent<HTMLInputElement>) => {
-    if (!value.target.value) {
-      setUserValue(0)
-    } else if (regex.test(value.target.value))
-      setUserValue(Number(value.target.value))
+  const onChangeValue = (inputElement: React.ChangeEvent<HTMLInputElement>) => {
+    const value: string = inputElement.target.value;
+
+    if (!value) {
+      setUserValue('0')
+    } else if (userInputRegex.test(value)) {
+      setUserValue(getParsedNumber(value) >= 1 ? value.replace(/^0+/, '') : value)
+    }
   };
 
   const onCurrencySwap = () => {
@@ -59,8 +63,8 @@ export const Dashboard: React.FC = () => {
   };
 
   const setInitialCurrencies = (apiRates: ApiRate[]) => {
-    setFromCurrency(findAndReturnCurrencyByCode(apiRates, initialSelectFromValue))
-    setToCurrency(findAndReturnCurrencyByCode(apiRates, initialSelectToValue))
+    setFromCurrency(findAndReturnCurrencyByCode(apiRates, initialSelectFromValue));
+    setToCurrency(findAndReturnCurrencyByCode(apiRates, initialSelectToValue));
   };
 
   return (
