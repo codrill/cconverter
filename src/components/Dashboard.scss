@@ -18,7 +18,7 @@
     padding: $gap-big 0;
     background-color: $cc-purple;
     background-image: linear-gradient(45deg, transparentize($cc-purple-dark, .07) 10%, transparentize($cc-purple, .07)),
-                      url("../assets/img/bg-calc-info.jpg");
+    url("../assets/img/bg-calc-info.jpg");
     background-position: center;
     background-size: cover;
     color: $cc-white;
@@ -81,15 +81,93 @@
       height: 40px;
       width: 70px;
       margin: 10px 0;
+
       &-icon {
         font-size: 1.5rem;
       }
     }
+
     &__rate p {
       font-size: .9rem;
       font-weight: $font-semi-bold;
       font-style: italic;
       margin-bottom: 0;
+    }
+  }
+}
+
+.main-layout__header {
+  .main-header__logo {
+    span {
+      font-size: 0.9rem;
+    }
+  }
+}
+
+@media screen and (max-width: 1201px) {
+  .converter {
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+
+    .converter__info {
+      &__content {
+        &::before {
+          display: none
+        }
+      }
+    }
+
+    .converter__calc {
+      width: 500px;
+    }
+  }
+}
+
+@media screen and (max-width: 576px) {
+
+  .main-layout__header {
+    display: flex;
+    align-items: center;
+
+    .main-header {
+      &__logo {
+        font-size: 1.5rem;
+
+        span {
+          font-size: 0.6rem;
+        }
+      }
+
+      .ant-menu {
+        padding: 0 10px;
+
+        .ant-menu-item {
+          padding: 0 10px;
+
+          span {
+            display: none;
+          }
+        }
+      }
+    }
+  }
+
+  .main-layout__content {
+    padding: 0 10px;
+
+    .converter__info__content {
+      font-size: 1rem;
+    }
+  }
+
+  .converter {
+    display: flex;
+
+    .converter__calc {
+      width: 300px;
+      padding-right: 0;
+      padding-left: 0;
     }
   }
 }
