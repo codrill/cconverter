@@ -4,6 +4,7 @@
 .main-header {
   display: flex;
   justify-content: space-between;
+
   &__logo {
     margin: 0;
     color: $cc-white;
@@ -19,7 +20,38 @@
       line-height: .5;
     }
   }
+
   &__menu {
     line-height: 60px;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .main-layout__header {
+    display: flex;
+    align-items: center;
+    padding:0 20px;
+
+    .main-header {
+      &__logo {
+        font-size: 1.5rem;
+
+        span {
+          font-size: 0.6rem;
+        }
+      }
+
+      .ant-menu {
+        padding: 0;
+
+        &-item {
+          padding: 0 10px;
+
+          span {
+            display: none;
+          }
+        }
+      }
+    }
   }
 }
