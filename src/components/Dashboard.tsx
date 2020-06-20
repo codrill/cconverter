@@ -32,21 +32,17 @@ export const Dashboard: React.FC<Props> = ({rates, date}) => {
 
   useEffect(() => {
     setInitialCurrencies(rates)
-  }, [])
+  }, [rates])
 
   useEffect(() => {
-    calculateValue()
+      const firstValue: SelectedValue = rates.find(rate => rate.code === fromCurrency);
+      const secondValue: SelectedValue = rates.find(rate => rate.code === toCurrency);
+
+      if (firstValue && secondValue) {
+        setExchangeRate(firstValue.mid / secondValue.mid);
+        setConvertedValue((getParsedNumber(userValue) * exchangeRate).toFixed(2).toString())
+      }
   }, [rates, fromCurrency, toCurrency, userValue, exchangeRate])
-
-  const calculateValue = () => {
-    const firstValue: SelectedValue = rates.find(rate => rate.code === fromCurrency);
-    const secondValue: SelectedValue = rates.find(rate => rate.code === toCurrency);
-
-    if (firstValue && secondValue) {
-      setExchangeRate(firstValue.mid / secondValue.mid);
-      setConvertedValue((getParsedNumber(userValue) * exchangeRate).toFixed(2).toString())
-    }
-  };
 
   const onChangeValue = (inputElement: React.ChangeEvent<HTMLInputElement>) => {
     const value: string = inputElement.target.value;
