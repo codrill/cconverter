@@ -14,7 +14,12 @@ import { from } from 'rxjs'
 const {Header, Content} = Layout
 
 const resource = getCurrencyValues()
-const $observable = from(resource)
+const $resourceObservable = from(resource)
+
+type Response = {
+  rates: ApiRate[];
+  date: string
+}
 
 const App: React.FC = () => {
 
@@ -23,7 +28,7 @@ const App: React.FC = () => {
   const [dataReady, setDataReady] = useState(false)
 
   useEffect(() => {
-    $observable.subscribe((response) => {
+    $resourceObservable.subscribe((response : Response) => {
       setApiRates(response.rates)
       setCurrentDate(response.date)
       setDataReady(true)
