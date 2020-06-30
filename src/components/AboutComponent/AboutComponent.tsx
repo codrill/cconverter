@@ -1,6 +1,6 @@
 import React from 'react'
 import './AboutComponent.scss'
-import {Helmet} from 'react-helmet'
+import { Helmet } from 'react-helmet'
 
 const About: React.FC = () => {
     return (
