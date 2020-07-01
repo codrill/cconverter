@@ -17,65 +17,69 @@ const resource = getCurrencyValues()
 const $resourceObservable = from(resource)
 
 type Response = {
-  rates: ApiRate[];
-  date: string
+    rates: ApiRate[];
+    date: string
 }
 
 const App: React.FC = () => {
 
-  const [apiRates, setApiRates] = useState<ApiRate[]>([])
-  const [date, setCurrentDate] = useState('')
-  const [dataReady, setDataReady] = useState(false)
+    const [apiRates, setApiRates] = useState<ApiRate[]>([])
+    const [date, setCurrentDate] = useState('')
+    const [dataReady, setDataReady] = useState(false)
 
-  useEffect(() => {
-    $resourceObservable.subscribe((response : Response) => {
-      setApiRates(response.rates)
-      setCurrentDate(response.date)
-      setDataReady(true)
-    })
-  }, [])
+    useEffect(() => {
+        $resourceObservable.subscribe((response: Response) => {
+            setApiRates(response.rates)
+            setCurrentDate(response.date)
+            setDataReady(true)
+        })
+    }, [])
 
-  return (
-    <div className="cc-theme-purple">
-      <Router basename={process.env.PUBLIC_URL}>
-        <Layout className="main-layout">
-          <Header className="main-layout__header">
-            <MainHeader/>
-          </Header>
+    return (
+        <div className="cc-theme-purple">
+            <Router basename={process.env.PUBLIC_URL}>
+                <Layout className="main-layout">
+                    <Header className="main-layout__header">
+                        <MainHeader/>
+                    </Header>
 
-          <Switch>
-            <Route
-              exact
-              path="/"
-            >
-              <Content className="main-layout__content">
-                {!dataReady
-                  ? <Spin/>
-                  : <Dashboard
-                  rates={apiRates}
-                  date={date}
-                />
-                }
-              </Content>
-            </Route>
+                    <Switch>
+                        <Route
+                            exact
+                            path="/"
+                        >
+                            <Content className="main-layout__content">
+                                {!dataReady
+                                    ? <Spin/>
+                                    : <Dashboard
+                                        rates={apiRates}
+                                        date={date}
+                                    />
+                                }
+                            </Content>
+                        </Route>
 
-            <Route path="/about">
-              <About/>
-            </Route>
+                        <Route path="/about">
+                            {!dataReady
+                                ? <Spin/>
+                                :
+                                <About/>
+                            }
+                        </Route>
 
-            <Route path="/contact">
-              <Contact/>
-            </Route>
+                        <Route path="/contact">
+                            <Contact/>
+                        </Route>
 
-            <Route path="*">
-              <UndefinedRoute/>
-            </Route>
-          </Switch>
+                        <Route path="*">
+                            <UndefinedRoute/>
+                        </Route>
+                    </Switch>
 
-        </Layout>
-      </Router>
-    </div>
-  )
+                </Layout>
+            </Router>
+        </div>
+    )
 }
 
 export default App

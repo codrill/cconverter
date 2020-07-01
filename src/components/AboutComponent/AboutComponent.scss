@@ -1,0 +1,128 @@
+@import "../../styles/utils/variables";
+@import "../../styles/utils/mixins";
+
+.about {
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
+
+  .about-layout {
+    text-align: center;
+
+    .about-layout__item {
+      display: inline-flex;
+      justify-content: center;
+      margin: 20px;
+    }
+
+    .about-layout__info {
+      width: 600px;
+      z-index: 1;
+      margin: auto -75px;
+      background-color: $cc-white;
+      border-radius: 5px;
+      padding: 40px;
+      box-shadow: 0 0 20px $cc-purple-dark;
+
+      p {
+        font-size: 1.2rem
+      }
+    }
+
+    .about-layout__foto {
+      width: 600px;
+      height: 400px;
+      background-position: center;
+      background-size: cover;
+
+      &.dollar-foto {
+        @include background-image-with-linear-gradient($cc-purple-dark, $cc-purple, "../../assets/img/currency.jpg");
+      }
+
+      &.bank-foto {
+        @include background-image-with-linear-gradient($cc-purple-dark, $cc-purple, "../../assets/img/bank.jpg");
+      }
+
+      &.rwd-foto {
+        @include background-image-with-linear-gradient($cc-purple-dark, $cc-purple,"../../assets/img/rwd.jpg");
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 1209px) {
+  .about {
+    .about-layout {
+      .about-layout__item {
+        width: 100%;
+        margin: 0 0 20px 0;
+      }
+
+      .about-layout__info {
+        width: 350px;
+        padding: 25px;
+      }
+
+      .about-layout__foto {
+        width: 400px;
+        height: 400px;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .about {
+    .about-layout {
+      .about-layout__info {
+        width: 200px;
+        padding: 20px;
+
+        p {
+          font-size: 0.8rem;
+        }
+      }
+
+      .about-layout__foto {
+        width: 350px;
+        height: 305px;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 634px) {
+  .about {
+    .about-layout {
+      .about-layout__item {
+        display: flex;
+        flex-direction: column;
+
+        &:nth-of-type(2) {
+          flex-direction: column-reverse;
+        }
+      }
+
+      .about-layout__info {
+        width: 250px;
+        margin: auto auto -140px auto;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 380px) {
+  .about {
+    .about-layout {
+
+      .about-layout__info {
+        width: 200px;
+      }
+
+      .about-layout__foto {
+        width: 250px;
+        height: 240px;
+      }
+    }
+  }
+}

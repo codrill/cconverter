@@ -4,14 +4,14 @@ import {sort} from '../utils/array'
 
 export const getCurrencyValues = () => {
 
-  return Promise.all([
-    fetch(urlApiNBPTableA).then(result => result.json()),
-    fetch(urlApiNBPTableB).then(result => result.json()),
-  ])
-  .then(tables => {
-    return {
-      rates: sort([...tables[0][0].rates, ...tables[1][0].rates, polishCurrencyObject], 'currency'),
-      date: tables[0][0].effectiveDate
-    }
-  })
+    return Promise.all([
+        fetch(urlApiNBPTableA).then(result => result.json()),
+        fetch(urlApiNBPTableB).then(result => result.json()),
+    ])
+        .then(tables => {
+            return {
+                rates: sort([...tables[0][0].rates, ...tables[1][0].rates, polishCurrencyObject], 'currency'),
+                date: tables[0][0].effectiveDate
+            }
+        })
 }
