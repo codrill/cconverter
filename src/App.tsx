@@ -60,11 +60,13 @@ const App: React.FC = () => {
                         </Route>
 
                         <Route path="/about">
-                            {!dataReady
-                                ? <Spin/>
-                                :
-                                <About/>
-                            }
+                            <Content className="main-layout__content">
+                                {!dataReady
+                                    ? <Spin/>
+                                    :
+                                    <About/>
+                                }
+                            </Content>
                         </Route>
 
                         <Route path="/contact">
