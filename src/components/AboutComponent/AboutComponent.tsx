@@ -10,7 +10,7 @@ const About: React.FC = () => {
             </Helmet>
 
             <div className="about-layout">
-                <div className="about-layout__wrapper">
+                <div className="about-layout__item">
                     <div className="about-layout__info">
                         <p><strong>CConverter</strong> to open-sourcowy projekt stworzony przez <strong>Codrill</strong>.
                             Mając do dyspozycji 150 walut z
@@ -21,13 +21,11 @@ const About: React.FC = () => {
                         </p>
                     </div>
 
-                    <div className="about-layout__foto dollar-foto">
+                    <div className="about-layout__foto dollar-foto"/>
 
-                    </div>
                 </div>
-                <div className="about-layout__wrapper second-info">
-                    <div className="about-layout__foto bank-foto">
-                    </div>
+                <div className="about-layout__item">
+                    <div className="about-layout__foto bank-foto"/>
 
                     <div className="about-layout__info">
                         <p>Żeby zagwarantować naszym użytkownikom pewne i oficjalne kursy wymiany używamy przeliczników
@@ -37,7 +35,7 @@ const About: React.FC = () => {
                     </div>
                 </div>
 
-                <div className="about-layout__wrapper">
+                <div className="about-layout__item">
                     <div className="about-layout__info">
                         <p>Nasz konwerter jest przystosowany do działania na każdym urządzeniu. Potrzebujesz coś szybko
                             przeliczyć? Aplikacja działa wyśmienicie na telefonach komórkowych czy tabletach.</p>
@@ -46,9 +44,8 @@ const About: React.FC = () => {
                             Zachęcamy do dzielenia się uwagami przez nasz formularz zgłoszeniowy.</p>
                     </div>
 
-                    <div className="about-layout__foto rwd-foto">
+                    <div className="about-layout__foto rwd-foto"/>
 
-                    </div>
                 </div>
             </div>
         </div>

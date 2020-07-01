@@ -1,15 +1,15 @@
-import React, {useEffect, useState} from 'react'
+import React, { useEffect, useState } from 'react'
 import './App.scss'
-import {ApiRate, Dashboard} from './components/Dashboard'
+import { ApiRate, Dashboard } from './components/Dashboard'
 import MainHeader from './components/MainHeaderComponent/MainHeaderComponent'
-import {Layout, Spin} from 'antd'
+import { Layout, Spin } from 'antd'
 
 import About from './components/AboutComponent/AboutComponent'
 import Contact from './components/ContactComponent/ContactComponent'
 import UndefinedRoute from './components/UndefinedRouteComponent/UndefinedRouteComponent'
-import {BrowserRouter as Router, Route, Switch} from 'react-router-dom'
-import {getCurrencyValues} from './services/CurrencyService'
-import {from} from 'rxjs'
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
+import { getCurrencyValues } from './services/CurrencyService'
+import { from } from 'rxjs'
 
 const {Header, Content} = Layout
 

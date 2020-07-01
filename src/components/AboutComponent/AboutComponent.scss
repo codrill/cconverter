@@ -1,4 +1,5 @@
 @import "../../styles/utils/variables";
+@import "../../styles/utils/mixins";
 
 .about {
   display: flex;
@@ -8,7 +9,7 @@
   .about-layout {
     text-align: center;
 
-    .about-layout__wrapper {
+    .about-layout__item {
       display: inline-flex;
       justify-content: center;
       margin: 20px;
@@ -35,18 +36,15 @@
       background-size: cover;
 
       &.dollar-foto {
-        background-image: linear-gradient(45deg, transparentize($cc-purple-dark, .5) 5%, transparentize($cc-purple, .5)),
-        url("../../assets/img/currency.jpg");
+        @include background-image-with-linear-gradient($cc-purple-dark, $cc-purple, "../../assets/img/currency.jpg");
       }
 
       &.bank-foto {
-        background-image: linear-gradient(45deg, transparentize($cc-purple-dark, .5) 5%, transparentize($cc-purple, .5)),
-        url("../../assets/img/bank.jpg");
+        @include background-image-with-linear-gradient($cc-purple-dark, $cc-purple, "../../assets/img/bank.jpg");
       }
 
       &.rwd-foto {
-        background-image: linear-gradient(45deg, transparentize($cc-purple-dark, .5) 5%, transparentize($cc-purple, .5)),
-        url("../../assets/img/rwd.jpg");
+        @include background-image-with-linear-gradient($cc-purple-dark, $cc-purple,"../../assets/img/rwd.jpg");
       }
     }
   }
@@ -55,7 +53,7 @@
 @media screen and (max-width: 1209px) {
   .about {
     .about-layout {
-      .about-layout__wrapper {
+      .about-layout__item {
         width: 100%;
         margin: 0 0 20px 0;
       }
@@ -96,18 +94,18 @@
 @media screen and (max-width: 634px) {
   .about {
     .about-layout {
-      .about-layout__wrapper {
+      .about-layout__item {
         display: flex;
         flex-direction: column;
+
+        &:nth-of-type(2) {
+          flex-direction: column-reverse;
+        }
       }
 
       .about-layout__info {
         width: 250px;
         margin: auto auto -140px auto;
-      }
-
-      .second-info {
-        flex-direction: column-reverse;
       }
     }
   }
@@ -116,10 +114,6 @@
 @media screen and (max-width: 380px) {
   .about {
     .about-layout {
-      .about-layout__wrapper {
-        display: flex;
-        flex-direction: column;
-      }
 
       .about-layout__info {
         width: 200px;
@@ -128,10 +122,6 @@
       .about-layout__foto {
         width: 250px;
         height: 240px;
-      }
-
-      .second-info {
-        flex-direction: column-reverse;
       }
     }
   }
