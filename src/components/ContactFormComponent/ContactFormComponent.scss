@@ -1,0 +1,19 @@
+@import "../../styles/utils/variables";
+
+.form {
+  padding: 10px;
+
+  .text-area {
+    margin-bottom: 10px;
+
+    .ant-form-item-control-wrapper {
+      .ant-input {
+        height: 150px;
+      }
+    }
+  }
+
+  .submitButton {
+    margin-bottom: 0;
+  }
+}
