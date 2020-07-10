@@ -1,8 +1,9 @@
 import React from 'react'
-import { Icon, Menu } from 'antd'
+import { Menu } from 'antd'
 import './MainHeaderComponent.scss'
 import { Link, useLocation } from 'react-router-dom'
 import { menuRoutes } from '../../config/routes'
+import {BuildFilled, ContainerFilled, GithubFilled } from "@ant-design/icons/lib";
 
 const MainHeader = () => {
     const {pathname} = useLocation();
@@ -25,7 +26,7 @@ const MainHeader = () => {
 
                 <Menu.Item key={menuRoutes.about().path}>
                     <Link to={menuRoutes.about().path}>
-                        <Icon type="build" theme="filled"/>
+                        <BuildFilled />
                         <span data-hover={menuRoutes.about().label}>
               {menuRoutes.about().label}
             </span>
@@ -33,7 +34,7 @@ const MainHeader = () => {
                 </Menu.Item>
                 <Menu.Item key={menuRoutes.contact().path}>
                     <Link to={menuRoutes.contact().path}>
-                        <Icon type="container" theme="filled"/>
+                        <ContainerFilled />
                         <span data-hover={menuRoutes.contact().label}>
               {menuRoutes.contact().label}
             </span>
@@ -45,7 +46,7 @@ const MainHeader = () => {
                        target="_blank"
                        rel="noopener noreferrer"
                     >
-                        <Icon type="github"/>
+                        <GithubFilled />
                     </a>
                 </Menu.Item>
             </Menu>
