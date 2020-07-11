@@ -50,9 +50,7 @@ export const ContactForm: React.FC = () => {
             setHasUsernameError(true);
             setHasEmailError(true);
             return;
-        } else if (!firstInit && (hasEmailError || hasUsernameError)) {
-            return;
-        }
+        } else if (!firstInit && (hasEmailError || hasUsernameError)) { return; }
 
         setButtonDisabled(true)
         emailjs.sendForm(defaultService, templateId, e.target, userId)

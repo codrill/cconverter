@@ -7,9 +7,9 @@
   padding-top: 20px;
 
   .contact__details {
+    @include linear-gradient($cc-purple, $cc-purple-dark);
     width: 250px;
     height: 600px;
-    @include linear-gradient($cc-purple, $cc-purple-dark);
     padding: 10px;
     color: $cc-white;
 
@@ -32,9 +32,9 @@
   .contact__form {
     width: 600px;
     height: 500px;
+    margin: auto -120px;
     border: 1px solid black;
     background-color: $cc-white;
-    margin: auto -120px;
     color: $cc-white;
     font-size: 1.5rem;
     box-shadow: 0 0 20px $cc-purple-dark;
@@ -47,11 +47,10 @@
   }
 }
 
-
 @media screen and (max-width: 883px) {
   .contact {
     display: block;
-    margin: auto;
+    margin: auto auto 20px;
 
     .contact__details {
       width: 600px;
@@ -69,8 +68,8 @@
     }
 
     .contact__form {
-      margin: -20px auto auto;
       width: 550px;
+      margin: -20px auto auto;
     }
   }
 }
@@ -86,7 +85,6 @@
     }
   }
 }
-
 
 @media screen and (max-width: 460px) {
   .contact {
