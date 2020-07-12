@@ -1,5 +1,4 @@
-import { Button, Input } from 'antd'
-
+import { Button, Icon, Input } from 'antd'
 import './Dashboard.scss'
 import React, { useEffect, useState } from 'react'
 import { CurrencySelect } from './CurrecySelectComponent/SelectComponent'
@@ -7,7 +6,6 @@ import { DateDisplay, RateDisplay } from './DateAndRateDisplayComponent/DateAndR
 import { initialSelectFromValue, initialSelectToValue, inputPlaceholder } from '../constants/Variables'
 import { Helmet } from 'react-helmet'
 import { getParsedNumber } from "../utils/number"
-import { SwapOutlined } from "@ant-design/icons/lib";
 
 const userInputRegex = new RegExp('^\\d+([,.]\\d{0,2})?$')
 
@@ -114,7 +112,8 @@ export const Dashboard: React.FC<Props> = ({rates, date}) => {
                     disabled={!fromCurrency || !toCurrency}
                     onClick={onCurrencySwap}
                 >
-                    <SwapOutlined
+                    <Icon
+                        type="swap"
                         rotate={90}
                         className="btn-swap-icon"
                     />
@@ -126,11 +125,12 @@ export const Dashboard: React.FC<Props> = ({rates, date}) => {
                         onChange={setToCurrency}
                         currencyRates={rates}
                     />
-                    <Input
-                      placeholder={inputPlaceholder}
-                      value={converterValue}
-                    />
                 </div>
+                <Input
+                    placeholder={inputPlaceholder}
+                    value={converterValue}
+                />
+
                 <div className="converter__calc__rate">
                     <p>{RateDisplay(exchangeRate)}</p>
                 </div>

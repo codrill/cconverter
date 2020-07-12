@@ -4,9 +4,8 @@
   "private": true,
   "homepage": "https://cconverter.codrill.eu",
   "dependencies": {
-    "@ant-design/icons": "^4.2.1",
     "@fortawesome/fontawesome-free": "^5.11.2",
-    "antd": "^4.4.1",
+    "antd": "^3.23.1",
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
     "react-router-dom": "^5.1.2",
