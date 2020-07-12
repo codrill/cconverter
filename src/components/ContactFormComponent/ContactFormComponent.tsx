@@ -65,7 +65,6 @@ export const ContactForm: React.FC = () => {
     }
 
     return (
-        <div className="contactForm">
             <div className="form">
                 <Form id="contact-form" onSubmit={submitForm}>
                     <Form.Item label="Imię i nazwisko"
@@ -98,7 +97,6 @@ export const ContactForm: React.FC = () => {
                     </Form.Item>
                 </Form>
             </div>
-        </div>
     )
 }
 

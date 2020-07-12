@@ -16,7 +16,7 @@ const Contact = () => {
             <div className="contact__details">
                 <p>Znajdziesz nas na:</p>
 
-                <div className="wrapper">
+                <div className="contact__details__icons">
                     <div className="facebook">
                         <a href={facebookProfile}>
                             <FacebookOutlined/>

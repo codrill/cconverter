@@ -18,7 +18,7 @@
       margin-left: 20px;
     }
 
-    .wrapper {
+    .contact__details__icons {
       margin-left: 10px;
 
       .facebook, .github, .site {
@@ -56,7 +56,7 @@
       width: 600px;
       height: 150px;
 
-      .wrapper {
+      .contact__details__icons {
         display: flex;
         justify-content: space-around;
 
@@ -91,7 +91,7 @@
     .contact__details {
       width: 320px;
 
-      .wrapper {
+      .contact__details__icons {
         .facebook, .github, .site {
           font-size: 2rem;
         }
