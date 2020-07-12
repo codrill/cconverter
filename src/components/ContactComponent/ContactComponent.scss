@@ -1,0 +1,110 @@
+@import "../../styles/utils/variables";
+@import "../../styles/utils/mixins";
+
+.contact {
+  display: flex;
+  justify-content: center;
+  padding-top: 20px;
+
+  .contact__details {
+    @include linear-gradient($cc-purple, $cc-purple-dark);
+    width: 250px;
+    height: 600px;
+    padding: 10px;
+    color: $cc-white;
+
+    p {
+      font-size: 1.5rem;
+      margin-left: 20px;
+    }
+
+    .contact__details__icons {
+      margin-left: 10px;
+
+      .facebook, .github, .site {
+        margin-top: 50px;
+        margin-left: 30px;
+        font-size: 3rem;
+      }
+    }
+  }
+
+  .contact__form {
+    width: 600px;
+    height: 500px;
+    margin: auto -120px;
+    border: 1px solid black;
+    background-color: $cc-white;
+    color: $cc-white;
+    font-size: 1.5rem;
+    box-shadow: 0 0 20px $cc-purple-dark;
+    border-radius: 5px;
+
+    p {
+      font-size: 1.5rem;
+      margin-left: 20px;
+    }
+  }
+}
+
+@media screen and (max-width: 883px) {
+  .contact {
+    display: block;
+    margin: auto auto 20px;
+
+    .contact__details {
+      width: 600px;
+      height: 150px;
+
+      .contact__details__icons {
+        display: flex;
+        justify-content: space-around;
+
+        .facebook, .github, .site {
+          margin-top: 0;
+          margin-left: 0;
+        }
+      }
+    }
+
+    .contact__form {
+      width: 550px;
+      margin: -20px auto auto;
+    }
+  }
+}
+
+@media screen and (max-width: 634px) {
+  .contact {
+    .contact__details {
+      width: 450px;
+    }
+
+    .contact__form {
+      width: 400px;
+    }
+  }
+}
+
+@media screen and (max-width: 460px) {
+  .contact {
+    .contact__details {
+      width: 320px;
+
+      .contact__details__icons {
+        .facebook, .github, .site {
+          font-size: 2rem;
+        }
+      }
+
+      p {
+        font-size: 1rem;
+      }
+    }
+
+    .contact__form {
+      width: 300px;
+      margin-top: -55px;
+    }
+  }
+}
