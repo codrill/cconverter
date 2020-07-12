@@ -1,9 +1,8 @@
+import {Select} from 'antd'
 import React from 'react'
-import { Select } from 'antd'
+import {ApiRate} from "../Dashboard";
 
-import { ApiRate } from "../Dashboard";
-
-const { Option } = Select;
+const {Option} = Select;
 
 type Props = {
   value: string
@@ -17,11 +16,10 @@ export function CurrencySelect(props: Props) {
       showSearch
       value={props.value}
       placeholder="Select currency"
-      size="large"
       optionFilterProp="children"
       onChange={props.onChange}
-      filterOption={(inputValue, option) => {
-        return (option?.props.children as string).toLowerCase().indexOf(inputValue.toLowerCase()) >= 0
+      filterOption={(input, option) => {
+        return (option.props.children as string).toLowerCase().indexOf(input.toLowerCase()) >= 0
       }
 
       }
