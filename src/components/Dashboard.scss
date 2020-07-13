@@ -70,10 +70,14 @@
 
     &__group {
       margin: 10px 0;
+      text-align: left;
 
       .ant-select, .ant-input {
         display: block;
         margin-bottom: 10px;
+      }
+      .ant-input {
+        font-size: 1.2rem;
       }
     }
 
