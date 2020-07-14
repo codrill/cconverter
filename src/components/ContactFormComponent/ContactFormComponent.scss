@@ -6,10 +6,9 @@
   .text-area {
     margin-bottom: 10px;
 
-    .ant-form-item-control-wrapper {
-      .ant-input {
-        height: 150px;
-      }
+    textarea {
+      height: 150px;
+      max-height: 200px;
     }
   }
 
