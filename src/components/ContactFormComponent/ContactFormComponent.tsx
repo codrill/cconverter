@@ -57,7 +57,7 @@ export const ContactForm: React.FC = () => {
           {min: 20, message: 'Wiadomość powinna zawierać od 20 do 500 znaków'},
           {max: 500, message: 'Wiadomość powinna zawierać od 20 do 500 znaków'}
         ]}>
-          <Input.TextArea autoSize={{minRows: 7, maxRows: 7}}/>
+          <Input.TextArea />
         </Form.Item>
         <Form.Item className="submitButton">
           <Button type="primary" htmlType="submit" disabled={buttonDisabled}>
