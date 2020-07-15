@@ -14,22 +14,22 @@ const Contact = () => {
             </Helmet>
 
             <div className="contact__details">
-                <p>Znajdziesz nas na:</p>
+                <h3>Odwiedź nas:</h3>
 
                 <div className="contact__details__icons">
-                    <div className="facebook">
+                    <div className="contact__details__icon facebook">
                         <a href={facebookProfile}>
                             <FacebookOutlined/>
                         </a>
                     </div>
 
-                    <div className="site">
+                    <div className="contact__details__icon site">
                         <a href={codrillWebsite}>
                             <GlobalOutlined/>
                         </a>
                     </div>
 
-                    <div className="github">
+                    <div className="contact__details__icon github">
                         <a href={githubProfile}>
                             <GithubOutlined/>
                         </a>
@@ -38,6 +38,7 @@ const Contact = () => {
             </div>
 
             <div className="contact__form">
+                <h1>Formularz kontaktowy</h1>
                 <ContactForm/>
             </div>
         </div>

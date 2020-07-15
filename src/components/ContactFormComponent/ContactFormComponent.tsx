@@ -60,7 +60,7 @@ export const ContactForm: React.FC = () => {
           <Input.TextArea />
         </Form.Item>
         <Form.Item className="submitButton">
-          <Button type="primary" htmlType="submit" disabled={buttonDisabled}>
+          <Button type="primary" size="large" htmlType="submit" disabled={buttonDisabled} className="cc-btn--gradient">
             Wyślij
           </Button>
         </Form.Item>
