@@ -17,7 +17,7 @@
 
     span {
       display: block;
-      font-size: 1rem;
+      font-size: .9rem;
       line-height: .5;
     }
   }
@@ -43,10 +43,12 @@
 
         &-item {
           padding: 0 10px;
-
-          span {
-            display: none;
-          }
+        }
+        .anticon {
+          margin: 10px;
+        }
+        .menu__item__label {
+          display: none;
         }
       }
     }

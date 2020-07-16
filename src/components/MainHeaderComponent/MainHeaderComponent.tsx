@@ -27,7 +27,7 @@ const MainHeader = () => {
                 <Menu.Item key={menuRoutes.about().path}>
                     <Link to={menuRoutes.about().path}>
                         <BuildFilled />
-                        <span data-hover={menuRoutes.about().label}>
+                        <span className="menu__item__label" data-hover={menuRoutes.about().label}>
               {menuRoutes.about().label}
             </span>
                     </Link>
@@ -35,7 +35,7 @@ const MainHeader = () => {
                 <Menu.Item key={menuRoutes.contact().path}>
                     <Link to={menuRoutes.contact().path}>
                         <ContainerFilled />
-                        <span data-hover={menuRoutes.contact().label}>
+                        <span className="menu__item__label" data-hover={menuRoutes.contact().label}>
               {menuRoutes.contact().label}
             </span>
                     </Link>
