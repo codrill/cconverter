@@ -7,6 +7,7 @@
   background-image: linear-gradient($deg, $color1, $color2, $color1);
 
   background-size: 200% 200%;
+  transition: background .3s ease-in-out;
 
   &:hover {
     background-position: 100% 100%;
