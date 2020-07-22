@@ -23,6 +23,38 @@
   }
 }
 
+.menu__item__language {
+  padding: 0;
+  text-align: center;
+}
+
+.language__select, .language__dropdown {
+  img {
+    display: inline-block;
+    width: 20px;
+    padding-right: 5px;
+  }
+}
+
+.language__select.language__select {
+  width: 100px;
+  .ant-select-selector {
+    background-color: transparent;
+    border: none;
+    span {
+      color: $cc-white;
+    }
+  }
+  &.ant-select-focused {
+    .ant-select-selector {
+      box-shadow: none;
+    }
+  }
+}
+.language__dropdown {
+  text-align: center;
+}
+
 @media screen and (max-width: 634px) {
   .main-layout__header {
     display: flex;
