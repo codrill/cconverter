@@ -5,32 +5,13 @@ import {useTranslation} from "react-i18next"
 import { Link, useLocation } from 'react-router-dom'
 
 import { menuRoutes } from '../../config/routes'
+import {configuredLanguages} from "../../config/languages";
 
 import './MainHeaderComponent.scss'
-import polish from '../../assets/img/flag-polish.svg';
-import english from '../../assets/img/flag-english.svg';
 
 const {Option} = Select
 
 type AvailableLanguageCodes = 'pl' | 'en'
-
-type ConfiguredLanguage = {
-  code: string
-  icon: string
-  name: string
-}
-const configuredLanguages: ConfiguredLanguage[] = [
-  {
-    code: 'pl',
-    icon: polish,
-    name: 'polski',
-  },
-  {
-    code: 'en',
-    icon: english,
-    name: 'english'
-  }
-]
 
 const MainHeader = () => {
     const {pathname} = useLocation();
