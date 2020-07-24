@@ -1,18 +1,30 @@
 import React from 'react'
-import { Icon, Menu } from 'antd'
-import './MainHeaderComponent.scss'
+import { Menu, Select } from 'antd'
+import {BuildFilled, ContainerFilled } from "@ant-design/icons/lib"
+import {useTranslation} from "react-i18next"
 import { Link, useLocation } from 'react-router-dom'
+
 import { menuRoutes } from '../../config/routes'
+import {configuredLanguages} from "../../config/languages";
+
+import './MainHeaderComponent.scss'
+
+const {Option} = Select
+
+type AvailableLanguageCodes = 'pl' | 'en'
 
 const MainHeader = () => {
     const {pathname} = useLocation();
+    const {t, i18n} = useTranslation();
+
+    const onLanguageChange = (lang: AvailableLanguageCodes) => i18n.changeLanguage(lang)
 
     return (
         <div className="main-header cc-container">
             <h1 className="main-header__logo">
                 <Link to={menuRoutes.home().path}>
                     {menuRoutes.home().label}
-                    <span>Konwerter Walut / FX Rate</span>
+                    <span>{t('FX Rate')}</span>
                 </Link>
             </h1>
             <Menu
@@ -25,28 +37,31 @@ const MainHeader = () => {
 
                 <Menu.Item key={menuRoutes.about().path}>
                     <Link to={menuRoutes.about().path}>
-                        <Icon type="build" theme="filled"/>
-                        <span data-hover={menuRoutes.about().label}>
-              {menuRoutes.about().label}
+                        <BuildFilled />
+                        <span className="menu__item__label" data-hover={t(menuRoutes.about().label)}>
+              {t(menuRoutes.about().label)}
             </span>
                     </Link>
                 </Menu.Item>
                 <Menu.Item key={menuRoutes.contact().path}>
                     <Link to={menuRoutes.contact().path}>
-                        <Icon type="container" theme="filled"/>
-                        <span data-hover={menuRoutes.contact().label}>
-              {menuRoutes.contact().label}
+                        <ContainerFilled />
+                        <span className="menu__item__label" data-hover={t(menuRoutes.contact().label)}>
+              {t(menuRoutes.contact().label)}
             </span>
                     </Link>
                 </Menu.Item>
-                <Menu.Item>
-                    <a href={menuRoutes.github().path}
-                       title={menuRoutes.github().label}
-                       target="_blank"
-                       rel="noopener noreferrer"
-                    >
-                        <Icon type="github"/>
-                    </a>
+                <Menu.Item className="menu__item__language">
+                    <Select className="language__select" dropdownClassName="language__dropdown" showArrow={false}
+                            defaultValue={i18n.language as AvailableLanguageCodes} onChange={onLanguageChange}>
+                        {configuredLanguages.map(item => (
+                            <Option key={item.name} value={item.code}>
+                              <img src={item.icon} alt={item.name} />
+                              <span>{item.name}</span>
+                            </Option>
+                          )
+                        )}
+                    </Select>
                 </Menu.Item>
             </Menu>
         </div>

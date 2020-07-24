@@ -4,6 +4,7 @@
 .main-header {
   display: flex;
   justify-content: space-between;
+  line-height: 60px;
 
   &__logo {
     margin: 0;
@@ -16,14 +17,42 @@
 
     span {
       display: block;
-      font-size: 1rem;
+      font-size: .9rem;
       line-height: .5;
     }
   }
+}
 
-  &__menu {
-    line-height: 60px;
+.menu__item__language {
+  padding: 0;
+  text-align: center;
+}
+
+.language__select, .language__dropdown {
+  img {
+    display: inline-block;
+    width: 20px;
+    padding-right: 5px;
   }
+}
+
+.language__select.language__select {
+  width: 100px;
+  .ant-select-selector {
+    background-color: transparent;
+    border: none;
+    span {
+      color: $cc-white;
+    }
+  }
+  &.ant-select-focused {
+    .ant-select-selector {
+      box-shadow: none;
+    }
+  }
+}
+.language__dropdown {
+  text-align: center;
 }
 
 @media screen and (max-width: 634px) {
@@ -46,10 +75,12 @@
 
         &-item {
           padding: 0 10px;
-
-          span {
-            display: none;
-          }
+        }
+        .anticon {
+          margin: 10px;
+        }
+        .menu__item__label {
+          display: none;
         }
       }
     }

@@ -19,8 +19,6 @@
       box-shadow: 0 0 0 transparent;
       transition: all .3s ease-in-out;
       span {
-        position: relative;
-        display: inline-block;
         color: rgba($cc-white, .5);
 
         &::before {

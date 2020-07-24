@@ -79,10 +79,14 @@
 
     &__group {
       margin: 10px 0;
+      text-align: left;
 
       .ant-select, .ant-input {
         display: block;
         margin-bottom: 10px;
+      }
+      .ant-input {
+        font-size: 1.2rem;
       }
     }
 
@@ -114,14 +118,6 @@
       font-weight: $font-semi-bold;
       font-style: italic;
       margin-bottom: 0;
-    }
-  }
-}
-
-.main-layout__header {
-  .main-header__logo {
-    span {
-      font-size: 0.9rem;
     }
   }
 }

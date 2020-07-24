@@ -2,18 +2,14 @@
 
 .form {
   padding: 10px;
-
-  .text-area {
-    margin-bottom: 10px;
-
-    .ant-form-item-control-wrapper {
-      .ant-input {
-        height: 150px;
-      }
-    }
+  textarea {
+    min-height: 150px;
+    max-height: 200px;
   }
 
   .submitButton {
     margin-bottom: 0;
+    margin-top: 15px;
+    text-align: center;
   }
 }
