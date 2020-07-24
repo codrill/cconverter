@@ -6,23 +6,29 @@ import { DateDisplay, RateDisplay } from './DateAndRateDisplayComponent/DateAndR
 import { initialSelectFromValue, initialSelectToValue, inputPlaceholder } from '../constants/Variables'
 import { Helmet } from 'react-helmet'
 import { getParsedNumber } from "../utils/number"
+import { LineChartOutlined } from "@ant-design/icons/lib";
+import { menuRoutes } from "../config/routes";
+import { Link } from "react-router-dom";
+import { CurrencyHistoryData } from "../App";
 
 const userInputRegex = new RegExp('^\\d+([,.]\\d{0,2})?$')
 
 type Props = {
     rates: ApiRate[]
     date: string
+    selectedCurrencies: Function
 }
 
 export type ApiRate = {
     code: string
     mid: number
     currency: string
+    table: string
 }
 
 type SelectedValue = ApiRate | undefined
 
-export const Dashboard: React.FC<Props> = ({rates, date}) => {
+export const Dashboard: React.FC<Props> = ({rates, date, selectedCurrencies}) => {
 
     const [fromCurrency, setFromCurrency] = useState('')
     const [toCurrency, setToCurrency] = useState('')
@@ -41,6 +47,9 @@ export const Dashboard: React.FC<Props> = ({rates, date}) => {
         if (firstValue && secondValue) {
             setExchangeRate(firstValue.mid / secondValue.mid);
             setConvertedValue((getParsedNumber(userValue) * exchangeRate).toFixed(2).toString())
+            selectedCurrencies(
+                {code: firstValue.code, table: firstValue.table} as CurrencyHistoryData,
+                {code: secondValue.code, table: secondValue.table} as CurrencyHistoryData)
         }
     }, [rates, fromCurrency, toCurrency, userValue, exchangeRate])
 
@@ -106,18 +115,30 @@ export const Dashboard: React.FC<Props> = ({rates, date}) => {
                     />
                 </div>
 
-                <Button
-                    type="primary"
-                    className="btn-swap cc-btn--gradient"
-                    disabled={!fromCurrency || !toCurrency}
-                    onClick={onCurrencySwap}
-                >
-                    <Icon
-                        type="swap"
-                        rotate={90}
-                        className="btn-swap-icon"
-                    />
-                </Button>
+                <div className="buttons">
+                    <Button
+                        type="primary"
+                        className="btn-swap cc-btn--gradient"
+                        disabled={!fromCurrency || !toCurrency}
+                        onClick={onCurrencySwap}
+                    >
+                        <Icon
+                            type="swap"
+                            rotate={90}
+                            className="btn-swap-icon"
+                        />
+                    </Button>
+
+                    <Button type="primary"
+                            className="btn-chart cc-btn--gradient">
+
+                        <Link to={menuRoutes.history().path}>
+                            <LineChartOutlined className="btn-chart-icon"/>
+                            <span>{exchangeRate.toFixed(5)}</span>
+                        </Link>
+
+                    </Button>
+                </div>
 
                 <div className="converter__calc__group">
                     <CurrencySelect

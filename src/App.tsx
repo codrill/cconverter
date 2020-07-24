@@ -8,17 +8,18 @@ import About from './components/AboutComponent/AboutComponent'
 import Contact from './components/ContactComponent/ContactComponent'
 import UndefinedRoute from './components/UndefinedRouteComponent/UndefinedRouteComponent'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
-import { getCurrencyValues } from './services/CurrencyService'
-import { from } from 'rxjs'
+import { useCurrenciesFetch } from './services/CurrencyService'
+import { History } from "./components/ExchangeRateHistoryComponent/ExchangeRateHistoryComponent";
+import { RouterProps } from "react-router";
+import { first } from "rxjs/operators";
 
 const {Header, Content} = Layout
 
-const resource = getCurrencyValues()
-const $resourceObservable = from(resource)
+const resource = useCurrenciesFetch()
 
-type Response = {
-    rates: ApiRate[];
-    date: string
+export interface CurrencyHistoryData {
+    code: string,
+    table: string
 }
 
 const App: React.FC = () => {
@@ -26,9 +27,16 @@ const App: React.FC = () => {
     const [apiRates, setApiRates] = useState<ApiRate[]>([])
     const [date, setCurrentDate] = useState('')
     const [dataReady, setDataReady] = useState(false)
+    const [selectedCurrencies, setSelectedCurrencies] = useState<CurrencyHistoryData[]>([])
+
+    const passSelectedCurrencies = (firstCurrency: CurrencyHistoryData, secondCurrency: CurrencyHistoryData) => {
+        console.log('first Currency', firstCurrency)
+        console.log('second Currency', secondCurrency)
+        setSelectedCurrencies([firstCurrency, secondCurrency])
+    }
 
     useEffect(() => {
-        $resourceObservable.subscribe((response: Response) => {
+        resource.subscribe((response: any) => {
             setApiRates(response.rates)
             setCurrentDate(response.date)
             setDataReady(true)
@@ -54,6 +62,7 @@ const App: React.FC = () => {
                                     : <Dashboard
                                         rates={apiRates}
                                         date={date}
+                                        selectedCurrencies={passSelectedCurrencies}
                                     />
                                 }
                             </Content>
@@ -71,6 +80,13 @@ const App: React.FC = () => {
 
                         <Route path="/contact">
                             <Contact/>
+                        </Route>
+
+                        <Route render={(props: RouterProps) => (
+                            <Content className="main-layout__content">
+                                <History {...props} selectedCurrencies={selectedCurrencies}/>
+                            </Content>
+                        )}>
                         </Route>
 
                         <Route path="*">

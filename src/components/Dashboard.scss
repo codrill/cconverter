@@ -64,6 +64,15 @@
     background-color: $cc-white;
     text-align: center;
 
+    .buttons {
+      display: flex;
+      justify-content: space-between;
+
+      .chart-button {
+        display: inline-flex;
+      }
+    }
+
     &__header {
       margin-bottom: 30px;
     }
@@ -77,13 +86,26 @@
       }
     }
 
-    .btn-swap {
+    .btn {
       height: 40px;
-      width: 70px;
       margin: 10px 0;
 
-      &-icon {
-        font-size: 1.5rem;
+      &-swap {
+        width: 70px;
+
+        &-icon {
+          font-size: 1.5rem;
+        }
+      }
+
+      &-chart {
+        display: inline-flex;
+        justify-content: center;
+
+        &-icon {
+          font-size: 1.5rem;
+          margin-right: 10px;
+        }
       }
     }
 
