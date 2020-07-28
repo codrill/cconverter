@@ -8,6 +8,7 @@ import { initialSelectFromValue, initialSelectToValue, inputPlaceholder } from '
 import { Helmet } from 'react-helmet'
 import { getParsedNumber } from "../utils/number"
 import { SwapOutlined } from "@ant-design/icons/lib";
+import { useTranslation } from "react-i18next";
 
 const userInputRegex = new RegExp('^\\d+([,.]\\d{0,2})?$')
 
@@ -25,6 +26,8 @@ export type ApiRate = {
 type SelectedValue = ApiRate | undefined
 
 export const Dashboard: React.FC<Props> = ({rates, date}) => {
+
+    const {t} = useTranslation();
 
     const [fromCurrency, setFromCurrency] = useState('')
     const [toCurrency, setToCurrency] = useState('')
@@ -67,23 +70,29 @@ export const Dashboard: React.FC<Props> = ({rates, date}) => {
         setToCurrency(findAndReturnCurrencyByCode(rates, initialSelectToValue))
     }
 
+    const prepareDateInformation = () => {
+        return `${t('ConverterInfoDate')} ${date}`
+    }
+
+    const prepareExchangeRateInformation = () => {
+        return `${t('ConverterRateExchange')} ${exchangeRate.toFixed(5)}`
+    }
+
     return (
         <div className="converter cc-container">
 
             <Helmet>
-                <title>CConverter - Kalkulator walut</title>
+                <title>CConverter - Currency converter</title>
             </Helmet>
 
             <div className="converter__info">
-                <div className="converter__info__content">
+                <div className="converter__info__content" data-i18n="[html]content.body">
                     <p>
-                        Wyliczenia wykonywane są na podstawie najnowszych danych udostępnionych przez <strong>Narodowy
-                        Bank
-                        Polski</strong>.
+                        {t('ConverterInfoFirstParagraph')}
                     </p>
-                    <p>Wartości przedstawione w serwisie stanowią medianę reprezentatywnych walut.</p>
-
-                    <p>{DateDisplay(date)}</p>
+                    <p>
+                        {t('ConverterInfoSecondParagraph')}</p>
+                    <p>{DateDisplay(prepareDateInformation())}</p>
                 </div>
             </div>
 
@@ -92,7 +101,7 @@ export const Dashboard: React.FC<Props> = ({rates, date}) => {
 
             <div className="converter__calc">
                 <h2 className="converter__calc__header">
-                    Przelicz walutę
+                    {t('ConvertCurrencyCalculatorHeader')}
                 </h2>
 
                 <div className="converter__calc__group">
@@ -132,7 +141,7 @@ export const Dashboard: React.FC<Props> = ({rates, date}) => {
                     />
                 </div>
                 <div className="converter__calc__rate">
-                    <p>{RateDisplay(exchangeRate)}</p>
+                    <p>{RateDisplay(prepareExchangeRateInformation())}</p>
                 </div>
             </div>
         </div>
