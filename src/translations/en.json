@@ -1,5 +1,10 @@
 {
   "FX Rate": "Foreign exchange rate",
   "About": "About Project",
-  "Contact": "Contact"
+  "Contact": "Contact",
+  "OneMonth": "1 Month",
+  "TwoMonths": "2 Months",
+  "ThreeMonths": "3 Months",
+  "Back": "Back",
+  "ExchangeRate": "Rate exchange in time"
 }

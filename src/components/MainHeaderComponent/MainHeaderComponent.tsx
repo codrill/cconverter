@@ -11,7 +11,7 @@ import './MainHeaderComponent.scss'
 
 const {Option} = Select
 
-type AvailableLanguageCodes = 'pl' | 'en'
+export type AvailableLanguageCodes = 'pl' | 'en'
 
 const MainHeader = () => {
     const {pathname} = useLocation();

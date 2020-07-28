@@ -1,5 +1,10 @@
 {
   "FX Rate": "Konwerter Walut",
   "About": "O projekcie",
-  "Contact": "Kontakt"
+  "Contact": "Kontakt",
+  "OneMonth": "1 Miesiąc",
+  "TwoMonths": "2 Miesiące",
+  "ThreeMonths": "3 Miesiące",
+  "Back": "Powrót",
+  "ExchangeRate": "Wykres kursu w czasie"
 }

@@ -42,22 +42,20 @@ export function useFetchHistoryData(selectedCurrencies: CurrencyHistoryData[], p
     const [data, setData] = useState<HistoryData[]>([])
     const [loading, setLoading] = useState<boolean>(true)
 
-    console.log(selectedCurrencies)
-
     useEffect(() => {
         forkJoin({
-            firstCurrency: fetch(`http://api.nbp.pl/api/exchangerates/rates/${selectedCurrencies[0].table}/${selectedCurrencies[0].code}/last/${period}/?format=json\``)
+            firstCurrency: fetch(`http://api.nbp.pl/api/exchangerates/rates/${selectedCurrencies[0]?.table}/${selectedCurrencies[0]?.code}/last/${period}`)
                 .then(data => data.json()),
-            secondCurrency: fetch(`http://api.nbp.pl/api/exchangerates/rates/${selectedCurrencies[1].table}/${selectedCurrencies[1].code}/last/${period}/?format=json\``)
+            secondCurrency: fetch(`http://api.nbp.pl/api/exchangerates/rates/${selectedCurrencies[1]?.table}/${selectedCurrencies[1]?.code}/last/${period}`)
                 .then(data => data.json()),
         }).subscribe(({firstCurrency, secondCurrency}) => {
             setData(prepareHistoryData(firstCurrency.rates, secondCurrency.rates));
             setLoading(false)
 
         })
-    }, [selectedCurrencies])
+    }, [selectedCurrencies, period])
 
-    return {data, loading};
+    return {data, loading}
 }
 
 const prepareHistoryData = (firstCurrency: any[], secondCurrency: any[]) => {

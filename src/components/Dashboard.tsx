@@ -3,13 +3,14 @@ import { Button, Input } from 'antd'
 import './Dashboard.scss'
 import React, { useEffect, useState } from 'react'
 import { CurrencySelect } from './CurrecySelectComponent/SelectComponent'
-import { DateDisplay, RateDisplay } from './DateAndRateDisplayComponent/DateAndRateDisplayComponent'
+import { DateDisplay } from './DateAndRateDisplayComponent/DateAndRateDisplayComponent'
 import { initialSelectFromValue, initialSelectToValue, inputPlaceholder } from '../constants/Variables'
 import { Helmet } from 'react-helmet'
 import { getParsedNumber } from "../utils/number"
 import { LineChartOutlined, SwapOutlined } from "@ant-design/icons/lib";
 import { Link } from "react-router-dom";
 import { menuRoutes } from "../config/routes";
+import { CurrencyHistoryData } from "../App";
 
 const userInputRegex = new RegExp('^\\d+([,.]\\d{0,2})?$')
 
@@ -149,9 +150,6 @@ export const Dashboard: React.FC<Props> = ({rates, date, selectedCurrencies}) =>
                         placeholder={inputPlaceholder}
                         value={converterValue}
                     />
-                </div>
-                <div className="converter__calc__rate">
-                    <p>{RateDisplay(exchangeRate)}</p>
                 </div>
             </div>
         </div>

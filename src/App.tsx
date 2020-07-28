@@ -8,19 +8,18 @@ import About from './components/AboutComponent/AboutComponent'
 import Contact from './components/ContactComponent/ContactComponent'
 import UndefinedRoute from './components/UndefinedRouteComponent/UndefinedRouteComponent'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
-import { useCurrenciesFetch } from './services/CurrencyService'
 import { History } from "./components/ExchangeRateHistoryComponent/ExchangeRateHistoryComponent";
 import { RouterProps } from "react-router";
-import { first } from "rxjs/operators";
+import { useCurrenciesFetch } from "./services/CurrencyService";
 
 const {Header, Content} = Layout
-
-const resource = useCurrenciesFetch()
 
 export interface CurrencyHistoryData {
     code: string,
     table: string
 }
+
+const resource = useCurrenciesFetch();
 
 const App: React.FC = () => {
 
@@ -30,8 +29,6 @@ const App: React.FC = () => {
     const [selectedCurrencies, setSelectedCurrencies] = useState<CurrencyHistoryData[]>([])
 
     const passSelectedCurrencies = (firstCurrency: CurrencyHistoryData, secondCurrency: CurrencyHistoryData) => {
-        console.log('first Currency', firstCurrency)
-        console.log('second Currency', secondCurrency)
         setSelectedCurrencies([firstCurrency, secondCurrency])
     }
 
