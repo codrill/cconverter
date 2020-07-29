@@ -1,7 +1,7 @@
 import React from 'react'
 import './AboutComponent.scss'
 import { Helmet } from 'react-helmet'
-import { useTranslation } from "react-i18next";
+import { Trans, useTranslation } from "react-i18next";
 
 const About: React.FC = () => {
 
@@ -10,14 +10,14 @@ const About: React.FC = () => {
     return (
         <div className="about">
             <Helmet>
-                <title>CConverter - About Project</title>
+                <title>{t('AboutHelmetTitle')}</title>
             </Helmet>
 
             <div className="about-layout">
                 <div className="about-layout__item">
                     <div className="about-layout__info">
-                        <p>{t('AboutFirstPhotoFirstParagraph')}</p>
-                        <p>{t('AboutFirstPhotoSecondParagraph')}</p>
+                        <p><Trans i18nKey="AboutSectionHowToUseFirstParagraph"/></p>
+                        <p><Trans i18nKey='AboutSectionHowToUseSecondParagraph'/></p>
                     </div>
 
                     <div className="about-layout__foto dollar-foto"/>
@@ -27,14 +27,14 @@ const About: React.FC = () => {
                     <div className="about-layout__foto bank-foto"/>
 
                     <div className="about-layout__info">
-                        <p>{t('AboutSecondPhotoFirstParagraph')}</p>
+                        <p><Trans i18nKey='AboutSectionNBP'/></p>
                     </div>
                 </div>
 
                 <div className="about-layout__item">
                     <div className="about-layout__info">
-                        <p>{t('AboutThirdPhotoFirstParagraph')}</p>
-                        <p>{t('AboutThirdPhotoSecondParagraph')}</p>
+                        <p><Trans i18nKey='AboutSectionRWDFirstParagraph'/></p>
+                        <p><Trans i18nKey='AboutSectionRWDSecondParagraph'/></p>
                     </div>
 
                     <div className="about-layout__foto rwd-foto"/>

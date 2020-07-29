@@ -8,7 +8,7 @@ import { initialSelectFromValue, initialSelectToValue, inputPlaceholder } from '
 import { Helmet } from 'react-helmet'
 import { getParsedNumber } from "../utils/number"
 import { SwapOutlined } from "@ant-design/icons/lib";
-import { useTranslation } from "react-i18next";
+import { Trans, useTranslation } from "react-i18next";
 
 const userInputRegex = new RegExp('^\\d+([,.]\\d{0,2})?$')
 
@@ -71,27 +71,24 @@ export const Dashboard: React.FC<Props> = ({rates, date}) => {
     }
 
     const prepareDateInformation = () => {
-        return `${t('ConverterInfoDate')} ${date}`
+        return `${t('DashboardSectionDate')} ${date}`
     }
 
     const prepareExchangeRateInformation = () => {
-        return `${t('ConverterRateExchange')} ${exchangeRate.toFixed(5)}`
+        return `${t('DashboardSectionRateExchange')} ${exchangeRate.toFixed(5)}`
     }
 
     return (
         <div className="converter cc-container">
 
             <Helmet>
-                <title>CConverter - Currency converter</title>
+                <title>{t('DashboardHelmetTitle')}</title>
             </Helmet>
 
             <div className="converter__info">
-                <div className="converter__info__content" data-i18n="[html]content.body">
-                    <p>
-                        {t('ConverterInfoFirstParagraph')}
-                    </p>
-                    <p>
-                        {t('ConverterInfoSecondParagraph')}</p>
+                <div className="converter__info__content">
+                    <p><Trans i18nKey='DashboardSectionFirstParagraph'/></p>
+                    <p><Trans i18nKey='DashboardSectionSecondParagraph'/></p>
                     <p>{DateDisplay(prepareDateInformation())}</p>
                 </div>
             </div>
