@@ -1,7 +1,7 @@
 import React from "react";
 import { Line } from "react-chartjs-2";
 import { Spin } from "antd";
-import "./Chart.scss"
+import "./ChartComponent.scss"
 
 export const ChartComponent: React.FC<any> = (chartData) => {
 

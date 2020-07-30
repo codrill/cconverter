@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { Button, Spin } from "antd";
 import { useFetchHistoryData } from "../../services/CurrencyService";
 import { CurrencyHistoryData } from "../../App";
-import { ChartComponent } from "../ChartComponent/Chart";
+import { ChartComponent } from "../ChartComponent/ChartComponent";
 import { prepareChartLabels, prepareChartValues, setChart } from "../../utils/chart";
 import { CalendarOutlined } from "@ant-design/icons/lib";
 import "./ExchangeRateHistoryComponent.scss"

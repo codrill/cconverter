@@ -7,16 +7,7 @@ export function setChart(labels: string[], values: number[], translatedLabel: st
             label: translatedLabel,
             data: values,
             backgroundColor: 'rgba(75,192,192,0.4)',
-        }],
-        options: {
-            scales: {
-                yAxes: [{
-                    ticks: {
-                        beginAtZero: true
-                    }
-                }]
-            }
-        }
+        }]
     };
 }
 
