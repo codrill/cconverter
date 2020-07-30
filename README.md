@@ -10,7 +10,7 @@ Right now we are supporting polish and english language using
 `react-i18next` library.
 
 This project is continuously developed. We are adding new features, fix (potential of course :) ) bugs,
- so we meet your expectations.
+ so we can meet your expectations.
  
 We are LIVE so you can visit us here --> [CConverter](https://cconverter.codrill.eu)
 
@@ -36,9 +36,9 @@ We are LIVE so you can visit us here --> [CConverter](https://cconverter.codrill
 * We are starting from `develop` branch so all new branches should be made from that.
 * Each PR that will be merged with `develop` needs to pass our `Travis CI` build gets approves by reviewers.
 * `master` branch contains the latest stable version of project.
-* `master` branch is being built each time new features || bug fixes are merged into develop.
+* `master` branch is being built each time new feature || bug fix is merged into develop.
 
 ## Issues
 
 Because [CConverter](https://cconverter.codrill.eu) is an open-source project you can help us improve it. If you find any issues
-please contact with us using [Contact Form](https://cconverter.codrill.eu) directly from our application.
+please contact with us using [Contact Form](https://cconverter.codrill.eu/contact) directly from our application.
