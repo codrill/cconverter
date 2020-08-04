@@ -13,7 +13,7 @@ const Contact = () => {
         <div className="contact">
 
             <Helmet>
-                <title>{t('ContactHelmetTitle')}</title>
+                <title>CConverter - {t('ContactHelmetTitle')}</title>
             </Helmet>
 
             <div className="contact__details">

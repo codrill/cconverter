@@ -3,7 +3,7 @@ import { Button, Input } from 'antd'
 import './Dashboard.scss'
 import React, { useEffect, useState } from 'react'
 import { CurrencySelect } from './CurrecySelectComponent/SelectComponent'
-import { DateDisplay, RateDisplay } from './DateAndRateDisplayComponent/DateAndRateDisplayComponent'
+import { RateDisplay } from './DateAndRateDisplayComponent/DateAndRateDisplayComponent'
 import { initialSelectFromValue, initialSelectToValue, inputPlaceholder } from '../constants/Variables'
 import { Helmet } from 'react-helmet'
 import { getParsedNumber } from "../utils/number"
@@ -70,10 +70,6 @@ export const Dashboard: React.FC<Props> = ({rates, date}) => {
         setToCurrency(findAndReturnCurrencyByCode(rates, initialSelectToValue))
     }
 
-    const prepareDateInformation = () => {
-        return `${t('DashboardSectionDate')} ${date}`
-    }
-
     const prepareExchangeRateInformation = () => {
         return `${t('DashboardSectionRateExchange')} ${exchangeRate.toFixed(5)}`
     }
@@ -82,14 +78,20 @@ export const Dashboard: React.FC<Props> = ({rates, date}) => {
         <div className="converter cc-container">
 
             <Helmet>
-                <title>{t('DashboardHelmetTitle')}</title>
+                <title>CConverter - {t('DashboardHelmetTitle')}</title>
             </Helmet>
 
             <div className="converter__info">
                 <div className="converter__info__content">
-                    <p><Trans i18nKey='DashboardSectionFirstParagraph'/></p>
-                    <p><Trans i18nKey='DashboardSectionSecondParagraph'/></p>
-                    <p>{DateDisplay(prepareDateInformation())}</p>
+                    <Trans i18nKey='DashboardSectionInfo' components={{ paragraph: <p />, bold: <strong /> }}>
+                        <p>Calculations are based on latest data provided by the <strong>National Bank of Poland</strong>.</p>
+                        <p>Values presented on the website form median of representative currencies.</p>
+                    </Trans>
+                    <p>
+                        <Trans i18nKey='DashboardSectionDate' values={{date: date}}>
+                            Last update: {{date}}
+                        </Trans>
+                    </p>
                 </div>
             </div>
 
