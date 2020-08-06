@@ -106,12 +106,15 @@ export const Dashboard: React.FC<Props> = ({rates, date}) => {
                 <div className="converter__calc__group">
                     <CurrencySelect
                         value={fromCurrency}
+                        name="fromCurrency"
                         onChange={setFromCurrency}
                         currencyRates={rates}
                     />
+                    <label htmlFor="inputValue" className="sr-only">Input Value</label>
                     <Input
                         placeholder={inputPlaceholder}
                         value={userValue}
+                        id="inputValue"
                         onChange={onChangeValue}
                     />
                 </div>
@@ -131,11 +134,14 @@ export const Dashboard: React.FC<Props> = ({rates, date}) => {
                 <div className="converter__calc__group">
                     <CurrencySelect
                         value={toCurrency}
+                        name="toCurrency"
                         onChange={setToCurrency}
                         currencyRates={rates}
                     />
+                    <label htmlFor="outputValue" className="sr-only">Output Value</label>
                     <Input
                       placeholder={inputPlaceholder}
+                      id="outputValue"
                       value={converterValue}
                     />
                 </div>

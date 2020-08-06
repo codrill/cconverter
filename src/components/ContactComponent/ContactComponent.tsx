@@ -17,7 +17,7 @@ const Contact = () => {
             </Helmet>
 
             <div className="contact__details">
-                <h3>{t('ContactInformation')}</h3>
+                <h2>{t('ContactInformation')}</h2>
 
                 <div className="contact__details__icons">
                     <div className="contact__details__icon facebook">
