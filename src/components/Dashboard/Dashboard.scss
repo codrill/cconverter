@@ -69,6 +69,17 @@
       margin-bottom: 30px;
     }
 
+    .ant-spin {
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      height: 3rem;
+      width: 3rem;
+      margin: auto;
+    }
+
     &__group {
       margin: 10px 0;
       text-align: left;

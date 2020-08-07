@@ -10,21 +10,17 @@
 
     &__content {
       background-color: $cc-white;
+      position: relative;
 
       .ant-spin {
-        display: flex;
-        justify-content: center;
-        margin-top: 20vh;
-        margin-bottom: 20vh;
+        .ant-spin-dot {
+          width: 3rem;
+          height: 3rem;
 
-      .ant-spin-dot {
-        width: 3rem;
-        height: 3rem;
-
-        .ant-spin-dot-item {
-          background-color: $cc-purple;
-          width: 20px;
-          height: 20px;
+          .ant-spin-dot-item {
+            background-color: $cc-purple;
+            width: 20px;
+            height: 20px;
           }
         }
       }
