@@ -29,6 +29,7 @@ const App: React.FC = () => {
     const [selectedCurrencies, setSelectedCurrencies] = useState<CurrencyHistoryData[]>([])
 
     const passSelectedCurrencies = (firstCurrency: CurrencyHistoryData, secondCurrency: CurrencyHistoryData) => {
+        console.log(firstCurrency, secondCurrency)
         setSelectedCurrencies([firstCurrency, secondCurrency])
     }
 

@@ -52,6 +52,7 @@ export const Dashboard: React.FC<Props> = ({rates, date, selectedCurrencies}) =>
                 {code: firstValue.code, table: firstValue.table} as CurrencyHistoryData,
                 {code: secondValue.code, table: secondValue.table} as CurrencyHistoryData)
         }
+
     }, [rates, fromCurrency, toCurrency, userValue, exchangeRate])
 
     const onChangeValue = (inputElement: React.ChangeEvent<HTMLInputElement>) => {

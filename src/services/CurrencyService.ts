@@ -1,10 +1,11 @@
 import { urlApiNBPTableA, urlApiNBPTableB } from "../constants/CurrencyApiConstants"
-import { forkJoin } from "rxjs";
+import { forkJoin, from } from "rxjs";
 import { map } from "rxjs/operators";
 import { ApiRate } from "../components/Dashboard";
 import { useEffect, useState } from "react";
 import { CurrencyHistoryData } from "../App";
 import { returnPreparedCurrencyObject } from "../utils/object";
+import { polishCurrencyCode } from "../constants/PolishCurrencyObject";
 
 export interface CurrencyResponse {
     currencyTableA: CurrencyTableObject[]
@@ -42,23 +43,47 @@ export function useFetchHistoryData(selectedCurrencies: CurrencyHistoryData[], p
     const [data, setData] = useState<HistoryData[]>([])
     const [loading, setLoading] = useState<boolean>(true)
 
-    useEffect(() => {
-        forkJoin({
-            firstCurrency: fetch(`http://api.nbp.pl/api/exchangerates/rates/${selectedCurrencies[0]?.table}/${selectedCurrencies[0]?.code}/last/${period}`)
-                .then(data => data.json()),
-            secondCurrency: fetch(`http://api.nbp.pl/api/exchangerates/rates/${selectedCurrencies[1]?.table}/${selectedCurrencies[1]?.code}/last/${period}`)
-                .then(data => data.json()),
-        }).subscribe(({firstCurrency, secondCurrency}) => {
-            setData(prepareHistoryData(firstCurrency.rates, secondCurrency.rates));
-            setLoading(false)
+    const request = (url: string) => from(fetch(url)
+        .then(data => data.json()));
 
-        })
-    }, [selectedCurrencies, period])
+    const checkIfPolishCurrencySelected = selectedCurrencies.findIndex(currency =>  currency.code === polishCurrencyCode)
+
+    useEffect(() => {
+
+        if (checkIfPolishCurrencySelected) {
+            selectedCurrencies = selectedCurrencies.filter(selectedCurrency => {
+                return selectedCurrency.code !== polishCurrencyCode
+            })
+        }
+
+        console.log(selectedCurrencies)
+
+        if (selectedCurrencies.length === 2) {
+            forkJoin({
+                firstCurrency: request(`http://api.nbp.pl/api/exchangerates/rates/${selectedCurrencies[0]?.table}/${selectedCurrencies[0]?.code}/last/${period}`),
+                secondCurrency: request(`http://api.nbp.pl/api/exchangerates/rates/${selectedCurrencies[1]?.table}/${selectedCurrencies[1]?.code}/last/${period}`)
+            }).subscribe(({firstCurrency, secondCurrency}) => {
+                setData(prepareHistoryData(firstCurrency.rates, secondCurrency.rates));
+                setLoading(false)
+
+            })
+        }
+
+        if (selectedCurrencies.length === 1) {
+            forkJoin({
+                currency: request(`http://api.nbp.pl/api/exchangerates/rates/${selectedCurrencies[0]?.table}/${selectedCurrencies[0]?.code}/last/${period}`)
+            }).subscribe(({currency}) => {
+                setData(prepareHistoryData(currency.rates));
+                setLoading(false)
+
+            })
+        }
+    }, [])
 
     return {data, loading}
 }
 
-const prepareHistoryData = (firstCurrency: any[], secondCurrency: any[]) => {
+const prepareHistoryData = (firstCurrency: any[], secondCurrency?: any[]) => {
     const historyData: HistoryData[] = []
 
     if (firstCurrency && secondCurrency) {
@@ -66,6 +91,13 @@ const prepareHistoryData = (firstCurrency: any[], secondCurrency: any[]) => {
             return historyData.push({
                 date: rate.effectiveDate,
                 rate: rate.mid = Number((rate.mid / secondCurrency[index].mid).toFixed(5))
+            })
+        })
+    } else {
+        firstCurrency.map((rate) => {
+            return historyData.push({
+                date: rate.effectiveDate,
+                rate: rate.mid = Number((rate.mid).toFixed(5))
             })
         })
     }

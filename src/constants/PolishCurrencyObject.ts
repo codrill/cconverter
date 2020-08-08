@@ -3,3 +3,6 @@ export const polishCurrencyObject = {
   code: 'PLN',
   mid: 1.0000,
 }
+
+
+export const polishCurrencyCode = 'PLN'

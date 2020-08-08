@@ -9,6 +9,7 @@ import { prepareChartLabels, prepareChartValues, setChart } from "../../utils/ch
 import { CalendarOutlined } from "@ant-design/icons/lib";
 import "./ExchangeRateHistoryComponent.scss"
 import { useTranslation } from "react-i18next";
+import { polishCurrencyCode } from "../../constants/PolishCurrencyObject";
 
 type Props = {
     selectedCurrencies: CurrencyHistoryData[]
@@ -24,6 +25,7 @@ export const History: React.FC<Props> = ({selectedCurrencies}) => {
     const [chartData, setChartData] = useState<any>({})
 
     useEffect(() => {
+        console.log('history', selectedCurrencies)
         if (data) {
             prepareHistoryRateChartData()
         }
@@ -42,13 +44,16 @@ export const History: React.FC<Props> = ({selectedCurrencies}) => {
                     <ChartComponent chartData={chartData}/>
 
                     <div className="periodButtons">
-                        <Button className="monthButton" type="primary" shape="round" icon={<CalendarOutlined/>} onClick={() => setPeriod(30)}>
+                        <Button className="monthButton" type="primary" shape="round" icon={<CalendarOutlined/>}
+                                onClick={() => setPeriod(30)}>
                             {t('OneMonth')} </Button>
 
-                        <Button className="monthButton" type="primary" shape="round" icon={<CalendarOutlined/>} onClick={() => setPeriod(60)}>
+                        <Button className="monthButton" type="primary" shape="round" icon={<CalendarOutlined/>}
+                                onClick={() => setPeriod(60)}>
                             {t('TwoMonths')}</Button>
 
-                        <Button className="monthButton" type="primary" shape="round" icon={<CalendarOutlined/>} onClick={() => setPeriod(90)}>
+                        <Button className="monthButton" type="primary" shape="round" icon={<CalendarOutlined/>}
+                                onClick={() => setPeriod(90)}>
                             {t('ThreeMonths')}
                         </Button>
 
@@ -70,7 +75,16 @@ export const History: React.FC<Props> = ({selectedCurrencies}) => {
     )
 }
 
-const GetHistoricalData = (selectedCurrencies: any, period: number) => {
+const GetHistoricalData = (selectedCurrencies: CurrencyHistoryData[], period: number) => {
+
+    const checkIfPolishCurrencySelected = selectedCurrencies.findIndex(currency => currency.code === polishCurrencyCode)
+
+    if (checkIfPolishCurrencySelected !== -1) {
+        selectedCurrencies = selectedCurrencies.filter(selectedCurrency => {
+            return selectedCurrency.code !== polishCurrencyCode
+        })
+    }
+
     const {data, loading} = useFetchHistoryData(selectedCurrencies, period)
-    return {data, loading};
+    return {data, loading}
 }
