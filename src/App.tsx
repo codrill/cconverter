@@ -8,8 +8,6 @@ import About from './components/AboutComponent/AboutComponent'
 import Contact from './components/ContactComponent/ContactComponent'
 import UndefinedRoute from './components/UndefinedRouteComponent/UndefinedRouteComponent'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
-import { History } from "./components/ExchangeRateHistoryComponent/ExchangeRateHistoryComponent";
-import { RouterProps } from "react-router";
 import { useCurrenciesFetch } from "./services/CurrencyService";
 
 const {Header, Content} = Layout
@@ -27,11 +25,11 @@ const App: React.FC = () => {
     const [date, setCurrentDate] = useState('')
     const [dataReady, setDataReady] = useState(false)
     const [selectedCurrencies, setSelectedCurrencies] = useState<CurrencyHistoryData[]>([])
-
-    const passSelectedCurrencies = (firstCurrency: CurrencyHistoryData, secondCurrency: CurrencyHistoryData) => {
-        console.log(firstCurrency, secondCurrency)
-        setSelectedCurrencies([firstCurrency, secondCurrency])
-    }
+    //
+    // const passSelectedCurrencies = (firstCurrency: CurrencyHistoryData, secondCurrency: CurrencyHistoryData) => {
+    //     console.log(firstCurrency, secondCurrency)
+    //     setSelectedCurrencies([firstCurrency, secondCurrency])
+    // }
 
     useEffect(() => {
         resource.subscribe((response: any) => {
@@ -59,9 +57,7 @@ const App: React.FC = () => {
                                     ? <Spin/>
                                     : <Dashboard
                                         rates={apiRates}
-                                        date={date}
-                                        selectedCurrencies={passSelectedCurrencies}
-                                    />
+                                        date={date}/>
                                 }
                             </Content>
                         </Route>
@@ -80,12 +76,11 @@ const App: React.FC = () => {
                             <Contact/>
                         </Route>
 
-                        <Route render={(props: RouterProps) => (
-                            <Content className="main-layout__content">
-                                <History {...props} selectedCurrencies={selectedCurrencies}/>
-                            </Content>
-                        )}>
-                        </Route>
+                        {/*<Route render={(props: RouterProps) => (*/}
+                        {/*    <Content className="main-layout__content">*/}
+                        {/*    </Content>*/}
+                        {/*)}>*/}
+                        {/*</Route>*/}
 
                         <Route path="*">
                             <UndefinedRoute/>

@@ -50,6 +50,8 @@ export function useFetchHistoryData(selectedCurrencies: CurrencyHistoryData[], p
 
     useEffect(() => {
 
+        console.log('useEffect')
+
         if (checkIfPolishCurrencySelected) {
             selectedCurrencies = selectedCurrencies.filter(selectedCurrency => {
                 return selectedCurrency.code !== polishCurrencyCode
@@ -78,7 +80,7 @@ export function useFetchHistoryData(selectedCurrencies: CurrencyHistoryData[], p
 
             })
         }
-    }, [])
+    }, [period])
 
     return {data, loading}
 }

@@ -1,6 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { menuRoutes } from "../../config/routes";
-import { Link } from "react-router-dom";
 import { Button, Spin } from "antd";
 import { useFetchHistoryData } from "../../services/CurrencyService";
 import { CurrencyHistoryData } from "../../App";
@@ -13,9 +11,10 @@ import { polishCurrencyCode } from "../../constants/PolishCurrencyObject";
 
 type Props = {
     selectedCurrencies: CurrencyHistoryData[]
+    backToDashboard: Function
 }
 
-export const History: React.FC<Props> = ({selectedCurrencies}) => {
+export const History: React.FC<Props> = ({selectedCurrencies, backToDashboard}) => {
 
     const {t} = useTranslation();
 
@@ -25,7 +24,6 @@ export const History: React.FC<Props> = ({selectedCurrencies}) => {
     const [chartData, setChartData] = useState<any>({})
 
     useEffect(() => {
-        console.log('history', selectedCurrencies)
         if (data) {
             prepareHistoryRateChartData()
         }
@@ -61,11 +59,9 @@ export const History: React.FC<Props> = ({selectedCurrencies}) => {
 
                     <div className="backToDashboard">
                         <Button type="primary"
-                                className="btn-chart cc-btn--gradient">
-
-                            <Link to={menuRoutes.home().path}>
-                                {t('Back')}
-                            </Link>
+                                className="btn-chart cc-btn--gradient"
+                                onClick={() => backToDashboard(true, false)}>
+                            {t('Back')}
                         </Button>
                     </div>
                 </div>
