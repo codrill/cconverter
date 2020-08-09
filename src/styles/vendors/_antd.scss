@@ -18,13 +18,19 @@
       border-bottom: 3px solid transparent;
       box-shadow: 0 0 0 transparent;
       transition: all .3s ease-in-out;
-      span {
-        color: rgba($cc-white, .5);
 
+      .anticon {
+        color: rgba($cc-white, .5);
+      }
+
+      .menu__item__label {
+        position: relative;
+        transition: color .3s ease-in-out;
         &::before {
           content: attr(data-hover);
           position: absolute;
           color: $cc-white;
+          opacity: 0;
           transition: opacity .3s ease-in-out, transform .3s ease-in-out;
         }
       }
@@ -38,9 +44,12 @@
         border-bottom: 3px solid transparent;
       }
       &:hover:not(.ant-menu-item-selected) {
-        span::before {
-          opacity: 0;
-          transform: scale(.9);
+        .menu__item__label {
+          color: transparent;
+          &::before {
+            opacity: .5;
+            transform: scale(.95);
+          }
         }
       }
     }

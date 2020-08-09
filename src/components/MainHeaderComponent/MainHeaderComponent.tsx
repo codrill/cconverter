@@ -52,8 +52,9 @@ const MainHeader = () => {
                     </Link>
                 </Menu.Item>
                 <Menu.Item className="menu__item__language">
-                    <Select className="language__select" dropdownClassName="language__dropdown" showArrow={false}
-                            defaultValue={i18n.language as AvailableLanguageCodes} onChange={onLanguageChange}>
+                    <label htmlFor="languageSelect" className="sr-only">Select language</label>
+                    <Select className="language__select" id="languageSelect" dropdownClassName="language__dropdown" showArrow={false}
+                            aria-expanded="false" defaultValue={i18n.language as AvailableLanguageCodes} onChange={onLanguageChange}>
                         {configuredLanguages.map(item => (
                             <Option key={item.name} value={item.code}>
                               <img src={item.icon} alt={item.name} />
