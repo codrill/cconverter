@@ -7,7 +7,6 @@ import { prepareChartLabels, prepareChartValues, setChart } from "../../utils/ch
 import { CalendarOutlined } from "@ant-design/icons/lib";
 import "./ExchangeRateHistoryComponent.scss"
 import { useTranslation } from "react-i18next";
-import { polishCurrencyCode } from "../../constants/PolishCurrencyObject";
 
 type Props = {
     selectedCurrencies: CurrencyHistoryData[]
@@ -72,15 +71,6 @@ export const History: React.FC<Props> = ({selectedCurrencies, backToDashboard}) 
 }
 
 const GetHistoricalData = (selectedCurrencies: CurrencyHistoryData[], period: number) => {
-
-    const checkIfPolishCurrencySelected = selectedCurrencies.findIndex(currency => currency.code === polishCurrencyCode)
-
-    if (checkIfPolishCurrencySelected !== -1) {
-        selectedCurrencies = selectedCurrencies.filter(selectedCurrency => {
-            return selectedCurrency.code !== polishCurrencyCode
-        })
-    }
-
     const {data, loading} = useFetchHistoryData(selectedCurrencies, period)
     return {data, loading}
 }

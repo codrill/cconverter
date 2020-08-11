@@ -94,7 +94,6 @@ export const Dashboard: React.FC<Props> = ({rates, date}) => {
         setHistoryComponentActive(setHistoryActive)
     }
 
-
     return (
         <div>
             {isDashboardComponentActive &&
@@ -162,7 +161,7 @@ export const Dashboard: React.FC<Props> = ({rates, date}) => {
 
                             <LineChartOutlined className="btn-chart-icon"/>
                             <span>{exchangeRate.toFixed(5)}</span>
-                            
+
                         </Button>
                     </div>
 

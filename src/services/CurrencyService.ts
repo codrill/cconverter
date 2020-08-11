@@ -5,7 +5,7 @@ import { ApiRate } from "../components/Dashboard";
 import { useEffect, useState } from "react";
 import { CurrencyHistoryData } from "../App";
 import { returnPreparedCurrencyObject } from "../utils/object";
-import { polishCurrencyCode } from "../constants/PolishCurrencyObject";
+import { polishCurrencyCode, polishCurrencyObject } from "../constants/PolishCurrencyObject";
 
 export interface CurrencyResponse {
     currencyTableA: CurrencyTableObject[]
@@ -27,10 +27,8 @@ export interface HistoryData {
 
 export function useCurrenciesFetch() {
     return forkJoin({
-        currencyTableA: fetch(urlApiNBPTableA)
-            .then(result => result.json()),
-        currencyTableB: fetch(urlApiNBPTableB)
-            .then(result => result.json()),
+        currencyTableA: request(urlApiNBPTableA),
+        currencyTableB: request(urlApiNBPTableB)
     }).pipe(
         map(data => {
             return returnPreparedCurrencyObject(data)
@@ -43,39 +41,30 @@ export function useFetchHistoryData(selectedCurrencies: CurrencyHistoryData[], p
     const [data, setData] = useState<HistoryData[]>([])
     const [loading, setLoading] = useState<boolean>(true)
 
-    const request = (url: string) => from(fetch(url)
-        .then(data => data.json()));
-
-    const checkIfPolishCurrencySelected = selectedCurrencies.findIndex(currency =>  currency.code === polishCurrencyCode)
+    const checkIfPolishCurrencySelected = selectedCurrencies.findIndex(currency => currency.code === polishCurrencyCode)
 
     useEffect(() => {
-
-        console.log('useEffect')
-
-        if (checkIfPolishCurrencySelected) {
-            selectedCurrencies = selectedCurrencies.filter(selectedCurrency => {
-                return selectedCurrency.code !== polishCurrencyCode
-            })
-        }
-
-        console.log(selectedCurrencies)
-
-        if (selectedCurrencies.length === 2) {
+        if (checkIfPolishCurrencySelected === -1) {
             forkJoin({
                 firstCurrency: request(`http://api.nbp.pl/api/exchangerates/rates/${selectedCurrencies[0]?.table}/${selectedCurrencies[0]?.code}/last/${period}`),
                 secondCurrency: request(`http://api.nbp.pl/api/exchangerates/rates/${selectedCurrencies[1]?.table}/${selectedCurrencies[1]?.code}/last/${period}`)
             }).subscribe(({firstCurrency, secondCurrency}) => {
-                setData(prepareHistoryData(firstCurrency.rates, secondCurrency.rates));
+                setData(prepareHistoryData(firstCurrency.rates, false, secondCurrency.rates));
                 setLoading(false)
 
             })
         }
 
-        if (selectedCurrencies.length === 1) {
+        if (checkIfPolishCurrencySelected > -1) {
+
+            selectedCurrencies = selectedCurrencies.filter(selectedCurrency => {
+                return selectedCurrency.code !== polishCurrencyCode
+            })
+
             forkJoin({
                 currency: request(`http://api.nbp.pl/api/exchangerates/rates/${selectedCurrencies[0]?.table}/${selectedCurrencies[0]?.code}/last/${period}`)
             }).subscribe(({currency}) => {
-                setData(prepareHistoryData(currency.rates));
+                setData(prepareHistoryData(currency.rates, !checkIfPolishCurrencySelected));
                 setLoading(false)
 
             })
@@ -85,7 +74,7 @@ export function useFetchHistoryData(selectedCurrencies: CurrencyHistoryData[], p
     return {data, loading}
 }
 
-const prepareHistoryData = (firstCurrency: any[], secondCurrency?: any[]) => {
+const prepareHistoryData = (firstCurrency: any[], divideByCurrency = false, secondCurrency?: any[]) => {
     const historyData: HistoryData[] = []
 
     if (firstCurrency && secondCurrency) {
@@ -97,6 +86,12 @@ const prepareHistoryData = (firstCurrency: any[], secondCurrency?: any[]) => {
         })
     } else {
         firstCurrency.map((rate) => {
+            if (divideByCurrency) {
+                return historyData.push({
+                    date: rate.effectiveDate,
+                    rate: rate.mid = Number((polishCurrencyObject.mid / rate.mid).toFixed(5))
+                })
+            }
             return historyData.push({
                 date: rate.effectiveDate,
                 rate: rate.mid = Number((rate.mid).toFixed(5))
@@ -105,3 +100,6 @@ const prepareHistoryData = (firstCurrency: any[], secondCurrency?: any[]) => {
     }
     return historyData;
 }
+
+const request = (url: string) => from(fetch(url)
+    .then(data => data.json()));
