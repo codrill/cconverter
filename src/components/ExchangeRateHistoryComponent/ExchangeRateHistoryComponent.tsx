@@ -24,15 +24,11 @@ export const History: React.FC<Props> = ({selectedCurrencies, backToDashboard}) 
 
     useEffect(() => {
         if (data) {
-            prepareHistoryRateChartData()
+            const values = prepareChartValues(data)
+            const labels = prepareChartLabels(data)
+            setChartData(setChart(labels, values, t('ExchangeRate')));
         }
     }, [data, t])
-
-    const prepareHistoryRateChartData = () => {
-        const values = prepareChartValues(data)
-        const labels = prepareChartLabels(data)
-        setChartData(setChart(labels, values, t('ExchangeRate')));
-    }
 
     return (
         <div>

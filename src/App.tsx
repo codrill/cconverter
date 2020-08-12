@@ -12,7 +12,7 @@ import { useCurrenciesFetch } from "./services/CurrencyService";
 
 const {Header, Content} = Layout
 
-export interface CurrencyHistoryData {
+export type CurrencyHistoryData = {
     code: string,
     table: string
 }
@@ -24,12 +24,6 @@ const App: React.FC = () => {
     const [apiRates, setApiRates] = useState<ApiRate[]>([])
     const [date, setCurrentDate] = useState('')
     const [dataReady, setDataReady] = useState(false)
-    const [selectedCurrencies, setSelectedCurrencies] = useState<CurrencyHistoryData[]>([])
-    //
-    // const passSelectedCurrencies = (firstCurrency: CurrencyHistoryData, secondCurrency: CurrencyHistoryData) => {
-    //     console.log(firstCurrency, secondCurrency)
-    //     setSelectedCurrencies([firstCurrency, secondCurrency])
-    // }
 
     useEffect(() => {
         resource.subscribe((response: any) => {
@@ -75,12 +69,6 @@ const App: React.FC = () => {
                         <Route path="/contact">
                             <Contact/>
                         </Route>
-
-                        {/*<Route render={(props: RouterProps) => (*/}
-                        {/*    <Content className="main-layout__content">*/}
-                        {/*    </Content>*/}
-                        {/*)}>*/}
-                        {/*</Route>*/}
 
                         <Route path="*">
                             <UndefinedRoute/>
