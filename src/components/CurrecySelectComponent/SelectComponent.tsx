@@ -10,10 +10,11 @@ type Props = {
   name: string
   onChange: (value: string) => void
   currencyRates: ApiRate[]
+  disabled: boolean
 }
 
 export function CurrencySelect(props: Props) {
-  const { value, name, onChange, currencyRates } = props
+  const { value, name, onChange, currencyRates, disabled } = props
 
   const [ dropdownVisible, setDropdownVisible ] = useState<boolean>(false)
 
@@ -30,6 +31,7 @@ export function CurrencySelect(props: Props) {
         aria-expanded={dropdownVisible}
         onDropdownVisibleChange={(open) => setDropdownVisible(open)}
         onChange={onChange}
+        disabled={disabled}
         filterOption={(inputValue, option) => {
           return (option?.props.children as string).toLowerCase().indexOf(inputValue.toLowerCase()) >= 0
         }
