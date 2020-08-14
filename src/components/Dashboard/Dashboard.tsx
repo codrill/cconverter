@@ -103,14 +103,13 @@ export const Dashboard: React.FC<Props> = ({rates, date, dataReady}) => {
                 <h2 className="converter__calc__header">
                     {t('ConvertCurrencyCalculatorHeader')}
                 </h2>
-                {!dataReady ?
-                  <Spin/>
-                  : <>
+                 <Spin spinning={!dataReady} delay={10}>
                       <div className="converter__calc__group">
                           <CurrencySelect
                             value={fromCurrency}
                             name="fromCurrency"
                             currencyRates={rates}
+                            disabled={!dataReady}
                             onChange={setFromCurrency}
                           />
                           <label htmlFor="inputValue" className="sr-only">Input Value</label>
@@ -140,6 +139,7 @@ export const Dashboard: React.FC<Props> = ({rates, date, dataReady}) => {
                             value={toCurrency}
                             name="toCurrency"
                             currencyRates={rates}
+                            disabled={!dataReady}
                             onChange={setToCurrency}
                           />
                           <label htmlFor="outputValue" className="sr-only">Output Value</label>
@@ -153,8 +153,7 @@ export const Dashboard: React.FC<Props> = ({rates, date, dataReady}) => {
                       <div className="converter__calc__rate">
                           <p>{RateDisplay(prepareExchangeRateInformation())}</p>
                       </div>
-                  </>
-                }
+                  </Spin>
             </div>
         </div>
     )
