@@ -1,0 +1,14 @@
+@import "../../styles/utils/variables";
+
+.history-rate-container {
+  text-align: center;
+
+  .periodButtons {
+    margin: 10px;
+    .monthButton {
+      margin: 10px;
+      background-color: $cc-purple;
+      border-color: $cc-purple;
+    }
+  }
+}

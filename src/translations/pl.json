@@ -24,5 +24,10 @@
   "ContactFormRequiredField": "To pole musi być wypełnione",
   "ContactFormRegexUsername": "Podaj proszę poprawne imię i nazwisko",
   "ContactFormRegexEmail": "Podaj proszę poprawny adres email",
-  "ContactFormRegexMessage": "Wiadomość powinna zawierać od 20 do 500 znaków"
+  "ContactFormRegexMessage": "Wiadomość powinna zawierać od 20 do 500 znaków",
+  "OneMonth": "1 Miesiąc",
+  "TwoMonths": "2 Miesiące",
+  "ThreeMonths": "3 Miesiące",
+  "Back": "Powrót",
+  "ExchangeRate": "Kurs wymiany"
 }

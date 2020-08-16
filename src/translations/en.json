@@ -24,5 +24,10 @@
   "ContactFormRequiredField": "This field must be filled",
   "ContactFormRegexUsername": "Please provide your name and surname",
   "ContactFormRegexEmail": "Please provide correct email address",
-  "ContactFormRegexMessage": "Message must contain from 20 to 500 characters"
+  "ContactFormRegexMessage": "Message must contain from 20 to 500 characters",
+  "OneMonth": "1 Month",
+  "TwoMonths": "2 Months",
+  "ThreeMonths": "3 Months",
+  "Back": "Back",
+  "ExchangeRate": "Rate exchange"
 }
