@@ -24,6 +24,12 @@ export interface HistoryData {
     rate: number
 }
 
+export type Currency = {
+    no: string
+    effectiveDate: string
+    mid: number
+}
+
 export function useCurrenciesFetch() {
     return forkJoin({
         currencyTableA: request(urlApiNBPTableA),
@@ -42,10 +48,10 @@ export function useFetchHistoryData(selectedCurrencies: CurrencyHistoryData[]) {
     const [data, setData] = useState<HistoryData[]>([])
     const [loading, setLoading] = useState<boolean>(true)
 
-    const checkIfPolishCurrencySelected = selectedCurrencies.findIndex(currency => currency.code === polishCurrencyCode)
+    const selectedPolishCurrencyIndex = selectedCurrencies.findIndex(currency => currency.code === polishCurrencyCode)
 
     useEffect(() => {
-        if (checkIfPolishCurrencySelected === NO_ELEMENT_FOUND_INDEX) {
+        if (selectedPolishCurrencyIndex === NO_ELEMENT_FOUND_INDEX) {
             forkJoin({
                 firstCurrency: request(`http://api.nbp.pl/api/exchangerates/rates/${selectedCurrencies[0]?.table}/${selectedCurrencies[0]?.code}/last/90`),
                 secondCurrency: request(`http://api.nbp.pl/api/exchangerates/rates/${selectedCurrencies[1]?.table}/${selectedCurrencies[1]?.code}/last/90`)
@@ -55,26 +61,23 @@ export function useFetchHistoryData(selectedCurrencies: CurrencyHistoryData[]) {
             })
         }
 
-        if (checkIfPolishCurrencySelected > NO_ELEMENT_FOUND_INDEX) {
-
-            selectedCurrencies = selectedCurrencies.filter(selectedCurrency => {
-                return selectedCurrency.code !== polishCurrencyCode
-            })
+        if (selectedPolishCurrencyIndex > NO_ELEMENT_FOUND_INDEX) {
+            selectedCurrencies.slice(selectedPolishCurrencyIndex, 1)
 
             forkJoin({
                 currency: request(`http://api.nbp.pl/api/exchangerates/rates/${selectedCurrencies[0]?.table}/${selectedCurrencies[0]?.code}/last/90`)
             }).subscribe(({currency}) => {
-                setData(prepareHistoryData(currency.rates, !checkIfPolishCurrencySelected));
+                setData(prepareHistoryData(currency.rates, !selectedPolishCurrencyIndex));
                 setLoading(false)
 
             })
         }
-    }, [selectedCurrencies])
+    }, [selectedCurrencies, selectedPolishCurrencyIndex])
 
     return {data, loading}
 }
 
-const prepareHistoryData = (firstCurrency: any[], divideByCurrency = false, secondCurrency?: any[]) => {
+const prepareHistoryData = (firstCurrency: Currency[], divideByCurrency = false, secondCurrency?: Currency[]) => {
     const historyData: HistoryData[] = []
 
     if (firstCurrency && secondCurrency) {
