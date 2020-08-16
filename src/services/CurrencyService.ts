@@ -36,7 +36,9 @@ export function useCurrenciesFetch() {
     )
 }
 
-export function useFetchHistoryData(selectedCurrencies: CurrencyHistoryData[], period: number) {
+const NO_ELEMENT_FOUND_INDEX = -1
+
+export function useFetchHistoryData(selectedCurrencies: CurrencyHistoryData[]) {
 
     const [data, setData] = useState<HistoryData[]>([])
     const [loading, setLoading] = useState<boolean>(true)
@@ -44,32 +46,31 @@ export function useFetchHistoryData(selectedCurrencies: CurrencyHistoryData[], p
     const checkIfPolishCurrencySelected = selectedCurrencies.findIndex(currency => currency.code === polishCurrencyCode)
 
     useEffect(() => {
-        if (checkIfPolishCurrencySelected === -1) {
+        if (checkIfPolishCurrencySelected === NO_ELEMENT_FOUND_INDEX) {
             forkJoin({
-                firstCurrency: request(`http://api.nbp.pl/api/exchangerates/rates/${selectedCurrencies[0]?.table}/${selectedCurrencies[0]?.code}/last/${period}`),
-                secondCurrency: request(`http://api.nbp.pl/api/exchangerates/rates/${selectedCurrencies[1]?.table}/${selectedCurrencies[1]?.code}/last/${period}`)
+                firstCurrency: request(`http://api.nbp.pl/api/exchangerates/rates/${selectedCurrencies[0]?.table}/${selectedCurrencies[0]?.code}/last/90`),
+                secondCurrency: request(`http://api.nbp.pl/api/exchangerates/rates/${selectedCurrencies[1]?.table}/${selectedCurrencies[1]?.code}/last/90`)
             }).subscribe(({firstCurrency, secondCurrency}) => {
                 setData(prepareHistoryData(firstCurrency.rates, false, secondCurrency.rates));
                 setLoading(false)
-
             })
         }
 
-        if (checkIfPolishCurrencySelected > -1) {
+        if (checkIfPolishCurrencySelected > NO_ELEMENT_FOUND_INDEX) {
 
             selectedCurrencies = selectedCurrencies.filter(selectedCurrency => {
                 return selectedCurrency.code !== polishCurrencyCode
             })
 
             forkJoin({
-                currency: request(`http://api.nbp.pl/api/exchangerates/rates/${selectedCurrencies[0]?.table}/${selectedCurrencies[0]?.code}/last/${period}`)
+                currency: request(`http://api.nbp.pl/api/exchangerates/rates/${selectedCurrencies[0]?.table}/${selectedCurrencies[0]?.code}/last/90`)
             }).subscribe(({currency}) => {
                 setData(prepareHistoryData(currency.rates, !checkIfPolishCurrencySelected));
                 setLoading(false)
 
             })
         }
-    }, [period])
+    }, [selectedCurrencies])
 
     return {data, loading}
 }

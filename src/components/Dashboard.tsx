@@ -38,7 +38,7 @@ export const Dashboard: React.FC<Props> = ({rates, date}) => {
     const [converterValue, setConvertedValue] = useState<string>('')
     const [exchangeRate, setExchangeRate] = useState(0)
     const [selectedCurrencies, setSelectedCurrencies] = useState<CurrencyHistoryData[]>([])
-    const [isDashboardComponentActive, setDashbordComponentActive] = useState<boolean>(true)
+    const [isDashboardComponentActive, setDashboardComponentActive] = useState<boolean>(true)
     const [isHistoryComponentActive, setHistoryComponentActive] = useState<boolean>(false)
 
     useEffect(() => {
@@ -90,7 +90,7 @@ export const Dashboard: React.FC<Props> = ({rates, date}) => {
     }
 
     const switchView = (setDashboardActive: boolean, setHistoryActive: boolean) => {
-        setDashbordComponentActive(setDashboardActive)
+        setDashboardComponentActive(setDashboardActive)
         setHistoryComponentActive(setHistoryActive)
     }
 

@@ -8,6 +8,11 @@ import { CalendarOutlined } from "@ant-design/icons/lib";
 import "./ExchangeRateHistoryComponent.scss"
 import { useTranslation } from "react-i18next";
 
+const MAX_DATA_ARRAY_LENGTH = 90
+const THIRTY_DAYS_PERIOD = 60
+const SIXTY_DAYS_PERIOD = 30
+const NINETY_DAYS_PERIOD = 0
+
 type Props = {
     selectedCurrencies: CurrencyHistoryData[]
     backToDashboard: Function
@@ -17,18 +22,18 @@ export const History: React.FC<Props> = ({selectedCurrencies, backToDashboard}) 
 
     const {t} = useTranslation();
 
-    const [period, setPeriod] = useState<number>(30);
-    const {data, loading} = GetHistoricalData(selectedCurrencies, period)
+    const [period, setPeriod] = useState<number>(THIRTY_DAYS_PERIOD);
+    let {data, loading} = GetHistoricalData(selectedCurrencies)
 
     const [chartData, setChartData] = useState<any>({})
 
     useEffect(() => {
         if (data) {
-            const values = prepareChartValues(data)
-            const labels = prepareChartLabels(data)
+            const values = prepareChartValues(data.slice(period, MAX_DATA_ARRAY_LENGTH))
+            const labels = prepareChartLabels(data.slice(period, MAX_DATA_ARRAY_LENGTH))
             setChartData(setChart(labels, values, t('ExchangeRate')));
         }
-    }, [data, t])
+    }, [data, t, period])
 
     return (
         <div>
@@ -38,15 +43,15 @@ export const History: React.FC<Props> = ({selectedCurrencies, backToDashboard}) 
 
                     <div className="periodButtons">
                         <Button className="monthButton" type="primary" shape="round" icon={<CalendarOutlined/>}
-                                onClick={() => setPeriod(30)}>
+                                onClick={() => setPeriod(THIRTY_DAYS_PERIOD)}>
                             {t('OneMonth')} </Button>
 
                         <Button className="monthButton" type="primary" shape="round" icon={<CalendarOutlined/>}
-                                onClick={() => setPeriod(60)}>
+                                onClick={() => setPeriod(SIXTY_DAYS_PERIOD)}>
                             {t('TwoMonths')}</Button>
 
                         <Button className="monthButton" type="primary" shape="round" icon={<CalendarOutlined/>}
-                                onClick={() => setPeriod(90)}>
+                                onClick={() => setPeriod(NINETY_DAYS_PERIOD)}>
                             {t('ThreeMonths')}
                         </Button>
 
@@ -66,7 +71,7 @@ export const History: React.FC<Props> = ({selectedCurrencies, backToDashboard}) 
     )
 }
 
-const GetHistoricalData = (selectedCurrencies: CurrencyHistoryData[], period: number) => {
-    const {data, loading} = useFetchHistoryData(selectedCurrencies, period)
+const GetHistoricalData = (selectedCurrencies: CurrencyHistoryData[]) => {
+    const {data, loading} = useFetchHistoryData(selectedCurrencies)
     return {data, loading}
 }
