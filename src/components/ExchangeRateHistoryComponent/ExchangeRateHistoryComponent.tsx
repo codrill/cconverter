@@ -1,16 +1,16 @@
 import React, { useEffect, useState } from "react";
 import { Button, Spin } from "antd";
 import { useFetchHistoryData } from "../../services/CurrencyService";
-import { CurrencyHistoryData } from "../../App";
 import { ChartComponent } from "../ChartComponent/ChartComponent";
 import { prepareChartLabels, prepareChartValues, setChart } from "../../utils/chart";
 import { CalendarOutlined } from "@ant-design/icons/lib";
 import "./ExchangeRateHistoryComponent.scss"
 import { useTranslation } from "react-i18next";
+import { CurrencyHistoryData } from "../Dashboard/Dashboard";
 
-const MAX_DATA_ARRAY_LENGTH = 90
-const THIRTY_DAYS_PERIOD = 60
-const SIXTY_DAYS_PERIOD = 30
+const MAX_DATA_ARRAY_LENGTH = 89
+const THIRTY_DAYS_PERIOD = 59
+const SIXTY_DAYS_PERIOD = 29
 const NINETY_DAYS_PERIOD = 0
 
 type Props = {
@@ -18,7 +18,7 @@ type Props = {
     backToDashboard: Function
 }
 
-export const History: React.FC<Props> = ({selectedCurrencies, backToDashboard}) => {
+export const HistoryComponent: React.FC<Props> = ({selectedCurrencies, backToDashboard}) => {
 
     const {t} = useTranslation();
 

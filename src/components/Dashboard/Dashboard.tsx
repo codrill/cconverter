@@ -1,22 +1,23 @@
-import { Button, Input } from 'antd'
+import React, { useEffect, useState } from 'react'
+import { Button, Input, Spin } from 'antd'
+import { LineChartOutlined, SwapOutlined } from "@ant-design/icons/lib";
+import { Helmet } from 'react-helmet'
+import { Trans, useTranslation } from "react-i18next";
+
+import { initialSelectFromValue, initialSelectToValue, inputPlaceholder } from '../../constants/Variables'
+import { getParsedNumber } from "../../utils/number";
+import { CurrencySelect } from "../CurrecySelectComponent/SelectComponent";
+import { RateDisplay } from "../DateAndRateDisplayComponent/DateAndRateDisplayComponent";
 
 import './Dashboard.scss'
-import React, { useEffect, useState } from 'react'
-import { CurrencySelect } from './CurrecySelectComponent/SelectComponent'
-import { RateDisplay } from './DateAndRateDisplayComponent/DateAndRateDisplayComponent'
-import { initialSelectFromValue, initialSelectToValue, inputPlaceholder } from '../constants/Variables'
-import { Helmet } from 'react-helmet'
-import { getParsedNumber } from "../utils/number"
-import { LineChartOutlined, SwapOutlined } from "@ant-design/icons/lib";
-import { CurrencyHistoryData } from "../App";
-import { Trans, useTranslation } from "react-i18next";
-import { History } from "./ExchangeRateHistoryComponent/ExchangeRateHistoryComponent";
+import { HistoryComponent } from "../ExchangeRateHistoryComponent/ExchangeRateHistoryComponent";
 
 const userInputRegex = new RegExp('^\\d+([,.]\\d{0,2})?$')
 
 type Props = {
     rates: ApiRate[]
     date: string
+    dataReady: boolean
 }
 
 export type ApiRate = {
@@ -26,10 +27,14 @@ export type ApiRate = {
     table: string
 }
 
+export type CurrencyHistoryData = {
+    code: string,
+    table: string
+}
+
 type SelectedValue = ApiRate | undefined
 
-export const Dashboard: React.FC<Props> = ({rates, date}) => {
-
+export const Dashboard: React.FC<Props> = ({rates, date, dataReady}) => {
     const {t} = useTranslation();
 
     const [fromCurrency, setFromCurrency] = useState('')
@@ -85,7 +90,7 @@ export const Dashboard: React.FC<Props> = ({rates, date}) => {
         return `${t('DashboardSectionRateExchange')} ${exchangeRate.toFixed(5)}`
     }
 
-   const onGoToHistoryButtonClick = () => {
+    const onGoToHistoryButtonClick = () => {
         switchView(false, true)
     }
 
@@ -125,70 +130,75 @@ export const Dashboard: React.FC<Props> = ({rates, date}) => {
                     <h2 className="converter__calc__header">
                         {t('ConvertCurrencyCalculatorHeader')}
                     </h2>
-
-                    <div className="converter__calc__group">
-                        <CurrencySelect
-                            value={fromCurrency}
-                            name="fromCurrency"
-                            onChange={setFromCurrency}
-                            currencyRates={rates}
-                        />
-                        <label htmlFor="inputValue" className="sr-only">Input Value</label>
-                        <Input
-                            placeholder={inputPlaceholder}
-                            value={userValue}
-                            id="inputValue"
-                            onChange={onChangeValue}
-                        />
-                    </div>
-
-                    <div className="buttons">
-                        <Button
-                            type="primary"
-                            className="btn-swap cc-btn--gradient"
-                            disabled={!fromCurrency || !toCurrency}
-                            onClick={onCurrencySwap}
-                        >
-                            <SwapOutlined
-                                rotate={90}
-                                className="btn-swap-icon"
+                    <Spin spinning={!dataReady} delay={10}>
+                        <div className="converter__calc__group">
+                            <CurrencySelect
+                                value={fromCurrency}
+                                name="fromCurrency"
+                                currencyRates={rates}
+                                disabled={!dataReady}
+                                onChange={setFromCurrency}
                             />
-                        </Button>
+                            <label htmlFor="inputValue" className="sr-only">Input Value</label>
+                            <Input
+                                placeholder={inputPlaceholder}
+                                value={userValue}
+                                id="inputValue"
+                                disabled={!dataReady}
+                                onChange={onChangeValue}
+                            />
+                        </div>
 
-                        <Button type="primary"
-                                className="btn-chart cc-btn--gradient"
-                                onClick={onGoToHistoryButtonClick}>
+                        <div className="buttons">
+                            <Button
+                                type="primary"
+                                className="btn-swap cc-btn--gradient"
+                                disabled={!fromCurrency || !toCurrency}
+                                onClick={onCurrencySwap}
+                            >
+                                <SwapOutlined
+                                    rotate={90}
+                                    className="btn-swap-icon"
+                                />
+                            </Button>
 
-                            <LineChartOutlined className="btn-chart-icon"/>
-                            <span>{exchangeRate.toFixed(5)}</span>
+                            <Button type="primary"
+                                    className="btn-chart cc-btn--gradient"
+                                    onClick={onGoToHistoryButtonClick}>
 
-                        </Button>
-                    </div>
+                                <LineChartOutlined className="btn-chart-icon"/>
+                                <span>{exchangeRate.toFixed(5)}</span>
 
-                    <div className="converter__calc__group">
-                        <CurrencySelect
-                            value={toCurrency}
-                            name="toCurrency"
-                            onChange={setToCurrency}
-                            currencyRates={rates}
-                        />
-                        <label htmlFor="outputValue" className="sr-only">Output Value</label>
-                        <Input
-                            placeholder={inputPlaceholder}
-                            id="outputValue"
-                            value={converterValue}
-                        />
-                    </div>
-                    <div className="converter__calc__rate">
-                        <p>{RateDisplay(prepareExchangeRateInformation())}</p>
-                    </div>
+                            </Button>
+                        </div>
+
+                        <div className="converter__calc__group">
+                            <CurrencySelect
+                                value={toCurrency}
+                                name="toCurrency"
+                                currencyRates={rates}
+                                disabled={!dataReady}
+                                onChange={setToCurrency}
+                            />
+                            <label htmlFor="outputValue" className="sr-only">Output Value</label>
+                            <Input
+                                placeholder={inputPlaceholder}
+                                id="outputValue"
+                                value={converterValue}
+                            />
+                        </div>
+
+                        <div className="converter__calc__rate">
+                            <p>{RateDisplay(prepareExchangeRateInformation())}</p>
+                        </div>
+                    </Spin>
                 </div>
             </div>
             }
-
-            {isHistoryComponentActive && <History selectedCurrencies={selectedCurrencies} backToDashboard={switchView}/>}
+            { isHistoryComponentActive &&
+            <HistoryComponent selectedCurrencies={selectedCurrencies} backToDashboard={switchView}/>
+            }
         </div>
-
     )
 }
 

@@ -1,11 +1,10 @@
 import { urlApiNBPTableA, urlApiNBPTableB } from "../constants/CurrencyApiConstants"
 import { forkJoin, from } from "rxjs";
 import { map } from "rxjs/operators";
-import { ApiRate } from "../components/Dashboard";
 import { useEffect, useState } from "react";
-import { CurrencyHistoryData } from "../App";
 import { returnPreparedCurrencyObject } from "../utils/object";
 import { polishCurrencyCode, polishCurrencyObject } from "../constants/PolishCurrencyObject";
+import { ApiRate, CurrencyHistoryData } from "../components/Dashboard/Dashboard";
 
 export interface CurrencyResponse {
     currencyTableA: CurrencyTableObject[]
