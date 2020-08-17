@@ -8,9 +8,9 @@ import "./ExchangeRateHistoryComponent.scss"
 import { useTranslation } from "react-i18next";
 import { CurrencyHistoryData } from "../Dashboard/Dashboard";
 
-const MAX_DATA_ARRAY_LENGTH = 89
-const THIRTY_DAYS_PERIOD = 59
-const SIXTY_DAYS_PERIOD = 29
+const MAX_DATA_ARRAY_LENGTH = 90
+const THIRTY_DAYS_PERIOD = 60
+const SIXTY_DAYS_PERIOD = 30
 const NINETY_DAYS_PERIOD = 0
 
 type Props = {
@@ -37,9 +37,10 @@ export const HistoryComponent: React.FC<Props> = ({selectedCurrencies, backToDas
 
     return (
         <div>
-            {!loading ?
-                <div className="history-rate-container">
-                    <ChartComponent chartData={chartData}/>
+            <div className="history-rate-container">
+                <Spin spinning={loading}>
+
+                    {!loading && <ChartComponent chartData={chartData}/>}
 
                     <div className="periodButtons">
                         <Button className="monthButton" type="primary" shape="round" icon={<CalendarOutlined/>}
@@ -54,19 +55,17 @@ export const HistoryComponent: React.FC<Props> = ({selectedCurrencies, backToDas
                                 onClick={() => setPeriod(NINETY_DAYS_PERIOD)}>
                             {t('ThreeMonths')}
                         </Button>
-
                     </div>
+                </Spin>
 
-                    <div className="backToDashboard">
-                        <Button type="primary"
-                                className="btn-chart cc-btn--gradient"
-                                onClick={() => backToDashboard(true, false)}>
-                            {t('Back')}
-                        </Button>
-                    </div>
+                <div className="backToDashboard">
+                    <Button type="primary"
+                            className="btn-chart cc-btn--gradient"
+                            onClick={() => backToDashboard(true, false)}>
+                        {t('Back')}
+                    </Button>
                 </div>
-                : <Spin/>
-            }
+            </div>
         </div>
     )
 }
