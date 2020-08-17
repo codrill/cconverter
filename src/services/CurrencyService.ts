@@ -53,8 +53,8 @@ export function useFetchHistoryData(selectedCurrencies: CurrencyHistoryData[]) {
     useEffect(() => {
         if (selectedPolishCurrencyIndex === NO_ELEMENT_FOUND_INDEX) {
             forkJoin({
-                firstCurrency: request(`http://api.nbp.pl/api/exchangerates/rates/${selectedCurrencies[0]?.table}/${selectedCurrencies[0]?.code}/last/90`),
-                secondCurrency: request(`http://api.nbp.pl/api/exchangerates/rates/${selectedCurrencies[1]?.table}/${selectedCurrencies[1]?.code}/last/90`)
+                firstCurrency: request(`https://api.nbp.pl/api/exchangerates/rates/${selectedCurrencies[0]?.table}/${selectedCurrencies[0]?.code}/last/90`),
+                secondCurrency: request(`https://api.nbp.pl/api/exchangerates/rates/${selectedCurrencies[1]?.table}/${selectedCurrencies[1]?.code}/last/90`)
             }).subscribe(({firstCurrency, secondCurrency}) => {
                 setData(prepareHistoryData(firstCurrency.rates, false, secondCurrency.rates));
                 setLoading(false)
@@ -65,7 +65,7 @@ export function useFetchHistoryData(selectedCurrencies: CurrencyHistoryData[]) {
             selectedCurrencies.slice(selectedPolishCurrencyIndex, 1)
 
             forkJoin({
-                currency: request(`http://api.nbp.pl/api/exchangerates/rates/${selectedCurrencies[0]?.table}/${selectedCurrencies[0]?.code}/last/90`)
+                currency: request(`https://api.nbp.pl/api/exchangerates/rates/${selectedCurrencies[0]?.table}/${selectedCurrencies[0]?.code}/last/90`)
             }).subscribe(({currency}) => {
                 setData(prepareHistoryData(currency.rates, !selectedPolishCurrencyIndex));
                 setLoading(false)
