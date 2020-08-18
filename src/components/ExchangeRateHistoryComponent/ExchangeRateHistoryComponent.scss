@@ -14,6 +14,7 @@
       border-color: $cc-purple;
     }
   }
+
   .ant-spin {
     position: absolute;
     top: 0;
@@ -26,7 +27,37 @@
   }
 
   .backToDashboard {
-    margin-top: 30px
+    margin-top: 15px
+  }
+}
+
+@media screen and (max-width: 414px) {
+  .periodButtons {
+    button {
+      height: 30px;
+      font-size: 11px;
+    }
+  }
+
+  .backToDashboard {
+    margin-top: 0;
+  }
+}
+
+@media screen and (max-width: 365px) {
+  .periodButtons {
+    button {
+      height: 30px;
+      margin-right: 0;
+
+      .anticon-calendar {
+        display: none
+      }
+
+      span:nth-child(2) {
+        margin: 0;
+      }
+    }
   }
 }
 
