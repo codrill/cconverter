@@ -62,10 +62,13 @@ export function useFetchHistoryData(selectedCurrencies: CurrencyHistoryData[]) {
         }
 
         if (selectedPolishCurrencyIndex > NO_ELEMENT_FOUND_INDEX) {
-            selectedCurrencies.slice(selectedPolishCurrencyIndex, 1)
+            const currency = selectedCurrencies.find(currency => {
+                return currency.code !== polishCurrencyObject.code
+                }
+            )
 
             forkJoin({
-                currency: request(`https://api.nbp.pl/api/exchangerates/rates/${selectedCurrencies[0]?.table}/${selectedCurrencies[0]?.code}/last/90`)
+                currency: request(`https://api.nbp.pl/api/exchangerates/rates/${currency?.table}/${currency?.code}/last/90`)
             }).subscribe(({currency}) => {
                 setData(prepareHistoryData(currency.rates, !selectedPolishCurrencyIndex));
                 setLoading(false)
