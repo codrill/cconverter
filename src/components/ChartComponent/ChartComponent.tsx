@@ -12,6 +12,9 @@ export const ChartComponent: React.FC<any> = ({chartData}) => {
                     options={{
                         responsive: true,
                         maintainAspectRatio: false,
+                        legend: {
+                            onClick: null
+                        },
                         scales: {
                             yAxes: [{
                                 gridLines: {
