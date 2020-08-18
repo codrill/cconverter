@@ -11,7 +11,7 @@ export const ChartComponent: React.FC<any> = ({chartData}) => {
                     data={chartData}
                     options={{
                         responsive: true,
-                        maintainAspectRatio: false,
+                        maintainAspectRatio: false,gi
                         legend: {
                             onClick: null
                         },
