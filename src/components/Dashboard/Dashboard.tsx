@@ -187,10 +187,6 @@ export const Dashboard: React.FC<Props> = ({rates, date, dataReady}) => {
                                 value={converterValue}
                             />
                         </div>
-
-                        <div className="converter__calc__rate">
-                            <p>{RateDisplay(prepareExchangeRateInformation())}</p>
-                        </div>
                     </Spin>
                 </div>
             </div>
