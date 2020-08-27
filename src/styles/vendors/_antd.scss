@@ -2,60 +2,6 @@
 @import "../utils/variables";
 @import "../utils/fonts";
 
-// Menu
-.ant-menu {
-  &.main-header__menu {
-    background-color: $cc-purple;
-    .ant-menu-item, .ant-menu-item > a {
-      color: $cc-white;
-      &:hover, &:active, &:focus {
-        color: $cc-white;
-      }
-    }
-
-    .ant-menu-item {
-      font-weight: $font-semi-bold;
-      border-bottom: 3px solid transparent;
-      box-shadow: 0 0 0 transparent;
-      transition: all .3s ease-in-out;
-
-      .anticon {
-        color: rgba($cc-white, .5);
-      }
-
-      .menu__item__label {
-        position: relative;
-        transition: color .3s ease-in-out;
-        &::before {
-          content: attr(data-hover);
-          position: absolute;
-          color: $cc-white;
-          opacity: 0;
-          transition: opacity .3s ease-in-out, transform .3s ease-in-out;
-        }
-      }
-
-      &.ant-menu-item-selected {
-        background-color: $cc-purple-dark;
-        box-shadow: 0 2px 5px $cc-purple-dark;
-      }
-
-      &.ant-menu-item-active {
-        border-bottom: 3px solid transparent;
-      }
-      &:hover:not(.ant-menu-item-selected) {
-        .menu__item__label {
-          color: transparent;
-          &::before {
-            opacity: .5;
-            transform: scale(.95);
-          }
-        }
-      }
-    }
-  }
-}
-
 // Buttons
 .ant-btn-background-ghost {
   &.ant-btn-link {
