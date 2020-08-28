@@ -36,15 +36,15 @@
       background-size: cover;
 
       &.dollar-foto {
-        @include background-image-with-linear-gradient($cc-purple-dark, $cc-purple, "../../assets/img/currency.jpg");
+        @include background-image-with-linear-gradient($cc-purple-dark, $cc-purple, "../../assets/img/currency.jpg", $colorFromOpacity: .1, $colorToOpacity: .5);
       }
 
       &.bank-foto {
-        @include background-image-with-linear-gradient($cc-purple-dark, $cc-purple, "../../assets/img/bank.jpg");
+        @include background-image-with-linear-gradient($cc-purple-dark, $cc-purple, "../../assets/img/bank.jpg", .5, .1);
       }
 
       &.rwd-foto {
-        @include background-image-with-linear-gradient($cc-purple-dark, $cc-purple,"../../assets/img/rwd.jpg");
+        @include background-image-with-linear-gradient($cc-purple-dark, $cc-purple,"../../assets/img/rwd.jpg", .1, .5);
       }
     }
   }

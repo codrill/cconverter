@@ -14,7 +14,7 @@
   }
 }
 
-@mixin background-image-with-linear-gradient($color1, $color2, $image) {
-  background-image: linear-gradient(45deg, transparentize($color1, .5) 5%, transparentize($color2, .5)),
+@mixin background-image-with-linear-gradient($colorFrom, $colorTo, $image, $colorFromOpacity: .1, $colorToOpacity: .1) {
+  background-image: linear-gradient(45deg, transparentize($colorFrom, $colorFromOpacity), transparentize($colorTo, $colorToOpacity)),
   url($image);
 }
