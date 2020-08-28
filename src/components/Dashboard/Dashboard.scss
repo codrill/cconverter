@@ -10,15 +10,13 @@
   margin-bottom: $gap-big;
 
   &__info {
+    @include background-image-with-linear-gradient($cc-purple-dark, $cc-purple, "../../assets/img/bg-calc-info.jpg", .07, .1);
     display: grid;
     grid-template-columns: repeat(6, 1fr);
-
     grid-column: 1 / 7;
     grid-row: 1 / 4;
     padding: $gap-big 0;
     background-color: $cc-purple;
-    background-image: linear-gradient(45deg, transparentize($cc-purple-dark, .07) 10%, transparentize($cc-purple, .07)),
-    url("../../assets/img/bg-calc-info.jpg");
     background-position: center;
     background-size: cover;
     color: $cc-white;
