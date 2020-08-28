@@ -1,6 +1,6 @@
-@import "../styles/utils/variables";
-@import "../styles/utils/fonts";
-@import "../styles/utils/mixins";
+@import "../../styles/utils/variables";
+@import "../../styles/utils/fonts";
+@import "../../styles/utils/mixins";
 
 .converter {
   display: grid;
@@ -58,12 +58,33 @@
     z-index: 2;
     grid-column: 6 / 13;
     grid-row: 2;
+    min-height: 470px;
     padding: 40px;
     background-color: $cc-white;
     text-align: center;
 
+    .buttons {
+      display: flex;
+      justify-content: space-between;
+
+      .chart-button {
+        display: inline-block;
+      }
+    }
+
     &__header {
       margin-bottom: 30px;
+    }
+
+    .ant-spin {
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      height: 3rem;
+      width: 3rem;
+      margin: auto;
     }
 
     &__group {
@@ -79,13 +100,26 @@
       }
     }
 
-    .btn-swap {
+    .btn {
       height: 40px;
-      width: 70px;
       margin: 10px 0;
 
-      &-icon {
-        font-size: 1.5rem;
+      &-swap {
+        width: 70px;
+
+        &-icon {
+          font-size: 1.5rem;
+        }
+      }
+
+      &-chart {
+        display: inline-flex;
+        justify-content: center;
+
+        &-icon {
+          font-size: 1.5rem;
+          margin-right: 10px;
+        }
       }
     }
 

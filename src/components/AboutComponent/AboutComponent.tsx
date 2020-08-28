@@ -1,24 +1,31 @@
 import React from 'react'
 import './AboutComponent.scss'
 import { Helmet } from 'react-helmet'
+import { Trans, useTranslation } from "react-i18next";
 
 const About: React.FC = () => {
+
+    const {t} = useTranslation();
+
     return (
         <div className="about">
             <Helmet>
-                <title>CConverter - O projekcie</title>
+                <title>CConverter - {t('AboutHelmetTitle')}</title>
             </Helmet>
 
             <div className="about-layout">
                 <div className="about-layout__item">
                     <div className="about-layout__info">
-                        <p><strong>CConverter</strong> to open-sourcowy projekt stworzony przez <strong>Codrill</strong>.
-                            Mając do dyspozycji 150 walut z
-                            całego świata przeliczenia stają się banalnie proste.</p>
-                        <p>Wystarczy, że wybierzesz waluty które Cię interesują oraz wpiszesz
-                            liczbę. To wszystko. Aplikacja automatycznie przeliczy podaną przez Ciebie kwotę po
-                            odpowiednim i oficjalnym kursie wymiany.
-                        </p>
+                        <Trans i18nKey="AboutSectionHowToUse" components={{ paragraph: <p />, bold: <strong /> }}>
+                            <p>
+                                <strong>CConverter</strong> is an open-source project created by <strong>Codrill</strong>.
+                                Having at your disposal 150 currencies from all over the world, conversions become very simple.
+                            </p>
+                            <p>
+                                It only takes choosing currencies you're interested in and specify the number. This application will automatically convert given amount,
+                                basing on adequate and official exchange rates.
+                            </p>
+                        </Trans>
                     </div>
 
                     <div className="about-layout__foto dollar-foto"/>
@@ -28,20 +35,24 @@ const About: React.FC = () => {
                     <div className="about-layout__foto bank-foto"/>
 
                     <div className="about-layout__info">
-                        <p>Żeby zagwarantować naszym użytkownikom pewne i oficjalne kursy wymiany używamy przeliczników
-                            podanych przez <strong>Narodowy Bank Polski</strong> który w każdy dzień roboczy aktualizuje
-                            swoje najpopularniejsze
-                            waluty. Te bardziej egzotyczne aktualizowane są co środę.</p>
+                        <p>
+                            <Trans i18nKey='AboutSectionNBP'>
+                                In order to guarantee our users reliable and official exchange rates we use data provided by the <strong>National Bank of Poland</strong>, where the most popular values are upgraded every working day and more exotic ones every Wednesday.
+                            </Trans>
+                        </p>
                     </div>
                 </div>
 
                 <div className="about-layout__item">
                     <div className="about-layout__info">
-                        <p>Nasz konwerter jest przystosowany do działania na każdym urządzeniu. Potrzebujesz coś szybko
-                            przeliczyć? Aplikacja działa wyśmienicie na telefonach komórkowych czy tabletach.</p>
-
-                        <p><strong>CConverter</strong> jest na bieżąco rozbudowywany oraz rozwijany.
-                            Zachęcamy do dzielenia się uwagami przez nasz formularz zgłoszeniowy.</p>
+                        <Trans i18nKey='AboutSectionRWD' components={{ paragraph: <p />, bold: <strong /> }}>
+                            <p>
+                                Our converter is adjusted to be used on any device. Do you need a quick conversion? This app works flawlessly on both mobile phones and tablets.
+                            </p>
+                            <p>
+                                <strong>CConverter</strong> is continuously developed. We therefore encourage you to share your thoughts using our application form.
+                            </p>
+                        </Trans>
                     </div>
 
                     <div className="about-layout__foto rwd-foto"/>

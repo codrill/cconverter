@@ -9,3 +9,12 @@ body {
   -webkit-font-smoothing: antialiased;
   font-size: 1rem;
 }
+
+.sr-only {
+  position: absolute;
+  left: -10000px;
+  top: auto;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
