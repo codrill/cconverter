@@ -7,7 +7,6 @@ import { Trans, useTranslation } from "react-i18next";
 import { initialSelectFromValue, initialSelectToValue, inputPlaceholder } from '../../constants/Variables'
 import { getParsedNumber } from "../../utils/number";
 import { CurrencySelect } from "../CurrecySelectComponent/SelectComponent";
-import { RateDisplay } from "../DateAndRateDisplayComponent/DateAndRateDisplayComponent";
 
 import './Dashboard.scss'
 import { HistoryComponent } from "../ExchangeRateHistoryComponent/ExchangeRateHistoryComponent";
@@ -84,10 +83,6 @@ export const Dashboard: React.FC<Props> = ({rates, date, dataReady}) => {
     const setInitialCurrencies = (rates: ApiRate[]) => {
         setFromCurrency(findAndReturnCurrencyByCode(rates, initialSelectFromValue))
         setToCurrency(findAndReturnCurrencyByCode(rates, initialSelectToValue))
-    }
-
-    const prepareExchangeRateInformation = () => {
-        return `${t('DashboardSectionRateExchange')} ${exchangeRate.toFixed(5)}`
     }
 
     const onGoToHistoryButtonClick = () => {
@@ -187,15 +182,11 @@ export const Dashboard: React.FC<Props> = ({rates, date, dataReady}) => {
                                 value={converterValue}
                             />
                         </div>
-
-                        <div className="converter__calc__rate">
-                            <p>{RateDisplay(prepareExchangeRateInformation())}</p>
-                        </div>
                     </Spin>
                 </div>
             </div>
             }
-            { isHistoryComponentActive &&
+            {isHistoryComponentActive &&
             <HistoryComponent selectedCurrencies={selectedCurrencies} backToDashboard={switchView}/>
             }
         </div>

@@ -2,3 +2,19 @@
   position: relative;
   height: 600px;
 }
+
+@media screen and (min-width: 415px) {
+  .line-chart {
+    height: 600px;
+  }
+}
+
+@media screen and (max-width: 414px) {
+  .chart-container {
+    height: 430px
+  }
+
+  .line-chart {
+    height: 430px;
+  }
+}
