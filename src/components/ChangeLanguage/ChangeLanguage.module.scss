@@ -1,6 +1,10 @@
 @import "../../styles/utils/variables";
 @import "../../styles/utils/fonts";
 
+.changeLanguage {
+  display: inline-block;
+}
+
 .language__select, .language__dropdown {
   img {
     display: inline-block;

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState} from 'react'
 import {BuildFilled, ContainerFilled } from "@ant-design/icons/lib"
 import {useTranslation} from "react-i18next"
 import {Link} from 'react-router-dom'
@@ -12,6 +12,12 @@ import {ChangeLanguage} from "../ChangeLanguage/ChangeLanguage";
 const MainHeader = () => {
     const {t} = useTranslation();
 
+    const [menuExpanded, setMenuExpanded] = useState<boolean>(false)
+
+    const onMenuToggle = () => {
+      setMenuExpanded( previousExpandedState => !previousExpandedState)
+    }
+
     return (
         <div className="main-header cc-container">
             <h1 className="main-header__logo">
@@ -20,6 +26,11 @@ const MainHeader = () => {
                     <span>{t('FX Rate')}</span>
                 </Link>
             </h1>
+            <div className={`main-header__hamburger ${menuExpanded ? "active" : ""}`} onClick={onMenuToggle}>
+              <span className="line" />
+              <span className="line" />
+              <span className="line" />
+            </div>
             <ul className="main-header__menu">
               <HeaderNavLink
                 icon={<BuildFilled />}
@@ -29,11 +40,8 @@ const MainHeader = () => {
                 icon={<ContainerFilled />}
                 route={menuRoutes.contact()}
               />
-
-              <li>
-                <ChangeLanguage />
-              </li>
             </ul>
+            <ChangeLanguage />
         </div>
     )
 }

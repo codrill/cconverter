@@ -2,6 +2,7 @@
 @import "../../styles/utils/fonts";
 
 .navLink {
+  display: inline-block;
   color: $cc-white;
   font-weight: $font-semi-bold;
   transition: all .3s ease-in-out;
@@ -49,20 +50,10 @@
       }
     }
   }
-}
 
-@media screen and (max-width: 634px) {
-  .navLink {
-    padding: 0 10px;
-
-    :global {
-      .anticon {
-        margin: 10px;
-      }
-    }
-
-    &__label {
-      display: none;
+  @media screen and (max-width: 634px) {
+    a {
+      padding: 0 10px;
     }
   }
 }

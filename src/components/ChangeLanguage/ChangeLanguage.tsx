@@ -14,7 +14,7 @@ export const ChangeLanguage: React.FC = () => {
   const onLanguageChange = (lang: AvailableLanguageCodes) => i18n.changeLanguage(lang)
 
   return (
-    <>
+    <div className={styles.changeLanguage}>
       <label htmlFor="languageSelect" className="sr-only">Select language</label>
       <Select className={styles.language__select} id="languageSelect" dropdownClassName={styles.language__dropdown} showArrow={false}
               aria-expanded="false" defaultValue={i18n.language as AvailableLanguageCodes} onChange={onLanguageChange}>
@@ -26,6 +26,6 @@ export const ChangeLanguage: React.FC = () => {
           )
         )}
       </Select>
-    </>
+    </div>
   )
 }
