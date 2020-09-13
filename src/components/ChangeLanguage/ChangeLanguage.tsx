@@ -9,13 +9,13 @@ type AvailableLanguageCodes = 'pl' | 'en'
 const {Option} = Select
 
 export const ChangeLanguage: React.FC = () => {
-  const {i18n} = useTranslation();
+  const {t, i18n} = useTranslation();
 
   const onLanguageChange = (lang: AvailableLanguageCodes) => i18n.changeLanguage(lang)
 
   return (
     <div className={styles.changeLanguage}>
-      <label htmlFor="languageSelect" className="sr-only">Select language</label>
+      <label htmlFor="languageSelect" className="sr-only">{t('SelectLanguageLabel')}</label>
       <Select className={styles.language__select} id="languageSelect" dropdownClassName={styles.language__dropdown} showArrow={false}
               aria-expanded="false" defaultValue={i18n.language as AvailableLanguageCodes} onChange={onLanguageChange}>
         {configuredLanguages.map(item => (

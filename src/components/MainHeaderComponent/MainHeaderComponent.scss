@@ -47,15 +47,15 @@
     &__menu {
       order: 3;
       width: 100%;
-      text-align: center;
       max-height: 0;
+      text-align: center;
       line-height: 40px;
       transition: max-height .3s ease-in-out;
       &::before, &::after {
         content: '';
         display: block;
-        margin: 0 -20px;
         background-color: $cc-white;
+        margin: 0 -20px;
       }
       &::before {
         height: 1px;

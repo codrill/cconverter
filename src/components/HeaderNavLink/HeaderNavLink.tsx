@@ -17,8 +17,8 @@ export const HeaderNavLink: React.FC<Props> = ({icon, route}) => {
       <NavLink activeClassName={styles.active} to={route.path}>
         {icon}
         <span className={styles.navLink__label} data-hover={t(route.label)}>
-                      {t(route.label)}
-                    </span>
+          {t(route.label)}
+        </span>
       </NavLink>
     </li>
   )
