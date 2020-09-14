@@ -1,0 +1,59 @@
+@import "../../styles/utils/variables";
+@import "../../styles/utils/fonts";
+
+.navLink {
+  display: inline-block;
+  color: $cc-white;
+  font-weight: $font-semi-bold;
+  transition: all .3s ease-in-out;
+
+  :global {
+    .anticon {
+      display: inline-block;
+      margin-right: 10px;
+      color: rgba($cc-white, .5);
+    }
+  }
+
+  &__label {
+    position: relative;
+    display: inline-block;
+    transition: color .3s ease-in-out;
+
+    &::before {
+      content: attr(data-hover);
+      position: absolute;
+      color: $cc-white;
+      opacity: 0;
+      transition: opacity .3s ease-in-out, transform .3s ease-in-out;
+    }
+  }
+
+
+  a {
+    display: block;
+    padding: 0 20px;
+    transition: background-color .3s ease-in-out, box-shadow .3s ease-in-out;
+    &.active {
+      background-color: $cc-purple-dark;
+      box-shadow: 0 2px 5px $cc-purple-dark;
+    }
+  }
+
+  &:hover a:not(.active) {
+    .navLink__label {
+      color: transparent;
+
+      &::before {
+        opacity: .5;
+        transform: scale(.95);
+      }
+    }
+  }
+
+  @media screen and (max-width: 634px) {
+    a {
+      padding: 0 10px;
+    }
+  }
+}

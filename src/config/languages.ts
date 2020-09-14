@@ -10,11 +10,11 @@ export const configuredLanguages: ConfiguredLanguage[] = [
   {
     code: 'pl',
     icon: polish,
-    name: 'polski',
+    name: 'Polski',
   },
   {
     code: 'en',
     icon: english,
-    name: 'english'
+    name: 'English'
   }
 ]

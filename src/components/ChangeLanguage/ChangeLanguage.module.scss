@@ -1,0 +1,39 @@
+@import "../../styles/utils/variables";
+@import "../../styles/utils/fonts";
+
+.changeLanguage {
+  display: inline-block;
+}
+
+.language__select, .language__dropdown {
+  img {
+    display: inline-block;
+    width: 20px;
+    padding-right: 5px;
+  }
+}
+
+.language__select.language__select {
+  font-weight: $font-semi-bold;
+  width: 100px;
+  :global {
+    .ant-select-selector {
+      background-color: transparent;
+      border: none;
+      box-shadow: none;
+
+      span {
+        color: $cc-white;
+      }
+    }
+  }
+}
+.language__dropdown {
+  text-align: center;
+  :global {
+    .ant-select-item-option-selected {
+      background-color: $cc-purple-dark;
+      color: $cc-white;
+    }
+  }
+}

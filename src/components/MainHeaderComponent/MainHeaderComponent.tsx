@@ -1,23 +1,22 @@
-import React from 'react'
-import { Menu, Select } from 'antd'
+import React, {useState} from 'react'
 import {BuildFilled, ContainerFilled } from "@ant-design/icons/lib"
 import {useTranslation} from "react-i18next"
-import { Link, useLocation } from 'react-router-dom'
+import {Link} from 'react-router-dom'
 
 import { menuRoutes } from '../../config/routes'
-import {configuredLanguages} from "../../config/languages";
 
 import './MainHeaderComponent.scss'
-
-const {Option} = Select
-
-export type AvailableLanguageCodes = 'pl' | 'en'
+import {HeaderNavLink} from "../HeaderNavLink/HeaderNavLink";
+import {ChangeLanguage} from "../ChangeLanguage/ChangeLanguage";
 
 const MainHeader = () => {
-    const {pathname} = useLocation();
-    const {t, i18n} = useTranslation();
+    const {t} = useTranslation();
 
-    const onLanguageChange = (lang: AvailableLanguageCodes) => i18n.changeLanguage(lang)
+    const [menuExpanded, setMenuExpanded] = useState<boolean>(false)
+
+    const onMenuToggle = () => {
+      setMenuExpanded( previousExpandedState => !previousExpandedState)
+    }
 
     return (
         <div className="main-header cc-container">
@@ -27,44 +26,22 @@ const MainHeader = () => {
                     <span>{t('FX Rate')}</span>
                 </Link>
             </h1>
-            <Menu
-                className="main-header__menu"
-                theme={"dark"}
-                mode={'horizontal'}
-                defaultSelectedKeys={[menuRoutes.home().path]}
-                selectedKeys={[pathname]}
-                focusable={false}>
-
-                <Menu.Item key={menuRoutes.about().path}>
-                    <Link to={menuRoutes.about().path}>
-                        <BuildFilled />
-                        <span className="menu__item__label" data-hover={t(menuRoutes.about().label)}>
-              {t(menuRoutes.about().label)}
-            </span>
-                    </Link>
-                </Menu.Item>
-                <Menu.Item key={menuRoutes.contact().path}>
-                    <Link to={menuRoutes.contact().path}>
-                        <ContainerFilled />
-                        <span className="menu__item__label" data-hover={t(menuRoutes.contact().label)}>
-              {t(menuRoutes.contact().label)}
-            </span>
-                    </Link>
-                </Menu.Item>
-                <Menu.Item className="menu__item__language">
-                    <label htmlFor="languageSelect" className="sr-only">Select language</label>
-                    <Select className="language__select" id="languageSelect" dropdownClassName="language__dropdown" showArrow={false}
-                            aria-expanded="false" defaultValue={i18n.language as AvailableLanguageCodes} onChange={onLanguageChange}>
-                        {configuredLanguages.map(item => (
-                            <Option key={item.name} value={item.code}>
-                              <img src={item.icon} alt={item.name} />
-                              <span>{item.name}</span>
-                            </Option>
-                          )
-                        )}
-                    </Select>
-                </Menu.Item>
-            </Menu>
+            <div className={`main-header__hamburger ${menuExpanded ? "active" : ""}`} onClick={onMenuToggle}>
+              <span className="line" />
+              <span className="line" />
+              <span className="line" />
+            </div>
+            <ul className="main-header__menu">
+              <HeaderNavLink
+                icon={<BuildFilled />}
+                route={menuRoutes.about()}
+              />
+              <HeaderNavLink
+                icon={<ContainerFilled />}
+                route={menuRoutes.contact()}
+              />
+            </ul>
+            <ChangeLanguage />
         </div>
     )
 }
