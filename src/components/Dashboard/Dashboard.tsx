@@ -9,7 +9,7 @@ import { getParsedNumber } from "../../utils/number";
 import { CurrencySelect } from "../CurrecySelectComponent/SelectComponent";
 
 import './Dashboard.scss'
-import { HistoryComponent } from "../ExchangeRateHistoryComponent/ExchangeRateHistoryComponent";
+import { ExchangeRateHistoryComponent } from "../ExchangeRateHistory/ExchangeRateHistory";
 
 const userInputRegex = new RegExp('^\\d+([,.]\\d{0,2})?$')
 
@@ -187,7 +187,7 @@ export const Dashboard: React.FC<Props> = ({rates, date, dataReady}) => {
             </div>
             }
             {isHistoryComponentActive &&
-            <HistoryComponent selectedCurrencies={selectedCurrencies} backToDashboard={switchView}/>
+            <ExchangeRateHistoryComponent selectedCurrencies={selectedCurrencies} backToDashboard={switchView} />
             }
         </div>
     )
