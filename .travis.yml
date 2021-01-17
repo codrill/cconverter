@@ -5,6 +5,9 @@ node_js:
 dist: bionic
 sudo: required
 
+env:
+  CI: false
+
 branches:
   only:
     - develop
