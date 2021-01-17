@@ -8,13 +8,13 @@ type Response = {
     date: string
 }
 
-const resource = useCurrenciesFetch();
-
 export const DashboardContainer: React.FC = () => {
     const [apiRates, setApiRates] = useState<ApiRate[]>([])
     const [date, setCurrentDate] = useState('')
 
     const [dataReady, setDataReady] = useState(false)
+
+    const resource = useCurrenciesFetch()
 
     useEffect(() => {
         resource.subscribe((response: any) => {
