@@ -6,7 +6,7 @@
   "DashboardHelmetTitle": "Konwerter walut",
   "AboutHelmetTitle": "O projekcie",
   "ContactHelmetTitle": "Kontakt",
-  "ConvertCurrencyCalculatorHeader" : "Przelicz walutę",
+  "ConvertCurrencyCalculatorHeader": "Przelicz walutę",
   "DashboardSectionInfo": "<paragraph>Wyliczenia wykonywane są na podstawie najnowszych danych udostępnionych przez <bold>Narodowy Bank Polski</bold></paragraph> <paragraph>Wartości przedstawione w serwisie stanowią medianę reprezentatywnych walut.</paragraph>",
   "DashboardSectionDate": "Ostatnia aktualizacja: {{ date }}",
   "DashboardSectionRateExchange": "Kurs wymiany: ",

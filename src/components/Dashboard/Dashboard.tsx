@@ -7,9 +7,9 @@ import { Trans, useTranslation } from 'react-i18next'
 import { initialSelectFromValue, initialSelectToValue, inputPlaceholder } from '../../constants/Variables'
 import { getParsedNumber } from '../../utils/number'
 import { CurrencySelect } from '../CurrecySelectComponent/SelectComponent'
+import { ExchangeRateHistoryComponent } from '../ExchangeRateHistory/ExchangeRateHistory'
 
 import './Dashboard.scss'
-import { ExchangeRateHistoryComponent } from '../ExchangeRateHistory/ExchangeRateHistory'
 
 const userInputRegex = new RegExp('^\\d+([,.]\\d{0,2})?$')
 

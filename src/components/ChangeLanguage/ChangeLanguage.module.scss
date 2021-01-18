@@ -1,11 +1,12 @@
-@import "../../styles/utils/variables";
-@import "../../styles/utils/fonts";
+@import '../../styles/utils/variables';
+@import '../../styles/utils/fonts';
 
 .changeLanguage {
   display: inline-block;
 }
 
-.language__select, .language__dropdown {
+.language__select,
+.language__dropdown {
   img {
     display: inline-block;
     width: 20px;
@@ -17,7 +18,7 @@
   font-weight: $font-semi-bold;
   width: 100px;
   :global {
-    .ant-select-selector {
+    .ant-select-selector.ant-select-selector {
       background-color: transparent;
       border: none;
       box-shadow: none;

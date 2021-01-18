@@ -1,5 +1,5 @@
-@import "../utils/variables";
-@import "../utils/mixins";
+@import '../utils/variables';
+@import '../utils/mixins';
 
 .cc-theme-purple {
   .cc-btn--gradient {
@@ -10,6 +10,6 @@
 $default-rotate-possibilities: -135, -90, -45, 0, 45, 90, 135, 180;
 @each $degree in $default-rotate-possibilities {
   .cc-btn--rotate-#{$degree} {
-    @include rotate($degree)
+    @include rotate($degree);
   }
 }

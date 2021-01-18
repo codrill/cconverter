@@ -1,39 +1,38 @@
-@import "../../styles/utils/variables";
-@import "../../styles/utils/fonts";
+@import '../../styles/utils/variables';
+@import '../../styles/utils/fonts';
 
 .navLink {
   display: inline-block;
   color: $cc-white;
   font-weight: $font-semi-bold;
-  transition: all .3s ease-in-out;
+  transition: all 0.3s ease-in-out;
 
   :global {
     .anticon {
       display: inline-block;
       margin-right: 10px;
-      color: rgba($cc-white, .5);
+      color: rgba($cc-white, 0.5);
     }
   }
 
   &__label {
     position: relative;
     display: inline-block;
-    transition: color .3s ease-in-out;
+    transition: color 0.3s ease-in-out;
 
     &::before {
       content: attr(data-hover);
       position: absolute;
       color: $cc-white;
       opacity: 0;
-      transition: opacity .3s ease-in-out, transform .3s ease-in-out;
+      transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
     }
   }
-
 
   a {
     display: block;
     padding: 0 20px;
-    transition: background-color .3s ease-in-out, box-shadow .3s ease-in-out;
+    transition: background-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
     &.active {
       background-color: $cc-purple-dark;
       box-shadow: 0 2px 5px $cc-purple-dark;
@@ -45,8 +44,8 @@
       color: transparent;
 
       &::before {
-        opacity: .5;
-        transform: scale(.95);
+        opacity: 0.5;
+        transform: scale(0.95);
       }
     }
   }

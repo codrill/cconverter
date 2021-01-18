@@ -1,5 +1,5 @@
-import polish from "../assets/img/flag-polish.svg";
-import english from "../assets/img/flag-english.svg";
+import polish from '../assets/img/flag-polish.svg'
+import english from '../assets/img/flag-english.svg'
 
 type ConfiguredLanguage = {
   code: string
@@ -15,6 +15,6 @@ export const configuredLanguages: ConfiguredLanguage[] = [
   {
     code: 'en',
     icon: english,
-    name: 'English'
-  }
+    name: 'English',
+  },
 ]

@@ -6,7 +6,7 @@
   "DashboardHelmetTitle": "Currency converter",
   "AboutHelmetTitle": "About Project",
   "ContactHelmetTitle": "Contact",
-  "ConvertCurrencyCalculatorHeader" : "Convert currency",
+  "ConvertCurrencyCalculatorHeader": "Convert currency",
   "DashboardSectionInfo": "<paragraph>Calculations are based on latest data provided by the <bold>National Bank of Poland</bold>.</paragraph> <paragraph>Values presented on the website form median of representative currencies.</paragraph>",
   "DashboardSectionDate": "Last update: {{ date }}",
   "DashboardSectionRateExchange": "Exchange rate: ",
