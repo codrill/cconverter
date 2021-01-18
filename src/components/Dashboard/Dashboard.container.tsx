@@ -17,7 +17,7 @@ export const DashboardContainer: React.FC = () => {
     const resource = useCurrenciesFetch()
 
     useEffect(() => {
-        resource.subscribe((response: any) => {
+        resource.subscribe((response) => {
             setApiRates(response.rates)
             setCurrentDate(response.date)
             setDataReady(true)

@@ -1,2 +1,6 @@
-export const urlApiNBPTableA = 'https://api.nbp.pl/api/exchangerates/tables/A';
-export const urlApiNBPTableB = 'https://api.nbp.pl/api/exchangerates/tables/B';
+const urlNbpApi = 'https://api.nbp.pl/api'
+
+export const urlExchangeRates = `${urlNbpApi}/exchangerates/rates`
+
+export const urlApiNBPTableA = `${urlNbpApi}/exchangerates/tables/A`
+export const urlApiNBPTableB = `${urlNbpApi}/exchangerates/tables/B`
