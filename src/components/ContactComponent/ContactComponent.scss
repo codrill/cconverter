@@ -1,5 +1,5 @@
-@import "../../styles/utils/variables";
-@import "../../styles/utils/mixins";
+@import '../../styles/utils/variables';
+@import '../../styles/utils/mixins';
 
 .contact {
   display: flex;
@@ -29,7 +29,7 @@
 
       a {
         display: inline-block;
-        transition: transform .3s ease-in-out;
+        transition: transform 0.3s ease-in-out;
         &:hover {
           transform: scale(1.2);
         }
@@ -93,7 +93,9 @@
       width: 320px;
 
       .contact__details__icons {
-        .facebook, .github, .site {
+        .facebook,
+        .github,
+        .site {
           font-size: 2rem;
         }
       }

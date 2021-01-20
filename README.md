@@ -3,25 +3,25 @@
 # CConverter
 
 [CConverter](https://cconverter.codrill.eu) is an open-source project. Calculations are based on the latest data provided
-by the National Bank of Poland API. 
+by the National Bank of Poland API.
 
 Application is adjusted to be used on any device. It works great on desktops, tables or mobile phones.
-Right now we are supporting polish and english language using 
+Right now we are supporting polish and english language using
 `react-i18next` library.
 
 This project is continuously developed. We are adding new features, fix (potential of course :) ) bugs,
- so we can meet your expectations.
- 
+so we can meet your expectations.
+
 We are LIVE so you can visit us here --> [CConverter](https://cconverter.codrill.eu)
 
 ## Technological Stack
 
-* React
-* TypeScript
-* SCSS
-* AntDesign
-* React-ChartJs-2
-* Travis CI
+- React
+- TypeScript
+- SCSS
+- AntDesign
+- React-ChartJs-2
+- Travis CI
 
 ## Installation
 
@@ -30,13 +30,13 @@ We are LIVE so you can visit us here --> [CConverter](https://cconverter.codrill
 3. Perform `npm -i` to install all required dependencies
 4. Run project locally using `npm start`
 
-
 ## Workflow - how we work
-* All new features or bug fixes should be made as separated PR on new branches.
-* We are starting from `develop` branch so all new branches should be made from that.
-* Each PR that will be merged with `develop` needs to pass our `Travis CI` build gets approves by reviewers.
-* `master` branch contains the latest stable version of project.
-* `master` branch is being built each time new feature || bug fix is merged into develop.
+
+- All new features or bug fixes should be made as separated PR on new branches.
+- We are starting from `develop` branch so all new branches should be made from that.
+- Each PR that will be merged with `develop` needs to pass our `Travis CI` build gets approves by reviewers.
+- `master` branch contains the latest stable version of project.
+- `master` branch is being built each time new feature || bug fix is merged into develop.
 
 ## Issues
 

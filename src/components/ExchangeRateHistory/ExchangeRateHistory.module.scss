@@ -1,4 +1,4 @@
-@import "../../styles/utils/variables";
+@import '../../styles/utils/variables';
 
 .historyRate {
   text-align: center;
@@ -10,7 +10,8 @@
   justify-content: center;
 }
 
-.monthButton, .monthButton:hover {
+.monthButton,
+.monthButton:hover {
   margin: 10px;
   background-color: $cc-purple;
   border-color: $cc-purple;
@@ -20,10 +21,9 @@
   }
 }
 
-
 @media screen and (min-width: 414px) {
   .backToDashboard {
-    margin-top: 15px
+    margin-top: 15px;
   }
 }
 
@@ -40,7 +40,7 @@
 
     :global {
       .anticon {
-        display: none
+        display: none;
       }
     }
 
@@ -49,4 +49,3 @@
     }
   }
 }
-

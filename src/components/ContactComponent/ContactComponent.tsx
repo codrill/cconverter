@@ -1,51 +1,50 @@
 import React from 'react'
-import './ContactComponent.scss'
+import { useTranslation } from 'react-i18next'
+import { FacebookOutlined, GithubOutlined, GlobalOutlined } from '@ant-design/icons/lib'
 import { Helmet } from 'react-helmet'
-import ContactForm from "../ContactFormComponent/ContactFormComponent";
-import { FacebookOutlined, GithubOutlined, GlobalOutlined } from "@ant-design/icons/lib";
-import { codrillWebsite, facebookProfile, githubProfile } from "../../constants/urls";
-import { useTranslation } from "react-i18next";
 
-const Contact = () => {
-    const {t} = useTranslation();
+import { ContactForm } from '../ContactFormComponent/ContactFormComponent'
+import { codrillWebsite, facebookProfile, githubProfile } from '../../constants/urls'
 
-    return (
-        <div className="contact">
+import './ContactComponent.scss'
 
-            <Helmet>
-                <title>CConverter - {t('ContactHelmetTitle')}</title>
-            </Helmet>
+export const Contact = () => {
+  const { t } = useTranslation()
 
-            <div className="contact__details">
-                <h2>{t('ContactInformation')}</h2>
+  return (
+    <div className="contact">
+      <Helmet>
+        <title>CConverter - {t('ContactHelmetTitle')}</title>
+      </Helmet>
 
-                <div className="contact__details__icons">
-                    <div className="contact__details__icon facebook">
-                        <a href={facebookProfile}>
-                            <FacebookOutlined/>
-                        </a>
-                    </div>
+      <div className="contact__details">
+        <h2>{t('ContactInformation')}</h2>
 
-                    <div className="contact__details__icon site">
-                        <a href={codrillWebsite}>
-                            <GlobalOutlined/>
-                        </a>
-                    </div>
+        <div className="contact__details__icons">
+          <div className="contact__details__icon facebook">
+            <a href={facebookProfile}>
+              <FacebookOutlined />
+            </a>
+          </div>
 
-                    <div className="contact__details__icon github">
-                        <a href={githubProfile}>
-                            <GithubOutlined/>
-                        </a>
-                    </div>
-                </div>
-            </div>
+          <div className="contact__details__icon site">
+            <a href={codrillWebsite}>
+              <GlobalOutlined />
+            </a>
+          </div>
 
-            <div className="contact__form">
-                <h1>{t('ContactFormHeader')}</h1>
-                <ContactForm/>
-            </div>
+          <div className="contact__details__icon github">
+            <a href={githubProfile}>
+              <GithubOutlined />
+            </a>
+          </div>
         </div>
-    )
-}
+      </div>
 
-export default Contact
+      <div className="contact__form">
+        <h1>{t('ContactFormHeader')}</h1>
+        <ContactForm />
+      </div>
+    </div>
+  )
+}

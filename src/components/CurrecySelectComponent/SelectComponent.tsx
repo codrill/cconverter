@@ -1,9 +1,9 @@
-import React, {useState} from 'react'
+import React, { useState } from 'react'
 import { Select } from 'antd'
 
-import { ApiRate } from "../Dashboard/Dashboard";
+import { ApiRate } from '../Dashboard/Dashboard'
 
-const { Option } = Select;
+const { Option } = Select
 
 type Props = {
   value: string
@@ -16,11 +16,13 @@ type Props = {
 export function CurrencySelect(props: Props) {
   const { value, name, onChange, currencyRates, disabled } = props
 
-  const [ dropdownVisible, setDropdownVisible ] = useState<boolean>(false)
+  const [dropdownVisible, setDropdownVisible] = useState<boolean>(false)
 
   return (
     <>
-      <label htmlFor={name} className="sr-only">{name}</label>
+      <label htmlFor={name} className="sr-only">
+        {name}
+      </label>
       <Select
         showSearch
         value={value}
@@ -34,9 +36,7 @@ export function CurrencySelect(props: Props) {
         disabled={disabled}
         filterOption={(inputValue, option) => {
           return (option?.props.children as string).toLowerCase().indexOf(inputValue.toLowerCase()) >= 0
-        }
-
-        }
+        }}
       >
         {renderOptionsInSelector(currencyRates)}
       </Select>
@@ -45,9 +45,11 @@ export function CurrencySelect(props: Props) {
 }
 
 const renderOptionsInSelector = (rates: ApiRate[]) => {
-  return rates.map(rate => {
-    return <Option
-      value={rate.code}
-      key={rate.code}>{rate.currency}</Option>
+  return rates.map((rate) => {
+    return (
+      <Option value={rate.code} key={rate.code}>
+        {rate.currency}
+      </Option>
+    )
   })
 }
