@@ -1,12 +1,13 @@
 import React from 'react'
 import { Line } from 'react-chartjs-2'
-import './ChartComponent.scss'
+
+import './chart.scss'
 
 type Props = {
   chartData: unknown
 }
 
-export const ChartComponent: React.FC<Props> = ({ chartData }) => {
+export const Chart: React.FC<Props> = ({ chartData }) => {
   return (
     <div className="chart-container">
       <div className="line-chart">

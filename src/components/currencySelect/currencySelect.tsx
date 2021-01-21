@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Select } from 'antd'
 
-import { ApiRate } from '../Dashboard/Dashboard'
+import { ApiRate } from '../dashboard/Dashboard'
 
 const { Option } = Select
 

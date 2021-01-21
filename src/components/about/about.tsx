@@ -1,7 +1,8 @@
 import React from 'react'
-import './AboutComponent.scss'
 import { Helmet } from 'react-helmet'
 import { Trans, useTranslation } from 'react-i18next'
+
+import './about.scss'
 
 export const About: React.FC = () => {
   const { t } = useTranslation()

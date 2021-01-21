@@ -1,4 +1,5 @@
-module.exports = {  parser: '@typescript-eslint/parser', // Specifies the ESLint parser
+module.exports = {
+  parser: '@typescript-eslint/parser', // Specifies the ESLint parser
   extends: [
     'plugin:react/recommended', // Uses the recommended rules from @eslint-plugin-react
     'plugin:@typescript-eslint/recommended', // Uses the recommended rules from @typescript-eslint/eslint-plugin
@@ -59,13 +60,13 @@ module.exports = {  parser: '@typescript-eslint/parser', // Specifies the ESLint
   },
   overrides: [
     {
-      "files": ["**/!(setupTests|test/utils|*.spec.*|*.test.*).ts?x"],
-      "rules": {
-        "@typescript-eslint/no-empty-function": "error",
-        "@typescript-eslint/explicit-function-return-type": [
-          "error",
+      files: ['**/!(setupTests|test/utils|*.spec.*|*.test.*).ts?x'],
+      rules: {
+        '@typescript-eslint/no-empty-function': 'error',
+        '@typescript-eslint/explicit-function-return-type': [
+          'error',
           {
-            "allowExpressions": true,
+            allowExpressions: true,
           },
         ],
       },

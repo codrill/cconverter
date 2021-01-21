@@ -1,6 +1,6 @@
-import { ApiRate } from 'components/Dashboard/Dashboard'
-import { polishCurrencyObject } from 'constants/PolishCurrencyObject'
-import { CurrencyResponse } from 'services/CurrencyService'
+import { ApiRate } from 'components/dashboard/dashboard'
+import { polishCurrencyObject } from 'constants/polishCurrencyObject'
+import { CurrencyResponse } from 'services/currencyService'
 
 import { sort } from './array'
 
