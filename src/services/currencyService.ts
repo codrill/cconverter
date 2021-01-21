@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { forkJoin, from } from 'rxjs'
 import { map } from 'rxjs/operators'
 
-import { ApiRate, CurrencyHistoryData } from '../components/dashboard/Dashboard'
+import { ApiRate, CurrencyHistoryData } from '../components/dashboard/dashboard'
 import { urlApiNBPTableA, urlApiNBPTableB, urlExchangeRates } from '../constants/currencyApi'
 import { polishCurrencyCode, polishCurrencyObject } from '../constants/polishCurrencyObject'
 import { returnPreparedCurrencyObject } from '../utils/object'
