@@ -4,12 +4,12 @@ import { LineChartOutlined, SwapOutlined } from '@ant-design/icons/lib'
 import { Helmet } from 'react-helmet'
 import { Trans, useTranslation } from 'react-i18next'
 
-import { initialSelectFromValue, initialSelectToValue, inputPlaceholder } from '../../constants/Variables'
+import { initialSelectFromValue, initialSelectToValue, inputPlaceholder } from '../../constants/variables'
 import { getParsedNumber } from '../../utils/number'
-import { CurrencySelect } from '../CurrecySelectComponent/SelectComponent'
-import { ExchangeRateHistoryComponent } from '../ExchangeRateHistory/ExchangeRateHistory'
+import { CurrencySelect } from '../currencySelect/currencySelect'
+import { ExchangeRateHistoryComponent } from '../exchangeRateHistory/exchangeRateHistory'
 
-import './Dashboard.scss'
+import './dashboard.scss'
 
 const userInputRegex = new RegExp('^\\d+([,.]\\d{0,2})?$')
 

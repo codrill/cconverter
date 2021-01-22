@@ -3,12 +3,12 @@ import { Button, Spin } from 'antd'
 import { CalendarOutlined } from '@ant-design/icons/lib'
 import { useTranslation } from 'react-i18next'
 
-import { useFetchHistoryData } from '../../services/CurrencyService'
-import { ChartComponent } from '../ChartComponent/ChartComponent'
+import { useFetchHistoryData } from '../../services/currencyService'
+import { Chart } from '../chart/chart'
 import { prepareChartLabels, prepareChartValues, setChart } from '../../utils/chart'
-import { CurrencyHistoryData } from '../Dashboard/Dashboard'
+import { CurrencyHistoryData } from '../dashboard/dashboard'
 
-import styles from './ExchangeRateHistory.module.scss'
+import styles from './exchangeRateHistory.module.scss'
 
 const MAX_DATA_ARRAY_LENGTH = 90
 const THIRTY_DAYS_PERIOD = { key: 'OneMonth', value: 60 }
@@ -63,7 +63,7 @@ export const ExchangeRateHistoryComponent: React.FC<Props> = ({ selectedCurrenci
   return (
     <div className={styles.historyRate}>
       <Spin spinning={loading}>
-        {!loading && <ChartComponent chartData={chartData} />}
+        {!loading && <Chart chartData={chartData} />}
 
         <div className={styles.periodButtons}>{generateButton()}</div>
       </Spin>

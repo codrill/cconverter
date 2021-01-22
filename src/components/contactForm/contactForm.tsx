@@ -6,10 +6,10 @@ import emailjs from 'emailjs-com'
 import React, { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 
-import { defaultService, templateId, userId } from '../../constants/EmailJS'
-import { emailRegex, usernameRegex } from '../../constants/Regex'
+import { defaultService, templateId, userId } from '../../constants/emailJS'
+import { emailRegex, usernameRegex } from '../../constants/regex'
 
-import './ContactFormComponent.scss'
+import './contactForm.scss'
 
 // Not used because for now there is no way to parametrize AntD form values.
 // ISSUES:

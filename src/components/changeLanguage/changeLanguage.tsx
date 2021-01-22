@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next'
 
 import { configuredLanguages } from '../../config/languages'
 
-import styles from './ChangeLanguage.module.scss'
+import styles from './changeLanguage.module.scss'
 
 type AvailableLanguageCodes = 'pl' | 'en'
 const { Option } = Select

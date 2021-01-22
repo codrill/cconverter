@@ -2,11 +2,11 @@ import React from 'react'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import { Layout } from 'antd'
 
-import { About } from './components/AboutComponent/AboutComponent'
-import { Contact } from './components/ContactComponent/ContactComponent'
-import { UndefinedRoute } from './components/UndefinedRouteComponent/UndefinedRouteComponent'
-import { MainHeader } from './components/MainHeaderComponent/MainHeaderComponent'
-import { DashboardContainer } from './components/Dashboard/Dashboard.container'
+import { About } from './components/about/about'
+import { Contact } from './components/contact/contact'
+import { UndefinedRoute } from './components/undefinedRoute/undefinedRoute'
+import { MainHeader } from './components/mainHeader/mainHeader'
+import { DashboardContainer } from './components/dashboard/dashboard.container'
 
 import './App.scss'
 

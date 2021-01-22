@@ -4,12 +4,12 @@ import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
 
 import { menuRoutes } from '../../config/routes'
-import { HeaderNavLink } from '../HeaderNavLink/HeaderNavLink'
-import { ChangeLanguage } from '../ChangeLanguage/ChangeLanguage'
+import { HeaderNavLink } from '../headerNavLink/headerNavLink'
+import { ChangeLanguage } from '../changeLanguage/changeLanguage'
 
-import './MainHeaderComponent.scss'
+import './mainHeader.scss'
 
-export const MainHeader = () => {
+export const MainHeader: React.FC = () => {
   const { t } = useTranslation()
 
   const [menuExpanded, setMenuExpanded] = useState<boolean>(false)

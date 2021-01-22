@@ -1,4 +1,4 @@
-import { HistoryData } from '../services/CurrencyService'
+import { HistoryData } from '../services/currencyService'
 
 export function setChart(labels: string[], values: number[], translatedLabel: string) {
   return {

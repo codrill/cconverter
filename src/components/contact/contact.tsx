@@ -3,10 +3,10 @@ import { useTranslation } from 'react-i18next'
 import { FacebookOutlined, GithubOutlined, GlobalOutlined } from '@ant-design/icons/lib'
 import { Helmet } from 'react-helmet'
 
-import { ContactForm } from '../ContactFormComponent/ContactFormComponent'
+import { ContactForm } from '../contactForm/contactForm'
 import { codrillWebsite, facebookProfile, githubProfile } from '../../constants/urls'
 
-import './ContactComponent.scss'
+import './contact.scss'
 
 export const Contact = () => {
   const { t } = useTranslation()

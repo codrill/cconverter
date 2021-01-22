@@ -2,7 +2,7 @@ import React, { ReactElement } from 'react'
 import { NavLink } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 
-import styles from './HeaderNavLink.module.scss'
+import styles from './headerNavLink.module.scss'
 
 type Props = {
   icon: ReactElement

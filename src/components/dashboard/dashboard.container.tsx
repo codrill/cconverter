@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react'
 
-import { useCurrenciesFetch } from '../../services/CurrencyService'
+import { useCurrenciesFetch } from '../../services/currencyService'
 
-import { ApiRate, Dashboard } from './Dashboard'
+import { ApiRate, Dashboard } from './dashboard'
 
 type Response = {
   rates: ApiRate[]
