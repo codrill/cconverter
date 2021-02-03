@@ -4,9 +4,13 @@ import { CurrencyResponse } from 'services/currencyService'
 
 import { sort } from './array'
 
-export function addNewPropertyToTableObjectElement(objects: unknown[], newProperty: string, newPropertyValue: string) {
-  //TODO: can we return new object here to ommit mutability and set proper typings?
-  return objects.forEach((objectElement: any) => {
+export function addNewPropertyToTableObjectElement(
+  objects: Record<string, unknown>[],
+  newProperty: string,
+  newPropertyValue: string,
+): void {
+  //TODO: can we return new object here to omit mutability and set proper typings?
+  objects.forEach((objectElement) => {
     objectElement[newProperty] = newPropertyValue
   })
 }
