@@ -1,3 +1,3 @@
-export const getParsedNumber = function (value: string | number) {
+export const getParsedNumber = (value: string | number): number => {
   return Number(String(value).replace(',', '.'))
 }
