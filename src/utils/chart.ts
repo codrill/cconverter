@@ -1,26 +1,35 @@
 import { HistoryData } from '../services/currencyService'
 
-export function setChart(labels: string[], values: number[], translatedLabel: string) {
+type ChartDataConfig = {
+  labels: string[]
+  datasets: ChartDataset[]
+}
+
+type ChartDataset = {
+  label: string
+  data: number[]
+  backgroundColor: string
+}
+
+export const setChart = (labels: string[], values: number[], translatedLabel: string): ChartDataConfig => {
+  const chartBackgroundColor = 'rgba(75,192,192,0.4)'
+
   return {
     labels: labels,
     datasets: [
       {
         label: translatedLabel,
         data: values,
-        backgroundColor: 'rgba(75,192,192,0.4)',
+        backgroundColor: chartBackgroundColor,
       },
     ],
   }
 }
 
-export function prepareChartLabels(dataArray: HistoryData[]) {
-  return dataArray.map((historyData) => {
-    return historyData.date
-  })
+export const prepareChartLabels = (dataArray: HistoryData[]): string[] => {
+  return dataArray.map((historyData) => historyData.date)
 }
 
-export function prepareChartValues(dataArray: HistoryData[]) {
-  return dataArray.map((historyData) => {
-    return historyData.rate
-  })
+export const prepareChartValues = (dataArray: HistoryData[]): number[] => {
+  return dataArray.map((historyData) => historyData.rate)
 }
