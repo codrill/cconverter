@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { forkJoin, from } from 'rxjs'
+import { forkJoin, from, Observable } from 'rxjs'
 import { map } from 'rxjs/operators'
 
 import { ApiRate, CurrencyHistoryData } from '../components/dashboard/dashboard'
@@ -25,13 +25,23 @@ export interface HistoryData {
   rate: number
 }
 
+export type CurrencyObject = {
+  rates: ApiRate[]
+  date: string
+}
+
 export type Currency = {
   no: string
   effectiveDate: string
   mid: number
 }
 
-export function useCurrenciesFetch() {
+type HistoricalData = {
+  data: HistoryData[]
+  loading: boolean
+}
+
+export const useCurrenciesFetch = (): Observable<CurrencyObject> => {
   return forkJoin({
     currencyTableA: request(urlApiNBPTableA),
     currencyTableB: request(urlApiNBPTableB),
@@ -44,7 +54,7 @@ export function useCurrenciesFetch() {
 
 const NO_ELEMENT_FOUND_INDEX = -1
 
-export function useFetchHistoryData(selectedCurrencies: CurrencyHistoryData[]) {
+export const useFetchHistoryData = (selectedCurrencies: CurrencyHistoryData[]): HistoricalData => {
   const [data, setData] = useState<HistoryData[]>([])
   const [loading, setLoading] = useState<boolean>(true)
 
@@ -66,16 +76,14 @@ export function useFetchHistoryData(selectedCurrencies: CurrencyHistoryData[]) {
     }
 
     if (selectedPolishCurrencyIndex > NO_ELEMENT_FOUND_INDEX) {
-      const currency = selectedCurrencies.find((currency) => {
-        return currency.code !== polishCurrencyObject.code
-      })
+      const secondSelectedCurrency = selectedCurrencies[selectedPolishCurrencyIndex === 0 ? 1 : 0]
 
-      forkJoin({
-        currency: request(`${urlExchangeRates}/${currency?.table}/${currency?.code}/last/90`),
-      }).subscribe(({ currency }) => {
-        setData(prepareHistoryData(currency.rates, !selectedPolishCurrencyIndex))
-        setLoading(false)
-      })
+      request(`${urlExchangeRates}/${secondSelectedCurrency?.table}/${secondSelectedCurrency?.code}/last/90`).subscribe(
+        (currency) => {
+          setData(prepareHistoryData(currency.rates, !selectedPolishCurrencyIndex))
+          setLoading(false)
+        },
+      )
     }
   }, [selectedCurrencies, selectedPolishCurrencyIndex])
 
