@@ -46,7 +46,7 @@ export const ExchangeRateHistoryComponent: React.FC<Props> = ({ selectedCurrenci
             setPeriod(value)
           }}
         >
-          {t(key)}{' '}
+          {t(key)}
         </Button>
       )
     })
