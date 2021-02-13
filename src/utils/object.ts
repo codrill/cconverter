@@ -1,6 +1,5 @@
-import { ApiRate } from 'components/dashboard/dashboard'
 import { polishCurrencyObject } from 'constants/polishCurrencyObject'
-import { CurrencyResponse } from 'services/currencyService'
+import { CurrencyObject, CurrencyResponse } from 'services/currencyService'
 
 import { sort } from './array'
 
@@ -15,7 +14,7 @@ export function addNewPropertyToTableObjectElement(
   })
 }
 
-export function returnPreparedCurrencyObject(data: CurrencyResponse): { rates: ApiRate[]; date: string } {
+export function returnPreparedCurrencyObject(data: CurrencyResponse): CurrencyObject {
   data.currencyTableA.forEach((tableAElement) => {
     addNewPropertyToTableObjectElement(tableAElement.rates, 'table', tableAElement.table)
   })

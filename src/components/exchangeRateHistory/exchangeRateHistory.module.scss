@@ -8,44 +8,44 @@
 .periodButtons {
   display: flex;
   justify-content: center;
-}
 
-.monthButton,
-.monthButton:hover {
-  margin: 10px;
-  background-color: $cc-purple;
-  border-color: $cc-purple;
+  .monthButton,
+  .monthButton:hover {
+    margin: 10px;
+    background-color: $cc-purple;
+    border-color: $cc-purple;
 
-  &.active {
-    background-color: $cc-purple-dark;
+    &.active {
+      background-color: $cc-purple-dark;
+    }
+  }
+
+  @media screen and (max-width: 414px) {
+    .monthButton {
+      height: 30px;
+      font-size: 0.8rem;
+    }
+  }
+
+  @media screen and (max-width: 365px) {
+    .monthButton {
+      margin: 10px 5px;
+
+      :global {
+        .anticon {
+          display: none;
+        }
+      }
+
+      span:last-of-type {
+        margin: 0;
+      }
+    }
   }
 }
 
 @media screen and (min-width: 414px) {
   .backToDashboard {
     margin-top: 15px;
-  }
-}
-
-@media screen and (max-width: 414px) {
-  .monthButton {
-    height: 30px;
-    font-size: 0.8rem;
-  }
-}
-
-@media screen and (max-width: 365px) {
-  .monthButton {
-    margin: 10px 5px;
-
-    :global {
-      .anticon {
-        display: none;
-      }
-    }
-
-    span:nth-child(2) {
-      margin: 0;
-    }
   }
 }
