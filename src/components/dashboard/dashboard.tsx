@@ -23,14 +23,15 @@ export type ApiRate = {
   code: string
   mid: number
   currency: string
-  table: string
+  table: AvailableTables
 }
 
 export type CurrencyHistoryData = {
   code: string
-  table: string
+  table: AvailableTables
 }
 
+export type AvailableTables = 'A' | 'B' | 'C'
 type SelectedValue = ApiRate | undefined
 
 export const Dashboard: React.FC<Props> = ({ rates, date, dataReady }) => {
@@ -117,7 +118,7 @@ export const Dashboard: React.FC<Props> = ({ rates, date, dataReady }) => {
             </div>
           </div>
 
-          <div className="converter__calc__shadow"></div>
+          <div className="converter__calc__shadow" />
 
           <div className="converter__calc">
             <h2 className="converter__calc__header">{t('ConvertCurrencyCalculatorHeader')}</h2>
