@@ -72,7 +72,7 @@ export const useFetchHistoryData = (selectedCurrencies: CurrencyHistoryData[]): 
     }
 
     if (selectedPolishCurrencyIndex > NO_ELEMENT_FOUND_INDEX) {
-      const secondSelectedCurrency = selectedCurrencies[selectedPolishCurrencyIndex === 0 ? 0 : 0]
+      const secondSelectedCurrency = selectedCurrencies[selectedPolishCurrencyIndex === 0 ? 1 : 0]
 
       request(urlApiNBPMaxHistory(secondSelectedCurrency?.table, secondSelectedCurrency?.code)).subscribe(
         (currency) => {
