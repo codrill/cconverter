@@ -3,7 +3,7 @@ import { forkJoin, from, Observable } from 'rxjs'
 import { map } from 'rxjs/operators'
 
 import { ApiRate, CurrencyHistoryData } from '../components/dashboard/dashboard'
-import { urlApiNBPTableA, urlApiNBPTableB, urlExchangeRates } from '../constants/currencyApi'
+import { urlApiNBPMaxHistory, urlApiNBPTableA, urlApiNBPTableB } from '../constants/currencyApi'
 import { polishCurrencyCode, polishCurrencyObject } from '../constants/polishCurrencyObject'
 import { returnPreparedCurrencyObject } from '../utils/object'
 
@@ -63,12 +63,8 @@ export const useFetchHistoryData = (selectedCurrencies: CurrencyHistoryData[]): 
   useEffect(() => {
     if (selectedPolishCurrencyIndex === NO_ELEMENT_FOUND_INDEX) {
       forkJoin({
-        firstCurrency: request(
-          `${urlExchangeRates}/${selectedCurrencies[0]?.table}/${selectedCurrencies[0]?.code}/last/90`,
-        ),
-        secondCurrency: request(
-          `${urlExchangeRates}/${selectedCurrencies[1]?.table}/${selectedCurrencies[1]?.code}/last/90`,
-        ),
+        firstCurrency: request(urlApiNBPMaxHistory(selectedCurrencies[0]?.table, selectedCurrencies[0]?.code)),
+        secondCurrency: request(urlApiNBPMaxHistory(selectedCurrencies[1]?.table, selectedCurrencies[1]?.code)),
       }).subscribe(({ firstCurrency, secondCurrency }) => {
         setData(prepareHistoryData(firstCurrency.rates, false, secondCurrency.rates))
         setLoading(false)
@@ -78,7 +74,7 @@ export const useFetchHistoryData = (selectedCurrencies: CurrencyHistoryData[]): 
     if (selectedPolishCurrencyIndex > NO_ELEMENT_FOUND_INDEX) {
       const secondSelectedCurrency = selectedCurrencies[selectedPolishCurrencyIndex === 0 ? 1 : 0]
 
-      request(`${urlExchangeRates}/${secondSelectedCurrency?.table}/${secondSelectedCurrency?.code}/last/90`).subscribe(
+      request(urlApiNBPMaxHistory(secondSelectedCurrency?.table, secondSelectedCurrency?.code)).subscribe(
         (currency) => {
           setData(prepareHistoryData(currency.rates, !selectedPolishCurrencyIndex))
           setLoading(false)
