@@ -23,7 +23,7 @@ type Config = {
   onUpdate?: (registration: ServiceWorkerRegistration) => void
 }
 
-export function register(config: Config) {
+export function register(config: Config): void {
   if (process.env.NODE_ENV === 'production' && 'serviceWorker' in navigator) {
     // The URL constructor is available in all browsers that support SW.
     const publicUrl = new URL(process.env.PUBLIC_URL, window.location.href)
@@ -44,6 +44,7 @@ export function register(config: Config) {
         // Add some additional logging to localhost, pointing developers to the
         // service worker/PWA documentation.
         navigator.serviceWorker.ready.then(() => {
+          // eslint-disable-next-line no-console
           console.log(
             'This web app is being served cache-first by a service ' +
               'worker. To learn more, visit https://bit.ly/CRA-PWA',
@@ -68,37 +69,43 @@ function registerValidSW(swUrl: string, config?: Config) {
         }
         installingWorker.onstatechange = () => {
           if (installingWorker.state === 'installed') {
-            if (navigator.serviceWorker.controller) {
-              // At this point, the updated precached content has been fetched,
-              // but the previous service worker will still serve the older
-              // content until all client tabs are closed.
-              console.log(
-                'New content is available and will be used when all ' +
-                  'tabs for this page are closed. See https://bit.ly/CRA-PWA.',
-              )
-
-              // Execute callback
-              if (config && config.onUpdate) {
-                config.onUpdate(registration)
-              }
-            } else {
-              // At this point, everything has been precached.
-              // It's the perfect time to display a
-              // "Content is cached for offline use." message.
-              console.log('Content is cached for offline use.')
-
-              // Execute callback
-              if (config && config.onSuccess) {
-                config.onSuccess(registration)
-              }
-            }
+            whenWorkerInstalled(registration, config)
           }
         }
       }
     })
     .catch((error) => {
+      // eslint-disable-next-line no-console
       console.error('Error during service worker registration:', error)
     })
+}
+
+function whenWorkerInstalled(registration: ServiceWorkerRegistration, config?: Config): void {
+  if (navigator.serviceWorker.controller) {
+    // At this point, the updated precached content has been fetched,
+    // but the previous service worker will still serve the older
+    // content until all client tabs are closed.
+    // eslint-disable-next-line no-console
+    console.log(
+      'New content is available and will be used when all tabs for this page are closed. See https://bit.ly/CRA-PWA.',
+    )
+
+    // Execute callback
+    if (config && config.onUpdate) {
+      config.onUpdate(registration)
+    }
+  } else {
+    // At this point, everything has been precached.
+    // It's the perfect time to display a
+    // "Content is cached for offline use." message.
+    // eslint-disable-next-line no-console
+    console.log('Content is cached for offline use.')
+
+    // Execute callback
+    if (config && config.onSuccess) {
+      config.onSuccess(registration)
+    }
+  }
 }
 
 function checkValidServiceWorker(swUrl: string, config?: Config) {
@@ -120,11 +127,12 @@ function checkValidServiceWorker(swUrl: string, config?: Config) {
       }
     })
     .catch(() => {
+      // eslint-disable-next-line no-console
       console.log('No internet connection found. App is running in offline mode.')
     })
 }
 
-export function unregister() {
+export function unregister(): void {
   if ('serviceWorker' in navigator) {
     navigator.serviceWorker.ready.then((registration) => {
       registration.unregister()
