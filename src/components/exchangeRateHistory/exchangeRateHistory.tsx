@@ -5,7 +5,7 @@ import { useTranslation } from 'react-i18next'
 
 import { useFetchHistoryData } from '../../services/currencyService'
 import { Chart } from '../chart/chart'
-import { prepareChartLabels, prepareChartValues, setChart } from '../../utils/chart'
+import { ChartDataConfig, prepareChartLabels, prepareChartValues, setChart } from '../../utils/chart'
 import { CurrencyHistoryData } from '../dashboard/dashboard'
 
 import styles from './exchangeRateHistory.module.scss'
@@ -24,7 +24,7 @@ export const ExchangeRateHistoryComponent: React.FC<Props> = ({ selectedCurrenci
   const { t } = useTranslation()
 
   const [period, setPeriod] = useState<number>(THIRTY_DAYS_PERIOD.value)
-  const [chartData, setChartData] = useState<any>({})
+  const [chartData, setChartData] = useState<ChartDataConfig | null>(null)
 
   const { data, loading } = GetHistoricalData(selectedCurrencies)
 
@@ -63,7 +63,7 @@ export const ExchangeRateHistoryComponent: React.FC<Props> = ({ selectedCurrenci
   return (
     <div className={styles.historyRate}>
       <Spin spinning={loading}>
-        {!loading && <Chart chartData={chartData} />}
+        {!loading && <Chart chartData={chartData as ChartDataConfig} />}
 
         <div className={styles.periodButtons}>{generateButton()}</div>
       </Spin>

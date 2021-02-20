@@ -1,16 +1,11 @@
 .line-chart {
   position: relative;
-  height: 600px;
+  height: 430px;
+  max-height: 70vh;
 }
 
 @media screen and (min-width: 415px) {
   .line-chart {
     height: 600px;
-  }
-}
-
-@media screen and (max-width: 414px) {
-  .line-chart {
-    height: 430px;
   }
 }
