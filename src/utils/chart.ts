@@ -1,6 +1,6 @@
 import { HistoryData } from '../services/currencyService'
 
-type ChartDataConfig = {
+export type ChartDataConfig = {
   labels: string[]
   datasets: ChartDataset[]
 }
@@ -8,19 +8,16 @@ type ChartDataConfig = {
 type ChartDataset = {
   label: string
   data: number[]
-  backgroundColor: string
+  backgroundColor?: string | CanvasGradient
 }
 
 export const setChart = (labels: string[], values: number[], translatedLabel: string): ChartDataConfig => {
-  const chartBackgroundColor = 'rgba(75,192,192,0.4)'
-
   return {
     labels: labels,
     datasets: [
       {
         label: translatedLabel,
         data: values,
-        backgroundColor: chartBackgroundColor,
       },
     ],
   }
