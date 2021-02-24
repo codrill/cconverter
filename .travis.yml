@@ -21,7 +21,7 @@ deploy:
   github_token: $github_token
   on:
     branch: develop
-    node: 12.16.1
+    node: 14.15.4
   target_branch: master
   local_dir: build
   fqdn: cconverter.codrill.eu
