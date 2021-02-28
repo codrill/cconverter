@@ -1,11 +1,12 @@
 import { useEffect, useState } from 'react'
-import { forkJoin, from, Observable } from 'rxjs'
+import { forkJoin } from 'rxjs'
 import { map } from 'rxjs/operators'
 
 import { ApiRate, CurrencyHistoryData } from '../components/dashboard/dashboard'
 import { urlApiNBPMaxHistory, urlApiNBPTableA, urlApiNBPTableB } from '../constants/currencyApi'
 import { polishCurrencyCode, polishCurrencyObject } from '../constants/polishCurrencyObject'
 import { returnPreparedCurrencyObject } from '../utils/object'
+import { request$ } from '../utils/fetch'
 
 export interface CurrencyResponse {
   currencyTableA: CurrencyTableObject[]
@@ -41,15 +42,27 @@ type HistoricalData = {
   loading: boolean
 }
 
-export const useCurrenciesFetch = (): Observable<CurrencyObject> => {
-  return forkJoin({
-    currencyTableA: request(urlApiNBPTableA),
-    currencyTableB: request(urlApiNBPTableB),
-  }).pipe(
-    map((data) => {
-      return returnPreparedCurrencyObject(data)
-    }),
-  )
+export const useCurrenciesFetch = (): CurrencyObject => {
+  const [rates, setRates] = useState<ApiRate[]>([])
+  const [date, setDate] = useState('')
+
+  useEffect(() => {
+    forkJoin({
+      currencyTableA: request$(urlApiNBPTableA),
+      currencyTableB: request$(urlApiNBPTableB),
+    })
+      .pipe(
+        map((data) => {
+          return returnPreparedCurrencyObject(data)
+        }),
+      )
+      .subscribe(({ rates, date }) => {
+        setRates(rates)
+        setDate(date)
+      })
+  }, [])
+
+  return { rates, date }
 }
 
 const NO_ELEMENT_FOUND_INDEX = -1
@@ -63,8 +76,8 @@ export const useFetchHistoryData = (selectedCurrencies: CurrencyHistoryData[]): 
   useEffect(() => {
     if (selectedPolishCurrencyIndex === NO_ELEMENT_FOUND_INDEX) {
       forkJoin({
-        firstCurrency: request(urlApiNBPMaxHistory(selectedCurrencies[0]?.table, selectedCurrencies[0]?.code)),
-        secondCurrency: request(urlApiNBPMaxHistory(selectedCurrencies[1]?.table, selectedCurrencies[1]?.code)),
+        firstCurrency: request$(urlApiNBPMaxHistory(selectedCurrencies[0]?.table, selectedCurrencies[0]?.code)),
+        secondCurrency: request$(urlApiNBPMaxHistory(selectedCurrencies[1]?.table, selectedCurrencies[1]?.code)),
       }).subscribe(({ firstCurrency, secondCurrency }) => {
         setData(prepareHistoryData(firstCurrency.rates, false, secondCurrency.rates))
         setLoading(false)
@@ -74,7 +87,7 @@ export const useFetchHistoryData = (selectedCurrencies: CurrencyHistoryData[]): 
     if (selectedPolishCurrencyIndex > NO_ELEMENT_FOUND_INDEX) {
       const secondSelectedCurrency = selectedCurrencies[selectedPolishCurrencyIndex === 0 ? 1 : 0]
 
-      request(urlApiNBPMaxHistory(secondSelectedCurrency?.table, secondSelectedCurrency?.code)).subscribe(
+      request$(urlApiNBPMaxHistory(secondSelectedCurrency?.table, secondSelectedCurrency?.code)).subscribe(
         (currency) => {
           setData(prepareHistoryData(currency.rates, !selectedPolishCurrencyIndex))
           setLoading(false)
@@ -112,5 +125,3 @@ const prepareHistoryData = (firstCurrency: Currency[], divideByCurrency = false,
   }
   return historyData
 }
-
-const request = (url: string) => from(fetch(url).then((data) => data.json()))
