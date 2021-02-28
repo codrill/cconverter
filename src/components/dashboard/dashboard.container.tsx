@@ -4,11 +4,6 @@ import { useCurrenciesFetch } from '../../services/currencyService'
 
 import { ApiRate, Dashboard } from './dashboard'
 
-type Response = {
-  rates: ApiRate[]
-  date: string
-}
-
 export const DashboardContainer: React.FC = () => {
   const [apiRates, setApiRates] = useState<ApiRate[]>([])
   const [date, setCurrentDate] = useState('')
