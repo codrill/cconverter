@@ -1,16 +1,20 @@
 [![Build Status](https://travis-ci.com/codrill/cconverter.svg?branch=develop)](https://travis-ci.com/codrill/cconverter)
+[![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=codrill_cconverter&metric=sqale_rating)](https://sonarcloud.io/dashboard?id=codrill_cconverter)
+[![Reliability Rating](https://sonarcloud.io/api/project_badges/measure?project=codrill_cconverter&metric=reliability_rating)](https://sonarcloud.io/dashboard?id=codrill_cconverter)
+[![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=codrill_cconverter&metric=security_rating)](https://sonarcloud.io/dashboard?id=codrill_cconverter)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=codrill_cconverter&metric=alert_status)](https://sonarcloud.io/dashboard?id=codrill_cconverter)
 
 # CConverter
 
-[CConverter](https://cconverter.codrill.eu) is an open-source project. Calculations are based on the latest data provided
-by the National Bank of Poland API.
+[CConverter](https://cconverter.codrill.eu) is an open-source project. Calculations are based on the latest data
+provided by the National Bank of Poland API.
 
-Application is adjusted to be used on any device. It works great on desktops, tables or mobile phones.
-Right now we are supporting polish and english language using
+Application is adjusted to be used on any device. It works great on desktops, tables or mobile phones. Right now we are
+supporting polish and english language using
 `react-i18next` library.
 
-This project is continuously developed. We are adding new features, fix (potential of course :) ) bugs,
-so we can meet your expectations.
+This project is continuously developed. We are adding new features, fix (potential of course :) ) bugs, so we can meet
+your expectations.
 
 We are LIVE so you can visit us here --> [CConverter](https://cconverter.codrill.eu)
 
@@ -40,5 +44,6 @@ We are LIVE so you can visit us here --> [CConverter](https://cconverter.codrill
 
 ## Issues
 
-Because [CConverter](https://cconverter.codrill.eu) is an open-source project you can help us improve it. If you find any issues
-please contact with us using [Contact Form](https://cconverter.codrill.eu/contact) directly from our application.
+Because [CConverter](https://cconverter.codrill.eu) is an open-source project you can help us improve it. If you find
+any issues please contact with us using [Contact Form](https://cconverter.codrill.eu/contact) directly from our
+application.
