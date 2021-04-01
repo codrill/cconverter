@@ -1,4 +1,8 @@
 [![Build Status](https://travis-ci.com/codrill/cconverter.svg?branch=develop)](https://travis-ci.com/codrill/cconverter)
+[![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=codrill_cconverter&metric=sqale_rating)](https://sonarcloud.io/dashboard?id=codrill_cconverter)
+[![Reliability Rating](https://sonarcloud.io/api/project_badges/measure?project=codrill_cconverter&metric=reliability_rating)](https://sonarcloud.io/dashboard?id=codrill_cconverter)
+[![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=codrill_cconverter&metric=security_rating)](https://sonarcloud.io/dashboard?id=codrill_cconverter)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=codrill_cconverter&metric=alert_status)](https://sonarcloud.io/dashboard?id=codrill_cconverter)
 
 # CConverter
 
