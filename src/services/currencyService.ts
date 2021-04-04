@@ -103,14 +103,14 @@ const prepareHistoryData = (firstCurrency: Currency[], divideByCurrency = false,
   const historyData: HistoryData[] = []
 
   if (firstCurrency && secondCurrency) {
-    firstCurrency.map((rate, index) => {
+    firstCurrency.forEach((rate, index) => {
       return historyData.push({
         date: rate.effectiveDate,
         rate: (rate.mid = Number((rate.mid / secondCurrency[index].mid).toFixed(5))),
       })
     })
   } else {
-    firstCurrency.map((rate) => {
+    firstCurrency.forEach((rate) => {
       if (divideByCurrency) {
         return historyData.push({
           date: rate.effectiveDate,
