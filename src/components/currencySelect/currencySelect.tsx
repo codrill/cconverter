@@ -41,7 +41,7 @@ export const CurrencySelect: React.FC<Props> = (props) => {
         onChange={onChange}
         disabled={disabled}
         filterOption={(inputValue: string, option: FilterOption) => {
-          return (option?.props.children as string).toLowerCase().indexOf(inputValue.toLowerCase()) >= 0
+          return (option?.props.children).toLowerCase().indexOf(inputValue.toLowerCase()) >= 0
         }}
       >
         {renderOptionsInSelector(currencyRates)}
