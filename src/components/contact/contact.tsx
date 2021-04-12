@@ -8,7 +8,7 @@ import { codrillWebsite, facebookProfile, githubProfile } from '../../constants/
 
 import './contact.scss'
 
-export const Contact = () => {
+export const Contact: React.FC = () => {
   const { t } = useTranslation()
 
   return (

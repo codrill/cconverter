@@ -1,6 +1,5 @@
 import { Form, message } from 'antd'
 import Button from 'antd/lib/button'
-import { Store } from 'antd/lib/form/interface'
 import Input from 'antd/lib/input'
 import emailjs from 'emailjs-com'
 import React, { useState } from 'react'
@@ -11,10 +10,6 @@ import { emailRegex, usernameRegex } from '../../constants/regex'
 
 import './contactForm.scss'
 
-// Not used because for now there is no way to parametrize AntD form values.
-// ISSUES:
-// https://github.com/ant-design/ant-design/issues/21195
-// https://github.com/react-component/field-form/issues/70
 type FormValues = {
   username: string
   userEmail: string
@@ -25,7 +20,7 @@ export const ContactForm: React.FC = () => {
   const { t } = useTranslation()
   const [buttonDisabled, setButtonDisabled] = useState<boolean>(false)
 
-  const submitForm = (values: Store): void => {
+  const submitForm = (values: FormValues): void => {
     setButtonDisabled(true)
 
     emailjs
@@ -44,7 +39,7 @@ export const ContactForm: React.FC = () => {
 
   return (
     <div className="form">
-      <Form name="contactForm" id="contact-form" onFinish={submitForm} layout="vertical">
+      <Form<FormValues> name="contactForm" id="contact-form" onFinish={submitForm} layout="vertical">
         <Form.Item
           label={t('ContactFormUsername')}
           name="username"

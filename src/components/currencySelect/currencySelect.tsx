@@ -13,7 +13,13 @@ type Props = {
   disabled: boolean
 }
 
-export function CurrencySelect(props: Props) {
+type FilterOption = {
+  props: {
+    children: string
+  }
+}
+
+export const CurrencySelect: React.FC<Props> = (props) => {
   const { value, name, onChange, currencyRates, disabled } = props
 
   const [dropdownVisible, setDropdownVisible] = useState<boolean>(false)
@@ -34,8 +40,8 @@ export function CurrencySelect(props: Props) {
         onDropdownVisibleChange={(open) => setDropdownVisible(open)}
         onChange={onChange}
         disabled={disabled}
-        filterOption={(inputValue, option) => {
-          return (option?.props.children as string).toLowerCase().indexOf(inputValue.toLowerCase()) >= 0
+        filterOption={(inputValue: string, option: FilterOption) => {
+          return (option?.props.children).toLowerCase().indexOf(inputValue.toLowerCase()) >= 0
         }}
       >
         {renderOptionsInSelector(currencyRates)}

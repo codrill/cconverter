@@ -2,7 +2,7 @@ import React from 'react'
 
 import { useCurrenciesFetch } from '../../services/currencyService'
 
-import { ApiRate, Dashboard } from './dashboard'
+import { Dashboard } from './dashboard'
 
 export const DashboardContainer: React.FC = () => {
   const { rates, date } = useCurrenciesFetch()

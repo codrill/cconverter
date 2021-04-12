@@ -24,5 +24,5 @@ export function returnPreparedCurrencyObject(data: CurrencyResponse): CurrencyOb
   return {
     rates: sort([...data.currencyTableA[0].rates, ...data.currencyTableB[0].rates, polishCurrencyObject], 'currency'),
     date: data.currencyTableA[0].effectiveDate,
-  }
+  } as CurrencyObject
 }
