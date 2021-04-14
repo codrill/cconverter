@@ -56,6 +56,7 @@
   &__calc__shadow {
     grid-column: 7 / 13;
     grid-row: 2;
+    border-radius: 5px;
     box-shadow: 0 0 20px $cc-purple-dark;
   }
 
@@ -68,6 +69,7 @@
     padding: 40px;
     background-color: $cc-white;
     text-align: center;
+    border-radius: 5px;
 
     .buttons {
       display: flex;

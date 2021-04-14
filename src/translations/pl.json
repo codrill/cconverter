@@ -30,5 +30,8 @@
   "TwoMonths": "2 Miesiące",
   "ThreeMonths": "3 Miesiące",
   "Back": "Powrót",
-  "ExchangeRate": "Kurs wymiany"
+  "ExchangeRate": "Kurs wymiany",
+  "NotFoundPageSubheader": "Coś poszło nie tak.",
+  "NotFoundPageDescription": "Strona pod tym adresem nie istnieje:",
+  "NotFoundPageBtnHome": "Wróć na stronę główną"
 }
