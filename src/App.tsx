@@ -4,7 +4,7 @@ import { Layout } from 'antd'
 
 import { About } from './components/about/about'
 import { Contact } from './components/contact/contact'
-import { UndefinedRoute } from './components/undefinedRoute/undefinedRoute'
+import { NotFoundPage } from './components/notFoundPage/notFoundPage'
 import { MainHeader } from './components/mainHeader/mainHeader'
 import { DashboardContainer } from './components/dashboard/dashboard.container'
 import { gtagID } from './constants/googleAnalytics'
@@ -42,7 +42,7 @@ export const App: React.FC = () => {
             </Route>
 
             <Route path="*">
-              <UndefinedRoute />
+              <NotFoundPage />
             </Route>
           </Switch>
         </Layout>

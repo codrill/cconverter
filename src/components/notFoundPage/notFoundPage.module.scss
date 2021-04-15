@@ -1,0 +1,76 @@
+@import '../../styles/utils/variables';
+@import '../../styles/utils/mixins';
+
+.notFound {
+  margin: 50px 20px;
+
+  &__info {
+    position: relative;
+    width: 600px;
+    max-width: 90vw;
+    padding: 40px;
+    margin: auto;
+    background-color: $cc-white;
+    text-align: center;
+    border-radius: 5px;
+    box-shadow: 0 0 20px $cc-purple-dark;
+    z-index: 1;
+  }
+
+  &__header {
+    font-size: 3rem;
+  }
+
+  &__description {
+    padding: 20px 0;
+  }
+
+  &__path {
+    padding: 0 10px;
+    font-style: italic;
+  }
+
+  @media screen and (min-width: 634px) {
+    display: flex;
+    flex-direction: column-reverse;
+    justify-content: center;
+    align-items: center;
+
+    &__img {
+      @include background-image-with-linear-gradient(
+                      $cc-purple-dark,
+                      $cc-purple,
+                      '../../assets/img/404.jpg',
+              $colorFromOpacity: 0.1,
+              $colorToOpacity: 0.5
+      );
+      width: 500px;
+      height: 300px;
+      background-position: center;
+      background-size: cover;
+    }
+
+    &__info {
+      margin: -75px 0 0 0;
+    }
+  }
+
+  @media screen and (min-width: 991px) {
+    flex-direction: row;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 0 50px;
+
+    &__img {
+      width: 600px;
+      height: 400px;
+    }
+
+    &__info {
+      margin: 0 -75px 0 0;
+    }
+  }
+}

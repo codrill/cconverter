@@ -30,5 +30,8 @@
   "TwoMonths": "2 Months",
   "ThreeMonths": "3 Months",
   "Back": "Back",
-  "ExchangeRate": "Rate exchange"
+  "ExchangeRate": "Rate exchange",
+  "NotFoundPageSubheader": "Something went wrong.",
+  "NotFoundPageDescription": "Page at this address does not exist:",
+  "NotFoundPageBtnHome": "Go back to homepage"
 }
