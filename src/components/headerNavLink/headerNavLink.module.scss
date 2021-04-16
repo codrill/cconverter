@@ -1,17 +1,17 @@
-@import '../../styles/utils/variables';
-@import '../../styles/utils/fonts';
+@use 'src/styles/utils/variables';
+@use 'src/styles/utils/fonts';
 
 .navLink {
   display: inline-block;
-  color: $cc-white;
-  font-weight: $font-semi-bold;
+  color: variables.$cc-white;
+  font-weight: fonts.$font-semi-bold;
   transition: all 0.3s ease-in-out;
 
   :global {
     .anticon {
       display: inline-block;
       margin-right: 10px;
-      color: rgba($cc-white, 0.5);
+      color: rgba(variables.$cc-white, 0.5);
     }
   }
 
@@ -23,7 +23,7 @@
     &::before {
       content: attr(data-hover);
       position: absolute;
-      color: $cc-white;
+      color: variables.$cc-white;
       opacity: 0;
       transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
     }
@@ -34,8 +34,8 @@
     padding: 0 20px;
     transition: background-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
     &.active {
-      background-color: $cc-purple-dark;
-      box-shadow: 0 2px 5px $cc-purple-dark;
+      background-color: variables.$cc-purple-dark;
+      box-shadow: 0 2px 5px variables.$cc-purple-dark;
     }
   }
 

@@ -1,12 +1,12 @@
-@import 'styles/utils/variables';
+@use 'src/styles/utils/variables';
 
 .cc-theme-purple {
   .main-layout {
-    background-color: $cc-white;
+    background-color: variables.$cc-white;
 
     &__header {
       height: auto;
-      background-color: $cc-purple;
+      background-color: variables.$cc-purple;
       @media screen and (max-width: 634px) {
         display: flex;
         align-items: center;
@@ -16,17 +16,17 @@
     }
 
     &__content {
-      background-color: $cc-white;
+      background-color: variables.$cc-white;
       position: relative;
 
       .ant-spin {
-        background-color: $cc-white;
+        background-color: variables.$cc-white;
         .ant-spin-dot {
           width: 3rem;
           height: 3rem;
 
           .ant-spin-dot-item {
-            background-color: $cc-purple;
+            background-color: variables.$cc-purple;
             width: 20px;
             height: 20px;
           }

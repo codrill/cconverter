@@ -1,5 +1,5 @@
-@import '../../styles/utils/variables';
-@import '../../styles/utils/mixins';
+@use 'src/styles/utils/variables';
+@use 'src/styles/utils/mixins';
 
 .contact {
   display: flex;
@@ -7,11 +7,11 @@
   padding-top: 20px;
 
   .contact__details {
-    @include linear-gradient($cc-purple, $cc-purple-dark);
+    @include mixins.linear-gradient(variables.$cc-purple, variables.$cc-purple-dark);
     width: 300px;
     height: 600px;
     padding: 10px;
-    color: $cc-white;
+    color: variables.$cc-white;
 
     h2 {
       font-size: 1.17rem;
@@ -41,8 +41,8 @@
     width: 600px;
     padding: 10px;
     margin: auto -120px;
-    background-color: $cc-white;
-    box-shadow: 0 0 20px $cc-purple-dark;
+    background-color: variables.$cc-white;
+    box-shadow: 0 0 20px variables.$cc-purple-dark;
     border-radius: 5px;
     text-align: center;
   }

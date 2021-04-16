@@ -1,5 +1,5 @@
-@import '../../styles/utils/variables';
-@import '../../styles/utils/mixins';
+@use 'src/styles/utils/variables';
+@use 'src/styles/utils/mixins';
 
 .about {
   display: flex;
@@ -19,10 +19,10 @@
       width: 600px;
       z-index: 1;
       margin: auto -75px;
-      background-color: $cc-white;
+      background-color: variables.$cc-white;
       border-radius: 5px;
       padding: 40px;
-      box-shadow: 0 0 20px $cc-purple-dark;
+      box-shadow: 0 0 20px variables.$cc-purple-dark;
 
       p {
         font-size: 1.2rem;
@@ -36,32 +36,32 @@
       background-size: cover;
 
       &.dollar-foto {
-        @include background-image-with-linear-gradient(
-          $cc-purple-dark,
-          $cc-purple,
-          '../../assets/img/currency.jpg',
-          $colorFromOpacity: 0.1,
-          $colorToOpacity: 0.5
+        @include mixins.background-image-with-linear-gradient(
+                        variables.$cc-purple-dark,
+                        variables.$cc-purple,
+                        '../../assets/img/currency.jpg',
+                $colorFromOpacity: 0.1,
+                $colorToOpacity: 0.5
         );
       }
 
       &.bank-foto {
-        @include background-image-with-linear-gradient(
-          $cc-purple-dark,
-          $cc-purple,
-          '../../assets/img/bank.jpg',
-          0.5,
-          0.1
+        @include mixins.background-image-with-linear-gradient(
+                        variables.$cc-purple-dark,
+                        variables.$cc-purple,
+                        '../..//assets/img/bank.jpg',
+                $colorFromOpacity: 0.5,
+                $colorToOpacity: 0.1
         );
       }
 
       &.rwd-foto {
-        @include background-image-with-linear-gradient(
-          $cc-purple-dark,
-          $cc-purple,
-          '../../assets/img/rwd.jpg',
-          0.1,
-          0.5
+        @include mixins.background-image-with-linear-gradient(
+                        variables.$cc-purple-dark,
+                        variables.$cc-purple,
+                        '../..//assets/img/rwd.jpg',
+                $colorFromOpacity: 0.1,
+                $colorToOpacity: 0.5
         );
       }
     }

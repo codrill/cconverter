@@ -1,4 +1,4 @@
-@import '../../styles/utils/variables';
+@use 'src/styles/utils/variables';
 
 .historyRate {
   text-align: center;
@@ -12,11 +12,11 @@
   .monthButton,
   .monthButton:hover {
     margin: 10px;
-    background-color: $cc-purple;
-    border-color: $cc-purple;
+    background-color: variables.$cc-purple;
+    border-color: variables.$cc-purple;
 
     &.active {
-      background-color: $cc-purple-dark;
+      background-color: variables.$cc-purple-dark;
     }
   }
 

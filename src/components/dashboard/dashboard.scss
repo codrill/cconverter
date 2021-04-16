@@ -1,31 +1,31 @@
-@import '../../styles/utils/variables';
-@import '../../styles/utils/fonts';
-@import '../../styles/utils/mixins';
+@use 'src/styles/utils/variables';
+@use 'src/styles/utils/fonts';
+@use 'src/styles/utils/mixins';
 
 .converter {
   display: grid;
   grid-template-columns: repeat(12, 1fr);
   grid-template-rows: 40px auto 40px;
-  margin-top: $gap-big;
-  margin-bottom: $gap-big;
+  margin-top: variables.$gap-big;
+  margin-bottom: variables.$gap-big;
 
   &__info {
-    @include background-image-with-linear-gradient(
-      $cc-purple-dark,
-      $cc-purple,
-      '../../assets/img/bg-calc-info.jpg',
-      0.07,
-      0.1
+    @include mixins.background-image-with-linear-gradient(
+                    variables.$cc-purple-dark,
+                    variables.$cc-purple,
+                    '../../assets/img/bg-calc-info.jpg',
+                    0.07,
+                    0.1
     );
     display: grid;
     grid-template-columns: repeat(6, 1fr);
     grid-column: 1 / 7;
     grid-row: 1 / 4;
-    padding: $gap-big 0;
-    background-color: $cc-purple;
+    padding: variables.$gap-big 0;
+    background-color: variables.$cc-purple;
     background-position: center;
     background-size: cover;
-    color: $cc-white;
+    color: variables.$cc-white;
 
     &__content {
       grid-column: 2 / 5;
@@ -38,7 +38,7 @@
         display: block;
         margin-bottom: 20px;
         font-family: 'Font Awesome 5 Free', sans-serif;
-        font-weight: $fa-weight-bold;
+        font-weight: fonts.$fa-weight-bold;
         font-size: 4rem;
       }
 
@@ -57,7 +57,7 @@
     grid-column: 7 / 13;
     grid-row: 2;
     border-radius: 5px;
-    box-shadow: 0 0 20px $cc-purple-dark;
+    box-shadow: 0 0 20px variables.$cc-purple-dark;
   }
 
   &__calc {
@@ -67,7 +67,7 @@
     grid-row: 2;
     min-height: 470px;
     padding: 40px;
-    background-color: $cc-white;
+    background-color: variables.$cc-white;
     text-align: center;
     border-radius: 5px;
 
@@ -104,6 +104,7 @@
         display: block;
         margin-bottom: 10px;
       }
+
       .ant-input {
         font-size: 1.2rem;
       }
@@ -134,7 +135,7 @@
 
     &__rate p {
       font-size: 0.9rem;
-      font-weight: $font-semi-bold;
+      font-weight: fonts.$font-semi-bold;
       font-style: italic;
       margin-bottom: 0;
     }
