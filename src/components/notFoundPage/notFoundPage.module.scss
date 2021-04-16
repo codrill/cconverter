@@ -1,5 +1,5 @@
-@import '../../styles/utils/variables';
-@import '../../styles/utils/mixins';
+@use 'src/styles/utils/variables';
+@use 'src/styles/utils/mixins';
 
 .notFound {
   margin: 50px 20px;
@@ -10,10 +10,10 @@
     max-width: 90vw;
     padding: 40px;
     margin: auto;
-    background-color: $cc-white;
+    background-color: variables.$cc-white;
     text-align: center;
     border-radius: 5px;
-    box-shadow: 0 0 20px $cc-purple-dark;
+    box-shadow: 0 0 20px variables.$cc-purple-dark;
     z-index: 1;
   }
 
@@ -37,9 +37,9 @@
     align-items: center;
 
     &__img {
-      @include background-image-with-linear-gradient(
-                      $cc-purple-dark,
-                      $cc-purple,
+      @include mixins.background-image-with-linear-gradient(
+                      variables.$cc-purple-dark,
+                      variables.$cc-purple,
                       '../../assets/img/404.jpg',
               $colorFromOpacity: 0.1,
               $colorToOpacity: 0.5

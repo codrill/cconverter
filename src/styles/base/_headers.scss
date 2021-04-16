@@ -1,4 +1,4 @@
-@import '../utils/fonts';
+@use '../utils/fonts';
 
 h1,
 h2,
@@ -6,7 +6,7 @@ h3,
 h4,
 h5 {
   color: inherit;
-  font-weight: $font-bold;
+  font-weight: fonts.$font-bold;
 }
 
 h2 {

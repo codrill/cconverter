@@ -63,9 +63,9 @@
     "eslint-plugin-prettier": "^3.3.1",
     "eslint-plugin-react": "^7.22.0",
     "eslint-plugin-react-hooks": "^4.2.0",
-    "node-sass": "^4.14.1",
     "prettier": "^2.2.1",
     "react-helmet": "^5.2.1",
-    "react-snap": "^1.23.0"
+    "react-snap": "^1.23.0",
+    "sass": "^1.32.8"
   }
 }
