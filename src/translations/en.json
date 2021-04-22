@@ -27,7 +27,7 @@
   "ContactFormRegexEmail": "Please provide correct email address",
   "ContactFormRegexMessage": "Message must contain from 20 to 500 characters",
   "ContactFormSentHeader": "Thank you!",
-  "ContactFormSentSuccess": "Message has been send successfully",
+  "ContactFormSentSuccess": "Message has been send successfully.",
   "ContactFormSentResponse": "If necessary, we will contact with you by e-mail given in the form.",
   "OneMonth": "1 Month",
   "TwoMonths": "2 Months",
