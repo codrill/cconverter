@@ -1,15 +1,21 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { FacebookOutlined, GithubOutlined, GlobalOutlined } from '@ant-design/icons/lib'
 import { Helmet } from 'react-helmet'
 
 import { ContactForm } from '../contactForm/contactForm'
+import { ContactFormSent } from '../contactFormSent/contactFormSent'
 import { codrillWebsite, facebookProfile, githubProfile } from '../../constants/urls'
 
 import './contact.scss'
 
 export const Contact: React.FC = () => {
   const { t } = useTranslation()
+  const [sent, setSent] = useState<boolean>(false)
+
+  function handleMessageSent(isSent: boolean) {
+    setSent(isSent)
+  }
 
   return (
     <div className="contact">
@@ -42,8 +48,7 @@ export const Contact: React.FC = () => {
       </div>
 
       <div className="contact__form">
-        <h1>{t('ContactFormHeader')}</h1>
-        <ContactForm />
+        {!sent ? <ContactForm onMessageSent={handleMessageSent} /> : <ContactFormSent />}
       </div>
     </div>
   )

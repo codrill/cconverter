@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useReducer, useState } from 'react'
 import { Button, Input, Spin } from 'antd'
 import { LineChartOutlined, SwapOutlined } from '@ant-design/icons/lib'
 import { Helmet } from 'react-helmet'
@@ -94,8 +94,35 @@ export const Dashboard: React.FC<Props> = ({ rates, date, dataReady }) => {
     setHistoryComponentActive(setHistoryActive)
   }
 
+  const switchOption = (state: any, action: any) => {
+    switch (action.type) {
+      case 'add':
+        return { count: state.count + 1, color: 'green' }
+      case 'substract':
+        return { count: state.count - 1, color: 'red' }
+      case 'reset':
+        return action.setInitState
+      default:
+        return { count: state }
+    }
+  }
+
+  const initState = { count: 0, color: 'gray' }
+
+  // state - Declaring new state variable, called "counter" and initial count state
+  const [counter, setCounter] = useReducer(switchOption, initState)
+
   return (
     <div>
+      <p>
+        Counter: <span style={{ color: counter.color }}> {counter.count} </span>
+      </p>
+      <button onClick={() => setCounter({ type: 'add' })}> +1</button>
+      <button onClick={() => setCounter({ type: 'substract' })}> -1</button>
+      <div>
+        <button onClick={() => setCounter({ type: 'reset', setInitState: initState })}> reset</button>
+      </div>
+
       {isDashboardComponentActive && (
         <div className="converter cc-container">
           <Helmet>
