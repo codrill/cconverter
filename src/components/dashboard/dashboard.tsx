@@ -112,7 +112,7 @@ export const Dashboard: React.FC<Props> = ({ rates, date, dataReady }) => {
               </Trans>
               <p>
                 <Trans i18nKey="DashboardSectionDate" values={{ date: date }}>
-                  Last update: {{ date }}
+                  Last update: {date}
                 </Trans>
               </p>
             </div>
