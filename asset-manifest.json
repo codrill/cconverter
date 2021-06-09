@@ -1,0 +1,29 @@
+{
+  "files": {
+    "main.css": "/static/css/main.aef9778f.chunk.css",
+    "main.js": "/static/js/main.5b4c60c8.chunk.js",
+    "main.js.map": "/static/js/main.5b4c60c8.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.95ddde72.js",
+    "runtime-main.js.map": "/static/js/runtime-main.95ddde72.js.map",
+    "static/css/2.5e24afbc.chunk.css": "/static/css/2.5e24afbc.chunk.css",
+    "static/js/2.dbd63113.chunk.js": "/static/js/2.dbd63113.chunk.js",
+    "static/js/2.dbd63113.chunk.js.map": "/static/js/2.dbd63113.chunk.js.map",
+    "index.html": "/index.html",
+    "static/css/2.5e24afbc.chunk.css.map": "/static/css/2.5e24afbc.chunk.css.map",
+    "static/css/main.aef9778f.chunk.css.map": "/static/css/main.aef9778f.chunk.css.map",
+    "static/js/2.dbd63113.chunk.js.LICENSE.txt": "/static/js/2.dbd63113.chunk.js.LICENSE.txt",
+    "static/media/notFoundPage.module.scss": "/static/media/404.c5574f26.jpg",
+    "static/media/about.scss": "/static/media/rwd.3094c460.jpg",
+    "static/media/dashboard.scss": "/static/media/bg-calc-info.e995efbf.jpg",
+    "static/media/styles.scss": "/static/media/fa-solid-900.efbd5d20.eot",
+    "static/media/flag-english.14458eff.svg": "/static/media/flag-english.14458eff.svg",
+    "static/media/flag-polish.602a7f84.svg": "/static/media/flag-polish.602a7f84.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.95ddde72.js",
+    "static/css/2.5e24afbc.chunk.css",
+    "static/js/2.dbd63113.chunk.js",
+    "static/css/main.aef9778f.chunk.css",
+    "static/js/main.5b4c60c8.chunk.js"
+  ]
+}
